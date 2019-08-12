@@ -1,0 +1,24 @@
+{
+	"types": [
+		{
+		"type": "JSON_STRING",
+		"options" : []
+		},
+		{
+		"type": "JSON_STRING",
+		"options" : []
+		},	
+		{
+		"type": "JSON_NUMBER",
+		"options" : []
+		},
+		{
+		"type": "JSON_STRING",
+		"options" : []
+		},
+		{
+		"type": "JSON_NUMBER",
+		"options" : []
+		}
+	]
+}
