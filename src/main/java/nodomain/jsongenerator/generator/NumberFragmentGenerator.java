@@ -6,9 +6,10 @@ public enum NumberFragmentGenerator implements FragmentGenerator {
 	
 	INSTANCE;
 
-	public StringBuilder generateFragment(DataOptions options) {
-		StringBuilder fragment = new StringBuilder();
-		fragment.append("number");
+	public StringBuilder generateFragment(String name, DataOptions options) {
+		StringBuilder fragment = generateBegining(name);
+		fragment.append(System.currentTimeMillis());
+
 		return fragment;
 	}
 

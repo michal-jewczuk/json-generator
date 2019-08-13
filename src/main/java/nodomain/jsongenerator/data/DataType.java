@@ -7,16 +7,16 @@ public enum DataType {
 
 	JSON_STRING {
 		@Override
-		public StringBuilder createJsonFragment(DataOptions options) {
-			return StringFragmentGenerator.INSTANCE.generateFragment(options);
+		public StringBuilder createJsonFragment(String name, DataOptions options) {
+			return StringFragmentGenerator.INSTANCE.generateFragment(name, options);
 		}
 	},
 	JSON_NUMBER {
 		@Override
-		public StringBuilder createJsonFragment(DataOptions options) {
-			return NumberFragmentGenerator.INSTANCE.generateFragment(options);
+		public StringBuilder createJsonFragment(String name, DataOptions options) {
+			return NumberFragmentGenerator.INSTANCE.generateFragment(name, options);
 		}
 	};
 	
-	public abstract StringBuilder createJsonFragment(DataOptions options);
+	public abstract StringBuilder createJsonFragment(String name, DataOptions options);
 }
