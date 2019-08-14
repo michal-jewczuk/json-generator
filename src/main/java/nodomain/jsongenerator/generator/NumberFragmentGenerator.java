@@ -20,7 +20,7 @@ public enum NumberFragmentGenerator implements FragmentGenerator {
 	private long generateNumber(DataOptions options) {
 		NumberDataOptions opt = (NumberDataOptions) options;
 		Random rand = new Random();
-		LongStream str = rand.longs(1, opt.getNumberMin(), opt.getNumberMax());
+		LongStream str = rand.longs(1, opt.getNumberMin(), opt.getNumberMax() + 1);
 		
 		return str.sum();
 	}
