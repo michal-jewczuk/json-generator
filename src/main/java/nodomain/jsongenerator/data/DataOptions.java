@@ -1,5 +1,5 @@
 package nodomain.jsongenerator.data;
 
-public interface DataOptions {
+public abstract class DataOptions {
 	
 }
