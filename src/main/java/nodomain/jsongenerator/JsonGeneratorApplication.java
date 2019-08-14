@@ -8,7 +8,7 @@ public class JsonGeneratorApplication {
 	public static void main(String[] args) {
 		
 		int count = 1;
-		String outputName = args[1] == null ? AppConfig.DEFAULT_OUTPUT_NAME : args[1];
+		String outputName = args.length < 2 ? AppConfig.DEFAULT_OUTPUT_NAME : args[1];
 		
 		try {
 			count = Integer.parseInt(args[0]);

@@ -3,27 +3,35 @@
 		{
 		"type": "JSON_STRING",
 		"name": "string_1",
-		"options" : []
+		"options" : {}
 		},
 		{
 		"type": "JSON_STRING",
 		"name": "string_2",
-		"options" : []
+		"options" : {}
 		},	
 		{
 		"type": "JSON_NUMBER",
 		"name": "number_1",
-		"options" : []
+		"options" : 
+			{
+			"number_min": -5,
+			"number_max": -1
+			}
 		},
 		{
 		"type": "JSON_STRING",
 		"name": "string_3",
-		"options" : []
+		"options" : {}
 		},
 		{
 		"type": "JSON_NUMBER",
 		"name": "number_2",
-		"options" : []
+		"options" : 
+			{
+			"number_min": 20,
+			"number_max": 30
+			}
 		}
 	]
 }

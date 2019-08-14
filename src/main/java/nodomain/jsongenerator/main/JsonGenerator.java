@@ -33,7 +33,7 @@ public class JsonGenerator {
 		for (int i = 0; i < length; i++) {
 			JSONObject current = arr.getJSONObject(i);
 			DataType type =  DataType.valueOf(current.getString("type"));
-			output.append("\t").append(type.createJsonFragment(current.getString("name"), null));
+			output.append("\t").append(type.createJsonFragment(current.getString("name"), current.getJSONObject("options")));
 			
 			if (i < length - 1) {
 				output.append(",\n");
