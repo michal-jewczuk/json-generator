@@ -3,12 +3,22 @@
 		{
 		"type": "JSON_STRING",
 		"name": "string_1",
-		"options" : {}
+		"options" : 
+			{
+			"length": 5,
+			"first_cap": false,
+			"all_cap": false
+			}
 		},
 		{
 		"type": "JSON_STRING",
 		"name": "string_2",
-		"options" : {}
+		"options" : 
+			{
+			"length": 25,
+			"first_cap": true,
+			"all_cap": false
+			}
 		},	
 		{
 		"type": "JSON_NUMBER",
@@ -22,7 +32,12 @@
 		{
 		"type": "JSON_STRING",
 		"name": "string_3",
-		"options" : {}
+		"options" : 
+			{
+			"length": 3,
+			"first_cap": false,
+			"all_cap": true
+			}
 		},
 		{
 		"type": "JSON_NUMBER",
