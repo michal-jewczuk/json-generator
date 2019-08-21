@@ -2,14 +2,12 @@ package nodomain.jsongenerator.util;
 
 import java.util.Random;
 
-import nodomain.jsongenerator.config.AppConfig;
-
 public class StringUtil {
 
-	public static String generateStringFragment(int length) {
+	public static String generateStringFragment(int length, String symbolsString) {
 		StringBuilder fragment = new StringBuilder();
-		int charCount = AppConfig.STRING_SYMBOLS.length();
-		final char[] symbols = AppConfig.STRING_SYMBOLS.toCharArray();
+		int charCount = symbolsString.length();
+		final char[] symbols = symbolsString.toCharArray();
 		
 		Random rand = new Random();
 		int start = rand.nextInt(charCount);

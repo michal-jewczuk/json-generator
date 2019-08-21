@@ -1,5 +1,6 @@
 package nodomain.jsongenerator.generator;
 
+import nodomain.jsongenerator.config.AppConfig;
 import nodomain.jsongenerator.data.DataOptions;
 import nodomain.jsongenerator.data.StringDataOptions;
 import nodomain.jsongenerator.util.StringUtil;
@@ -22,7 +23,7 @@ public enum StringFragmentGenerator implements FragmentGenerator {
 	private StringBuilder generateStringFragment(StringDataOptions so) {
 		
 		StringBuilder fragment = new StringBuilder();
-		String generated = StringUtil.generateStringFragment(so.getLength());
+		String generated = StringUtil.generateStringFragment(so.getLength(), AppConfig.STRING_SYMBOLS);
 	
 		if (so.isAllCapital()) {
 			fragment = new StringBuilder(generated.toUpperCase());
