@@ -1,14 +1,15 @@
 package nodomain.jsongenerator.data.parsers;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.Matchers.containsString;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import nodomain.jsongenerator.data.NumberDataOptions;
+import nodomain.jsongenerator.exceptions.JsonParsingException;
 
 
 public class NumberDataOptionsParserTest {
@@ -46,7 +47,8 @@ public class NumberDataOptionsParserTest {
 		String json_string = "{\"number_min\": " + numMin + ", \"number_max\": " + numMax + "}";	
 		JSONObject json_object = new JSONObject(json_string);
 		
-		excE.expect(JSONException.class);
+		excE.expect(JsonParsingException.class);
+		excE.expectMessage(containsString("number_min"));
 		NumberDataOptionsParser.INSTANCE.parseDataOptions(json_object);	
 	}
 	
@@ -57,7 +59,8 @@ public class NumberDataOptionsParserTest {
 		String json_string = "{\"number_min\": " + numMin + ", \"number_max\": " + numMax + "}";	
 		JSONObject json_object = new JSONObject(json_string);
 		
-		excE.expect(JSONException.class);
+		excE.expect(JsonParsingException.class);
+		excE.expectMessage(containsString("number_max"));
 		NumberDataOptionsParser.INSTANCE.parseDataOptions(json_object);	
 	}
 }
