@@ -1,9 +1,12 @@
 package nodomain.jsongenerator.data.parsers;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import nodomain.jsongenerator.config.AppConfig;
 import nodomain.jsongenerator.data.DataOptions;
 import nodomain.jsongenerator.data.StringDataOptions;
+import nodomain.jsongenerator.exceptions.JsonParsingException;
 
 public enum StringDataOptionsParser implements DataOptionsParser {
 
@@ -11,9 +14,17 @@ public enum StringDataOptionsParser implements DataOptionsParser {
 
 	@Override
 	public DataOptions parseDataOptions(JSONObject options) {
-		int length = options.getInt("length");
-		boolean firstCapital = options.getBoolean("first_cap");
-		boolean allCapital = options.getBoolean("all_cap");
+		int length;
+		boolean firstCapital;
+		boolean allCapital;
+		
+		try {
+			length = options.getInt("length");
+			firstCapital = options.getBoolean("first_cap");
+			allCapital = options.getBoolean("all_cap");
+		} catch (JSONException e) {
+			throw new JsonParsingException(AppConfig.ERROR_PARSING + e.getLocalizedMessage());
+		}
 		
 		if (length < 1) {
 			throw new IllegalArgumentException("Length < 1!");
