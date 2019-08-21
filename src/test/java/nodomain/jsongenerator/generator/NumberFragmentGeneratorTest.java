@@ -3,17 +3,12 @@ package nodomain.jsongenerator.generator;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.json.JSONObject;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 import nodomain.jsongenerator.data.DataOptions;
 import nodomain.jsongenerator.data.parsers.NumberDataOptionsParser;
 
 public class NumberFragmentGeneratorTest {
-
-	@Rule
-    public ExpectedException excE = ExpectedException.none();
 	
 	@Test
 	public void shouldCorectlyGenerateNumberGreaterThanZero() {
