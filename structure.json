@@ -30,6 +30,15 @@
 			}
 		},
 		{
+		"type": "JSON_PATTERN",
+		"name": "pattern_1",
+		"options" : 
+			{
+			"pattern": "4-2-10",
+			"connector": " ";
+			}
+		},
+		{
 		"type": "JSON_STRING",
 		"name": "string_3",
 		"options" : 
@@ -37,6 +46,15 @@
 			"length": 3,
 			"first_cap": false,
 			"all_cap": true
+			}
+		},
+		{
+		"type": "JSON_PATTERN",
+		"name": "pattern_2",
+		"options" : 
+			{
+			"pattern": "6-5",
+			"connector": "-";
 			}
 		},
 		{
