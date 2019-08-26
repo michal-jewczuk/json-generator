@@ -35,7 +35,8 @@
 		"options" : 
 			{
 			"pattern": "4-2-10",
-			"connector": " ";
+			"connector": " ",
+			"all_cap": true
 			}
 		},
 		{
@@ -53,8 +54,9 @@
 		"name": "pattern_2",
 		"options" : 
 			{
-			"pattern": "6-5",
-			"connector": "-";
+			"pattern": "6-",
+			"connector": "-",
+			"all_cap": false
 			}
 		},
 		{
