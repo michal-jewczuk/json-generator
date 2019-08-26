@@ -8,9 +8,6 @@ import java.util.List;
 import org.json.JSONObject;
 import org.junit.Test;
 
-import nodomain.jsongenerator.data.StringDataOptions;
-import nodomain.jsongenerator.data.parsers.StringDataOptionsParser;
-
 public class StringFragmentGeneratorTest {
 
 	@Test
@@ -21,9 +18,8 @@ public class StringFragmentGeneratorTest {
 		String name = "jsonString";
 		String json_string = "{\"length\": " + length + ", \"first_cap\": " + firstCapital + ", \"all_cap\": " + allCapital + "}";
 		JSONObject json_object = new JSONObject(json_string);
-		StringDataOptions options = (StringDataOptions) StringDataOptionsParser.INSTANCE.parseDataOptions(json_object);
 		
-		StringBuilder fragment = StringFragmentGenerator.INSTANCE.generateFragment(name, options);
+		StringBuilder fragment = StringFragmentGenerator.INSTANCE.generateFragment(name, json_object);
 		
 		assertThat(fragment.toString()).contains(name);
 		assertThat(fragment.toString().length()).isEqualTo(length + name.length() + 6);
@@ -38,9 +34,8 @@ public class StringFragmentGeneratorTest {
 		String name = "jsonString";
 		String json_string = "{\"length\": " + length + ", \"first_cap\": " + firstCapital + ", \"all_cap\": " + allCapital + "}";
 		JSONObject json_object = new JSONObject(json_string);
-		StringDataOptions options = (StringDataOptions) StringDataOptionsParser.INSTANCE.parseDataOptions(json_object);
 		
-		StringBuilder fragment = StringFragmentGenerator.INSTANCE.generateFragment(name, options);
+		StringBuilder fragment = StringFragmentGenerator.INSTANCE.generateFragment(name, json_object);
 		String result = extractValue(fragment.toString());
 
 		assertThat(result).isEqualTo(result.toUpperCase());
@@ -54,9 +49,8 @@ public class StringFragmentGeneratorTest {
 		String name = "jsonString";
 		String json_string = "{\"length\": " + length + ", \"first_cap\": " + firstCapital + ", \"all_cap\": " + allCapital + "}";
 		JSONObject json_object = new JSONObject(json_string);
-		StringDataOptions options = (StringDataOptions) StringDataOptionsParser.INSTANCE.parseDataOptions(json_object);
 		
-		StringBuilder fragment = StringFragmentGenerator.INSTANCE.generateFragment(name, options);
+		StringBuilder fragment = StringFragmentGenerator.INSTANCE.generateFragment(name, json_object);
 		String result = extractValue(fragment.toString());
 		List<String> letters = new ArrayList<>();
 		for (int i = 1, j = 2; i < length + 1; i++, j++) {
@@ -76,9 +70,8 @@ public class StringFragmentGeneratorTest {
 		String name = "jsonString";
 		String json_string = "{\"length\": " + length + ", \"first_cap\": " + firstCapital + ", \"all_cap\": " + allCapital + "}";
 		JSONObject json_object = new JSONObject(json_string);
-		StringDataOptions options = (StringDataOptions) StringDataOptionsParser.INSTANCE.parseDataOptions(json_object);
 		
-		StringBuilder fragment = StringFragmentGenerator.INSTANCE.generateFragment(name, options);
+		StringBuilder fragment = StringFragmentGenerator.INSTANCE.generateFragment(name, json_object);
 		String result = extractValue(fragment.toString());
 		List<String> letters = new ArrayList<>();
 		for (int i = 1, j = 2; i < length + 1; i++, j++) {

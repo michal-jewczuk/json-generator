@@ -1,25 +1,28 @@
 package nodomain.jsongenerator.generator;
 
-import nodomain.jsongenerator.data.DataOptions;
+import org.json.JSONObject;
+
 import nodomain.jsongenerator.data.PatternDataOptions;
+import nodomain.jsongenerator.data.parsers.PatternDataOptionsParser;
 
 public enum PatternFragmentGenerator implements FragmentGenerator {
 	
 	INSTANCE;
 
 	@Override
-	public StringBuilder generateFragment(String name, DataOptions options) {
-		PatternDataOptions op = (PatternDataOptions) options;
+	public StringBuilder generateFragment(String name, JSONObject dataOptions) {
+		PatternDataOptions options = 
+				PatternDataOptionsParser.INSTANCE.parseDataOptions(dataOptions);
 		
 		StringBuilder fragment = generateBegining(name);
 		fragment.append("\"");
-		fragment.append(generatePatternFragment(op));
+		fragment.append(generatePatternFragment(options));
 		fragment.append("\"");
 		
 		return fragment;
 	}
 
-	private StringBuilder generatePatternFragment(PatternDataOptions op) {
+	private StringBuilder generatePatternFragment(PatternDataOptions options) {
 		StringBuilder fragment = new StringBuilder("no data options");
 		return fragment;
 	}

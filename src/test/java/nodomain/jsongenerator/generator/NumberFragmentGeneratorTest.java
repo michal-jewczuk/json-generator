@@ -5,9 +5,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.json.JSONObject;
 import org.junit.Test;
 
-import nodomain.jsongenerator.data.DataOptions;
-import nodomain.jsongenerator.data.parsers.NumberDataOptionsParser;
-
 public class NumberFragmentGeneratorTest {
 	
 	@Test
@@ -17,9 +14,8 @@ public class NumberFragmentGeneratorTest {
 		String name = "generated";
 		String json_string = "{\"number_min\": " + numMin + ", \"number_max\": " + numMax + "}";
 		JSONObject json_object = new JSONObject(json_string);
-		DataOptions options = NumberDataOptionsParser.INSTANCE.parseDataOptions(json_object);
 		
-		StringBuilder result = NumberFragmentGenerator.INSTANCE.generateFragment(name, options);
+		StringBuilder result = NumberFragmentGenerator.INSTANCE.generateFragment(name, json_object);
 		
 		assertThat(result.toString()).contains(name);
 		assertThat(extractLong(result.toString())).isEqualTo(numMin);
@@ -32,9 +28,8 @@ public class NumberFragmentGeneratorTest {
 		String name = "generated";
 		String json_string = "{\"number_min\": " + numMin + ", \"number_max\": " + numMax + "}";
 		JSONObject json_object = new JSONObject(json_string);
-		DataOptions options = NumberDataOptionsParser.INSTANCE.parseDataOptions(json_object);
 		
-		StringBuilder result = NumberFragmentGenerator.INSTANCE.generateFragment(name, options);
+		StringBuilder result = NumberFragmentGenerator.INSTANCE.generateFragment(name, json_object);
 		
 		assertThat(extractLong(result.toString())).isBetween(numMin, numMax);
 	}

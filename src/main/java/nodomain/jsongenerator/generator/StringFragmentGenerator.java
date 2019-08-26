@@ -1,8 +1,10 @@
 package nodomain.jsongenerator.generator;
 
+import org.json.JSONObject;
+
 import nodomain.jsongenerator.config.AppConfig;
-import nodomain.jsongenerator.data.DataOptions;
 import nodomain.jsongenerator.data.StringDataOptions;
+import nodomain.jsongenerator.data.parsers.StringDataOptionsParser;
 import nodomain.jsongenerator.util.StringUtil;
 
 public enum StringFragmentGenerator implements FragmentGenerator {
@@ -10,26 +12,27 @@ public enum StringFragmentGenerator implements FragmentGenerator {
 	INSTANCE;
 
 	@Override
-	public StringBuilder generateFragment(String name, DataOptions options) {
-		StringDataOptions so = (StringDataOptions) options;
+	public StringBuilder generateFragment(String name, JSONObject dataOptions) {
+		StringDataOptions options = 
+				StringDataOptionsParser.INSTANCE.parseDataOptions(dataOptions);
 			
 		StringBuilder fragment = generateBegining(name);
 		fragment.append("\"");
-		fragment.append(generateStringFragment(so));
+		fragment.append(generateStringFragment(options));
 		fragment.append("\"");
 		
 		return fragment;
 	}
 
-	private StringBuilder generateStringFragment(StringDataOptions so) {
+	private StringBuilder generateStringFragment(StringDataOptions options) {
 		
 		StringBuilder fragment = new StringBuilder();
-		String generated = StringUtil.generateStringFragment(so.getLength(), AppConfig.STRING_SYMBOLS);
+		String generated = StringUtil.generateStringFragment(options.getLength(), AppConfig.STRING_SYMBOLS);
 	
-		if (so.isAllCapital()) {
+		if (options.isAllCapital()) {
 			fragment = new StringBuilder(generated.toUpperCase());
 		} else {
-			if (so.isFirstCapital()) {
+			if (options.isFirstCapital()) {
 				fragment = StringUtil.capitalizeFirstLetter(generated);
 			} else {
 				fragment = new StringBuilder(generated);
