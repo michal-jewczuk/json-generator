@@ -9,6 +9,7 @@ public enum StringFragmentGenerator implements FragmentGenerator {
 
 	INSTANCE;
 
+	@Override
 	public StringBuilder generateFragment(String name, DataOptions options) {
 		StringDataOptions so = (StringDataOptions) options;
 			
@@ -37,6 +38,5 @@ public enum StringFragmentGenerator implements FragmentGenerator {
 		
 		return fragment;
 	}
-	
 	
 }

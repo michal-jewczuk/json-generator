@@ -4,7 +4,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import nodomain.jsongenerator.config.AppConfig;
-import nodomain.jsongenerator.data.DataOptions;
 import nodomain.jsongenerator.data.StringDataOptions;
 import nodomain.jsongenerator.exceptions.JsonParsingException;
 
@@ -13,7 +12,7 @@ public enum StringDataOptionsParser implements DataOptionsParser {
 	INSTANCE;
 
 	@Override
-	public DataOptions parseDataOptions(JSONObject options) {
+	public StringDataOptions parseDataOptions(JSONObject options) {
 		int length;
 		boolean firstCapital;
 		boolean allCapital;

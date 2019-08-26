@@ -4,7 +4,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import nodomain.jsongenerator.config.AppConfig;
-import nodomain.jsongenerator.data.DataOptions;
 import nodomain.jsongenerator.data.NumberDataOptions;
 import nodomain.jsongenerator.exceptions.JsonParsingException;
 
@@ -13,7 +12,7 @@ public enum NumberDataOptionsParser implements DataOptionsParser {
 	INSTANCE;
 
 	@Override
-	public DataOptions parseDataOptions(JSONObject options) {
+	public NumberDataOptions parseDataOptions(JSONObject options) {
 		long numberMin;
 		long numberMax;
 		try {

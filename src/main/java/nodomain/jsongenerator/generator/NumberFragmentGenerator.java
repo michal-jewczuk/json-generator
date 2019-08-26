@@ -10,17 +10,18 @@ public enum NumberFragmentGenerator implements FragmentGenerator {
 	
 	INSTANCE;
 
+	@Override
 	public StringBuilder generateFragment(String name, DataOptions options) {
+		NumberDataOptions opt = (NumberDataOptions) options;
 		StringBuilder fragment = generateBegining(name);
-		fragment.append(generateNumber(options));
+		fragment.append(generateNumber(opt));
 
 		return fragment;
 	}
 	
-	private long generateNumber(DataOptions options) {
-		NumberDataOptions opt = (NumberDataOptions) options;
+	private long generateNumber(NumberDataOptions options) {
 		Random rand = new Random();
-		LongStream str = rand.longs(1, opt.getNumberMin(), opt.getNumberMax() + 1);
+		LongStream str = rand.longs(1, options.getNumberMin(), options.getNumberMax() + 1);
 		
 		return str.sum();
 	}
