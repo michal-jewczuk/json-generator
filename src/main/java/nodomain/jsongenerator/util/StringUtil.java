@@ -11,11 +11,11 @@ public class StringUtil {
 		
 		Random rand = new Random();
 		int start = rand.nextInt(charCount);
-		int step = rand.nextInt(charCount / 3) + 1;
+		int step = rand.nextInt(charCount / 5) + 1;
 		
 		for (int i = 0; i < length; i++) {		
 			fragment.append(symbols[start]);
-			start = (start + step) % charCount;
+			start = (start + step + i / 2) % charCount;
 		}
 		
 		return fragment.toString();
