@@ -11,6 +11,15 @@
 			}
 		},
 		{
+		"type": "JSON_BOOL",
+		"name": "true_and_nothing_more",
+		"options" : 
+			{
+			"only_true": true,
+			"only_false": false
+			}
+		},
+		{
 		"type": "JSON_STRING",
 		"name": "string_2",
 		"options" : 
@@ -57,6 +66,15 @@
 			"pattern": "6-",
 			"connector": "-",
 			"all_cap": false
+			}
+		},
+		{
+		"type": "JSON_BOOL",
+		"name": "random_bool",
+		"options" : 
+			{
+			"only_true": false,
+			"only_false": false
 			}
 		},
 		{

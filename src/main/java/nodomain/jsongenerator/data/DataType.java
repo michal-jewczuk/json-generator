@@ -2,6 +2,7 @@ package nodomain.jsongenerator.data;
 
 import org.json.JSONObject;
 
+import nodomain.jsongenerator.generator.BoolFragmentGenerator;
 import nodomain.jsongenerator.generator.NumberFragmentGenerator;
 import nodomain.jsongenerator.generator.PatternFragmentGenerator;
 import nodomain.jsongenerator.generator.StringFragmentGenerator;
@@ -25,6 +26,12 @@ public enum DataType {
 		public StringBuilder createJsonFragment(String name, JSONObject dataOptions) {
 			return PatternFragmentGenerator.INSTANCE.generateFragment(name, dataOptions);
 		}		
+	},
+	JSON_BOOL {
+		@Override
+		public StringBuilder createJsonFragment(String name, JSONObject dataOptions) {
+			return BoolFragmentGenerator.INSTANCE.generateFragment(name, dataOptions);
+		}
 	};
 	
 	public abstract StringBuilder createJsonFragment(String name, JSONObject dataOptions);
