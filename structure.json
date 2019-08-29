@@ -11,6 +11,16 @@
 			}
 		},
 		{
+		"type": "JSON_DOUBLE",
+		"name": "double-012-05-4",
+		"options" : 
+			{
+			"lower_bound": 0.12,
+			"upper_bound": 0.5,
+			"precision": 4
+			}
+		},
+		{
 		"type": "JSON_BOOL",
 		"name": "true_and_nothing_more",
 		"options" : 
@@ -36,6 +46,16 @@
 			{
 			"number_min": -5,
 			"number_max": -1
+			}
+		},
+		{
+		"type": "JSON_DOUBLE",
+		"name": "double-278-444-10",
+		"options" : 
+			{
+			"lower_bound": 2.78,
+			"upper_bound": 4.44,
+			"precision": 10
 			}
 		},
 		{
