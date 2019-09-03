@@ -19,6 +19,6 @@ public class JsonGeneratorApplication {
 			
 		}
 		
-		JsonGenerator.generateJson(count, outputName);
+		JsonGenerator.generateOutputFile(count, outputName);
 	}
 }
