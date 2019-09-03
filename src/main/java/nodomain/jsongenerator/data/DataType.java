@@ -3,6 +3,7 @@ package nodomain.jsongenerator.data;
 import org.json.JSONObject;
 
 import nodomain.jsongenerator.generator.BoolFragmentGenerator;
+import nodomain.jsongenerator.generator.DateFragmentGenerator;
 import nodomain.jsongenerator.generator.DoubleFragmentGenerator;
 import nodomain.jsongenerator.generator.NumberFragmentGenerator;
 import nodomain.jsongenerator.generator.PatternFragmentGenerator;
@@ -38,6 +39,12 @@ public enum DataType {
 		@Override
 		public StringBuilder createJsonFragment(String name, JSONObject dataOptions) {
 			return DoubleFragmentGenerator.INSTANCE.generateFragment(name, dataOptions);
+		}
+	},
+	JSON_DATE {
+		@Override
+		public StringBuilder createJsonFragment(String name, JSONObject dataOptions) {
+			return DateFragmentGenerator.INSTANCE.generateFragment(name, dataOptions);
 		}
 	};
 	
