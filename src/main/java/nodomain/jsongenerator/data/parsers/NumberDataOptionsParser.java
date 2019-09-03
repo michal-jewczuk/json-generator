@@ -13,20 +13,20 @@ public enum NumberDataOptionsParser implements DataOptionsParser {
 
 	@Override
 	public NumberDataOptions parseDataOptions(JSONObject options) {
-		long numberMin;
-		long numberMax;
+		long lowerBound;
+		long upperBound;
 		try {
-			numberMin = options.getLong("number_min");
-			numberMax = options.getLong("number_max");
+			lowerBound = options.getLong("lower_bound");
+			upperBound = options.getLong("upper_bound");
 		} catch (JSONException e) {
 			throw new JsonParsingException(AppConfig.ERROR_PARSING + e.getLocalizedMessage());
 		}
 		
-		if (numberMax < numberMin) {
+		if (upperBound < lowerBound) {
 			throw new IllegalArgumentException("Number max < min!");
 		}
 		
-		return new NumberDataOptions(numberMin, numberMax);
+		return new NumberDataOptions(lowerBound, upperBound);
 	}
 	
 }

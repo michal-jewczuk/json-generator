@@ -9,29 +9,29 @@ public class NumberFragmentGeneratorTest {
 	
 	@Test
 	public void shouldCorectlyGenerateNumberGreaterThanZero() {
-		long numMin = 500L;
-		long numMax = 500L;
+		long lowerBound = 500L;
+		long upperBound = 500L;
 		String name = "generated";
-		String json_string = "{\"number_min\": " + numMin + ", \"number_max\": " + numMax + "}";
+		String json_string = "{\"lower_bound\": " + lowerBound + ", \"upper_bound\": " + upperBound + "}";
 		JSONObject json_object = new JSONObject(json_string);
 		
 		StringBuilder result = NumberFragmentGenerator.INSTANCE.generateFragment(name, json_object);
 		
 		assertThat(result.toString()).contains(name);
-		assertThat(extractLong(result.toString())).isEqualTo(numMin);
+		assertThat(extractLong(result.toString())).isEqualTo(lowerBound);
 	}
 	
 	@Test
 	public void shouldCorectlyGenerateNumberLessThanZero() {
-		long numMin = -10L;
-		long numMax = -1L;
+		long lowerBound = -10L;
+		long upperBound = -1L;
 		String name = "generated";
-		String json_string = "{\"number_min\": " + numMin + ", \"number_max\": " + numMax + "}";
+		String json_string = "{\"lower_bound\": " + lowerBound + ", \"upper_bound\": " + upperBound + "}";
 		JSONObject json_object = new JSONObject(json_string);
 		
 		StringBuilder result = NumberFragmentGenerator.INSTANCE.generateFragment(name, json_object);
 		
-		assertThat(extractLong(result.toString())).isBetween(numMin, numMax);
+		assertThat(extractLong(result.toString())).isBetween(lowerBound, upperBound);
 	}
 	
 	private long extractLong(String res) {

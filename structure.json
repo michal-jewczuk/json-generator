@@ -64,8 +64,8 @@
 		"name": "number_between_minus5_and_minus1",
 		"options" : 
 			{
-			"number_min": -5,
-			"number_max": -1
+			"lower_bound": -5,
+			"upper_bound": -1
 			}
 		},
 		{
@@ -122,8 +122,8 @@
 		"name": "number_between_20_and_30",
 		"options" : 
 			{
-			"number_min": 20,
-			"number_max": 30
+			"lower_bound": 20,
+			"upper_bound": 30
 			}
 		}
 	]

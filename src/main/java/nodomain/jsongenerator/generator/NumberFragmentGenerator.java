@@ -24,8 +24,12 @@ public enum NumberFragmentGenerator implements FragmentGenerator {
 	}
 	
 	private long generateNumber(NumberDataOptions options) {
+		if (options.getLowerBound() == options.getUpperBound()) {
+			return options.getLowerBound();
+		}
+		
 		Random rand = new Random();
-		LongStream str = rand.longs(1, options.getNumberMin(), options.getNumberMax() + 1);
+		LongStream str = rand.longs(1, options.getLowerBound(), options.getUpperBound());
 		
 		return str.sum();
 	}

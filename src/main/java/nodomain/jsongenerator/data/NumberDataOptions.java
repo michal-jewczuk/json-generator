@@ -2,28 +2,31 @@ package nodomain.jsongenerator.data;
 
 public class NumberDataOptions extends DataOptions {
 
-	private long numberMin;
-	private long numberMax;
+	private long lowerBound;
+	private long upperBound;
 
-	public NumberDataOptions(long numberMin, long numberMax) {
-		this.numberMin = numberMin;
-		this.numberMax = numberMax;
+	public NumberDataOptions() {
 	}
 
-	public long getNumberMin() {
-		return numberMin;
+	public NumberDataOptions(long lowerBound, long upperBound) {
+		this.lowerBound = lowerBound;
+		this.upperBound = upperBound;
 	}
 
-	public void setNumberMin(long numberMin) {
-		this.numberMin = numberMin;
+	public long getLowerBound() {
+		return lowerBound;
 	}
 
-	public long getNumberMax() {
-		return numberMax;
+	public void setLowerBound(long lowerBound) {
+		this.lowerBound = lowerBound;
 	}
 
-	public void setNumberMax(long numberMax) {
-		this.numberMax = numberMax;
+	public long getUpperBound() {
+		return upperBound;
+	}
+
+	public void setUpperBound(long upperBound) {
+		this.upperBound = upperBound;
 	}
 
 }

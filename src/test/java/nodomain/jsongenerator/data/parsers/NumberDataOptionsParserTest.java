@@ -19,21 +19,21 @@ public class NumberDataOptionsParserTest {
 	
 	@Test
 	public void shouldCorrectlyCreateObject() {
-		long numMin = -10L;
-		long numMax = 13L;
-		String json_string = "{\"number_min\": " + numMin + ", \"number_max\": " + numMax + "}";
+		long lowerBound = -10L;
+		long upperBound = 13L;
+		String json_string = "{\"lower_bound\": " + lowerBound + ", \"upper_bound\": " + upperBound + "}";
 		JSONObject json_object = new JSONObject(json_string);
 		NumberDataOptions options = (NumberDataOptions) NumberDataOptionsParser.INSTANCE.parseDataOptions(json_object);
 		
-		assertThat(options.getNumberMin()).isEqualTo(numMin);
-		assertThat(options.getNumberMax()).isEqualTo(numMax);
+		assertThat(options.getLowerBound()).isEqualTo(lowerBound);
+		assertThat(options.getUpperBound()).isEqualTo(upperBound);
 	}
 	
 	@Test
 	public void shouldThrowIllegalArgumentExceptionWhenMinGraterThatMax() {
-		long numMin = 10L;
-		long numMax = 8L;
-		String json_string = "{\"number_min\": " + numMin + ", \"number_max\": " + numMax + "}";
+		long lowerBound = 10L;
+		long upperBound = 8L;
+		String json_string = "{\"lower_bound\": " + lowerBound + ", \"upper_bound\": " + upperBound + "}";
 		JSONObject json_object = new JSONObject(json_string);
 		
 		excE.expect(IllegalArgumentException.class);
@@ -42,25 +42,25 @@ public class NumberDataOptionsParserTest {
 	
 	@Test
 	public void shouldThrowJSONExceptionWhenMinCouldNotBeParsedToLong() {
-		String numMin = "ten";
-		long numMax = 8L;
-		String json_string = "{\"number_min\": " + numMin + ", \"number_max\": " + numMax + "}";	
+		String lowerBound = "ten";
+		long upperBound = 8L;
+		String json_string = "{\"lower_bound\": " + lowerBound + ", \"upper_bound\": " + upperBound + "}";	
 		JSONObject json_object = new JSONObject(json_string);
 		
 		excE.expect(JsonParsingException.class);
-		excE.expectMessage(containsString("number_min"));
+		excE.expectMessage(containsString("lower_bound"));
 		NumberDataOptionsParser.INSTANCE.parseDataOptions(json_object);	
 	}
 	
 	@Test
 	public void shouldThrowJSONExceptionWhenMaxCouldNotBeParsedToLong() {
-		String numMax = "ten";
-		long numMin = 8L;
-		String json_string = "{\"number_min\": " + numMin + ", \"number_max\": " + numMax + "}";	
+		long lowerBound = 8L;
+		String upperBound = "ten";		
+		String json_string = "{\"lower_bound\": " + lowerBound + ", \"upper_bound\": " + upperBound + "}";	
 		JSONObject json_object = new JSONObject(json_string);
 		
 		excE.expect(JsonParsingException.class);
-		excE.expectMessage(containsString("number_max"));
+		excE.expectMessage(containsString("upper_bound"));
 		NumberDataOptionsParser.INSTANCE.parseDataOptions(json_object);	
 	}
 }
