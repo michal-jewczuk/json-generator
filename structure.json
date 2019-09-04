@@ -11,6 +11,36 @@
 			}
 		},
 		{
+		"type": "JSON_OBJECT",
+		"name": "single_two_strings",
+		"options" : 
+			{
+			"count": 1,
+			"structure": [
+					{
+					"type": "JSON_STRING",
+					"name": "string_l6_no_cap",
+					"options" : 
+						{
+						"length": 6,
+						"first_cap": false,
+						"all_cap": false
+						}
+					},
+					{
+					"type": "JSON_STRING",
+					"name": "string_l8_all_cap",
+					"options" : 
+						{
+						"length": 8,
+						"first_cap": false,
+						"all_cap": true
+						}
+					}
+			]
+			}
+		},
+		{
 		"type": "JSON_STRING",
 		"name": "string_l5_no_cap",
 		"options" : 
@@ -18,6 +48,25 @@
 			"length": 5,
 			"first_cap": false,
 			"all_cap": false
+			}
+		},
+		{
+		"type": "JSON_OBJECT",
+		"name": "ints_5",
+		"options" : 
+			{
+			"count": 5,
+			"structure": [
+					{
+					"type": "JSON_NUMBER",
+					"name": "number_between_26_and_37",
+					"options" : 
+						{
+						"lower_bound": 26,
+						"upper_bound": 37
+						}
+					}
+			]
 			}
 		},
 		{

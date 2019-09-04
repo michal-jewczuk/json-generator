@@ -6,6 +6,7 @@ import nodomain.jsongenerator.generator.BoolFragmentGenerator;
 import nodomain.jsongenerator.generator.DateFragmentGenerator;
 import nodomain.jsongenerator.generator.DoubleFragmentGenerator;
 import nodomain.jsongenerator.generator.NumberFragmentGenerator;
+import nodomain.jsongenerator.generator.ObjectFragmentGenerator;
 import nodomain.jsongenerator.generator.PatternFragmentGenerator;
 import nodomain.jsongenerator.generator.StringFragmentGenerator;
 
@@ -45,6 +46,12 @@ public enum DataType {
 		@Override
 		public StringBuilder createJsonFragment(String name, JSONObject dataOptions) {
 			return DateFragmentGenerator.INSTANCE.generateFragment(name, dataOptions);
+		}
+	},
+	JSON_OBJECT {
+		@Override
+		public StringBuilder createJsonFragment(String name, JSONObject dataOptions) {
+			return ObjectFragmentGenerator.INSTANCE.generateFragment(name, dataOptions);
 		}
 	};
 	

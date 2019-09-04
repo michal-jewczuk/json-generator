@@ -10,7 +10,7 @@ public class JsonGenerator {
 	
 	public static void generateOutputFile(int count, String outputName) {
 		JSONArray arr = parseStructureFile();
-		StringBuilder output = generateJson(count, arr);
+		StringBuilder output = generateJson(count, arr, 1);
 	
 		ReadWriteUtil.writeToFile(output, outputName);
 	}
@@ -22,38 +22,46 @@ public class JsonGenerator {
 		return obj.getJSONArray("types");
 	}
 	
-	public static StringBuilder generateJson(int count, JSONArray arr) {
+	public static StringBuilder generateJson(int count, JSONArray arr, int level) {
 		StringBuilder output = new StringBuilder();
 		
-		attachHeader(output, count);
-		attachBody(output, count, arr);
-		attachFooter(output, count);
+		attachHeader(output, count, level);
+		attachBody(output, count, arr, level);
+		attachFooter(output, count, level);
 		
 		return output;
 	}
 	
-	private static void attachHeader(StringBuilder output, int count) {	
+	private static void attachHeader(StringBuilder output, int count, int level) {	
 		if (count > 1) {
-			output.append("{ \"data\": [\n");
+			if (level == 1) {
+				output.append("{ \"data\": [\n");
+			} else {
+				output.append(" [\n");
+			}
 		}
 	}
 	
-	private static void attachFooter(StringBuilder output, int count) {
+	private static void attachFooter(StringBuilder output, int count, int level) {
 		if (count > 1) {
-			output.append("\n]}");
+			output.append("\n]");	
+		}
+		if (level == 1) {
+			output.append("}");
 		}
 	}
 	
-	private static void attachBody(StringBuilder output, int count, JSONArray arr) {
+	private static void attachBody(StringBuilder output, int count, JSONArray arr, int level) {
 		String prefix="";
 		for (int i = 0; i < count; i++){
 			output.append(prefix);
 			prefix = ",\n";	
-			attachSingleJsonObject(output, arr);			
+			attachSingleJsonObject(output, arr, level);			
 		}	
 	}	
 	
-	private static void attachSingleJsonObject(StringBuilder output, JSONArray arr) {
+	private static void attachSingleJsonObject(StringBuilder output, JSONArray arr, int level) {
+		attachTabs(output, level);
 		output.append("{\n");
 
 		int length = arr.length();
@@ -62,12 +70,20 @@ public class JsonGenerator {
 			output.append(prefix);
 			JSONObject current = arr.getJSONObject(i);
 			DataType type =  DataType.valueOf(current.getString("type"));
-			output.append("\t");
+			attachTabs(output, level);
 			output.append(type.createJsonFragment(current.getString("name"), current.getJSONObject("options")));
 			prefix = ",\n";
 		}
-		
-		output.append("\n}");
+
+		output.append("\n");
+		attachTabs(output, level);
+		output.append("}");
+	}
+
+	private static void attachTabs(StringBuilder output, int level) {
+		for (int i = 0; i < level; i++) {
+			output.append("\t");
+		}
 	}
 
 }
