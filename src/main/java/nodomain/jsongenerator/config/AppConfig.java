@@ -8,5 +8,6 @@ public class AppConfig {
 	public static final String DEFAULT_CONNECTOR = " ";
 	
 	public static final String ERROR_PARSING = "Error parsing element: ";
+	public static final int NESTED_GROUND = 1;
 	
 }

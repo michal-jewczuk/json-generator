@@ -1,0 +1,147 @@
+{
+	"types": [
+		{
+		"type": "JSON_DATE",
+		"name": "date_in_2013",
+		"options" : 
+			{
+			"lower_bound": "2013-01-01",
+			"upper_bound": "2013-12-31",
+			"output_pattern": "MMM, d uuuu"
+			}
+		},
+		{
+		"type": "JSON_DATE",
+		"name": "date_after_2045",
+		"options" : 
+			{
+			"lower_bound": "2045-01-01",
+			"upper_bound": "9999-12-31",
+			"output_pattern": "uuuu-MM-dd"
+			}
+		},
+
+		{
+		"type": "JSON_STRING",
+		"name": "string_l5_no_cap",
+		"options" : 
+			{
+			"length": 5,
+			"first_cap": false,
+			"all_cap": false
+			}
+		},
+		{
+		"type": "JSON_STRING",
+		"name": "string_l25_first_cap",
+		"options" : 
+			{
+			"length": 25,
+			"first_cap": true,
+			"all_cap": false
+			}
+		},
+
+		{
+		"type": "JSON_NUMBER",
+		"name": "number_between_minus5_and_10",
+		"options" : 
+			{
+			"lower_bound": -5,
+			"upper_bound": 10
+			}
+		},
+
+		{
+		"type": "JSON_DOUBLE",
+		"name": "double-012-05-4",
+		"options" : 
+			{
+			"lower_bound": 0.12,
+			"upper_bound": 0.5,
+			"precision": 4
+			}
+		},
+
+		{
+		"type": "JSON_BOOL",
+		"name": "random_bool",
+		"options" : 
+			{
+			"only_true": false,
+			"only_false": false
+			}
+		},
+
+		{
+		"type": "JSON_PATTERN",
+		"name": "pattern_of_4_2_10_all_cap",
+		"options" : 
+			{
+			"pattern": "4-2-10",
+			"connector": " ",
+			"all_cap": true
+			}
+		},
+		{
+		"type": "JSON_PATTERN",
+		"name": "pattern_of_6",
+		"options" : 
+			{
+			"pattern": "6-",
+			"connector": "-",
+			"all_cap": false
+			}
+		},
+
+		{
+		"type": "JSON_OBJECT",
+		"name": "single_object",
+		"options" : 
+			{
+			"count": 1,
+			"structure": [
+				{
+				"type": "JSON_BOOL",
+				"name": "only_false",
+				"options" : 
+					{
+					"only_true": false,
+					"only_false": true
+					}
+				},
+				{
+				"type": "JSON_STRING",
+				"name": "string_l8_all_cap",
+				"options" : 
+					{
+					"length": 8,
+					"first_cap": false,
+					"all_cap": true
+					}
+				}
+			]
+			}
+		},
+
+		{
+		"type": "JSON_OBJECT",
+		"name": "ints_5",
+		"options" : 
+			{
+			"count": 5,
+			"structure": [
+				{
+				"type": "JSON_NUMBER",
+				"name": "number_between_26_and_37",
+				"options" : 
+					{
+					"lower_bound": 26,
+					"upper_bound": 37
+					}
+				}
+			]
+			}
+		}
+	]
+}

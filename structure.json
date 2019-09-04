@@ -1,178 +1,75 @@
 {
 	"types": [
 		{
-		"type": "JSON_DATE",
-		"name": "date_in_2013",
+		"type": "JSON_PATTERN",
+		"name": "identifier",
 		"options" : 
 			{
-			"lower_bound": "2013-01-01",
-			"upper_bound": "2013-12-31",
-			"output_pattern": "MMM, d uuuu"
+			"pattern": "5-3-5",
+			"connector": "-",
+			"all_cap": true
 			}
 		},
-		{
-		"type": "JSON_OBJECT",
-		"name": "single_two_strings",
-		"options" : 
-			{
-			"count": 1,
-			"structure": [
-					{
-					"type": "JSON_STRING",
-					"name": "string_l6_no_cap",
-					"options" : 
-						{
-						"length": 6,
-						"first_cap": false,
-						"all_cap": false
-						}
-					},
-					{
-					"type": "JSON_STRING",
-					"name": "string_l8_all_cap",
-					"options" : 
-						{
-						"length": 8,
-						"first_cap": false,
-						"all_cap": true
-						}
-					}
-			]
-			}
-		},
-		{
-		"type": "JSON_STRING",
-		"name": "string_l5_no_cap",
-		"options" : 
-			{
-			"length": 5,
-			"first_cap": false,
-			"all_cap": false
-			}
-		},
-		{
-		"type": "JSON_OBJECT",
-		"name": "ints_5",
-		"options" : 
-			{
-			"count": 5,
-			"structure": [
-					{
-					"type": "JSON_NUMBER",
-					"name": "number_between_26_and_37",
-					"options" : 
-						{
-						"lower_bound": 26,
-						"upper_bound": 37
-						}
-					}
-			]
-			}
-		},
-		{
-		"type": "JSON_DOUBLE",
-		"name": "double-012-05-4",
-		"options" : 
-			{
-			"lower_bound": 0.12,
-			"upper_bound": 0.5,
-			"precision": 4
-			}
-		},
-		{
-		"type": "JSON_BOOL",
-		"name": "true_and_nothing_more",
-		"options" : 
-			{
-			"only_true": true,
-			"only_false": false
-			}
-		},
+		
 		{
 		"type": "JSON_DATE",
-		"name": "date_after_2045",
+		"name": "date_of_measurement",
 		"options" : 
 			{
-			"lower_bound": "2045-01-01",
-			"upper_bound": "9999-12-31",
+			"lower_bound": "2019-09-01",
+			"upper_bound": "2019-09-08",
 			"output_pattern": "uuuu-MM-dd"
 			}
 		},
-		{
-		"type": "JSON_STRING",
-		"name": "string_l25_first_cap",
-		"options" : 
-			{
-			"length": 25,
-			"first_cap": true,
-			"all_cap": false
-			}
-		},	
-		{
-		"type": "JSON_NUMBER",
-		"name": "number_between_minus5_and_minus1",
-		"options" : 
-			{
-			"lower_bound": -5,
-			"upper_bound": -1
-			}
-		},
-		{
-		"type": "JSON_DOUBLE",
-		"name": "double-278-444-10",
-		"options" : 
-			{
-			"lower_bound": 2.78,
-			"upper_bound": 4.44,
-			"precision": 10
-			}
-		},
-		{
-		"type": "JSON_PATTERN",
-		"name": "pattern_of_4_2_10_all_cap",
-		"options" : 
-			{
-			"pattern": "4-2-10",
-			"connector": " ",
-			"all_cap": true
-			}
-		},
-		{
-		"type": "JSON_STRING",
-		"name": "string_l3_all_cap",
-		"options" : 
-			{
-			"length": 3,
-			"first_cap": false,
-			"all_cap": true
-			}
-		},
-		{
-		"type": "JSON_PATTERN",
-		"name": "pattern_of_6",
-		"options" : 
-			{
-			"pattern": "6-",
-			"connector": "-",
-			"all_cap": false
-			}
-		},
+		
 		{
 		"type": "JSON_BOOL",
-		"name": "random_bool",
+		"name": "daytime",
 		"options" : 
 			{
 			"only_true": false,
 			"only_false": false
 			}
 		},
+
 		{
-		"type": "JSON_NUMBER",
-		"name": "number_between_20_and_30",
+		"type": "JSON_OBJECT",
+		"name": "results",
 		"options" : 
 			{
-			"lower_bound": 20,
-			"upper_bound": 30
+			"count": 1,
+			"structure": [
+				{
+				"type": "JSON_DOUBLE",
+				"name": "first_point",
+				"options" : 
+					{
+					"lower_bound": 0.0,
+					"upper_bound": 0.87,
+					"precision": 4
+					}
+				},
+				{
+				"type": "JSON_DOUBLE",
+				"name": "second_point",
+				"options" : 
+					{
+					"lower_bound": -1.0,
+					"upper_bound": -0.19,
+					"precision": 4
+					}
+				},
+				{
+				"type": "JSON_DOUBLE",
+				"name": "third_point",
+				"options" : 
+					{
+					"lower_bound": 34.0,
+					"upper_bound": 59.0,
+					"precision": 1
+					}
+				}
+			]
 			}
 		}
 	]

@@ -3,6 +3,7 @@ package nodomain.jsongenerator.main;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import nodomain.jsongenerator.config.AppConfig;
 import nodomain.jsongenerator.data.DataType;
 import nodomain.jsongenerator.io.ReadWriteUtil;
 
@@ -10,7 +11,7 @@ public class JsonGenerator {
 	
 	public static void generateOutputFile(int count, String outputName) {
 		JSONArray arr = parseStructureFile();
-		StringBuilder output = generateJson(count, arr, 1);
+		StringBuilder output = generateJson(count, arr, AppConfig.NESTED_GROUND);
 	
 		ReadWriteUtil.writeToFile(output, outputName);
 	}
@@ -22,66 +23,77 @@ public class JsonGenerator {
 		return obj.getJSONArray("types");
 	}
 	
-	public static StringBuilder generateJson(int count, JSONArray arr, int level) {
+	public static StringBuilder generateJson(int count, JSONArray arr, int nestedLevel) {
 		StringBuilder output = new StringBuilder();
 		
-		attachHeader(output, count, level);
-		attachBody(output, count, arr, level);
-		attachFooter(output, count, level);
+		attachHeader(output, count, nestedLevel);
+		attachBody(output, count, arr, nestedLevel);
+		attachFooter(output, count, nestedLevel);
 		
 		return output;
 	}
 	
-	private static void attachHeader(StringBuilder output, int count, int level) {	
+	private static void attachHeader(StringBuilder output, int count, int nestedLevel) {	
 		if (count > 1) {
-			if (level == 1) {
-				output.append("{ \"data\": [\n");
+			if (nestedLevel == AppConfig.NESTED_GROUND) {
+				output.append("{ \"data\": [");
 			} else {
-				output.append(" [\n");
+				output.append("[");
+			}
+		}
+		output.append("\n");
+	}
+	
+	private static void attachFooter(StringBuilder output, int count, int nestedLevel) {
+		if (count > 1) {
+			output.append("\n");
+			attachTabs(output, nestedLevel - 1);
+			output.append("]");	
+			if (nestedLevel == AppConfig.NESTED_GROUND) {
+				output.append("}");
 			}
 		}
 	}
 	
-	private static void attachFooter(StringBuilder output, int count, int level) {
-		if (count > 1) {
-			output.append("\n]");	
-		}
-		if (level == 1) {
-			output.append("}");
-		}
-	}
-	
-	private static void attachBody(StringBuilder output, int count, JSONArray arr, int level) {
+	private static void attachBody(StringBuilder output, int count, JSONArray arr, int nestedLevel) {
 		String prefix="";
 		for (int i = 0; i < count; i++){
 			output.append(prefix);
 			prefix = ",\n";	
-			attachSingleJsonObject(output, arr, level);			
+			attachSingleJsonObject(output, arr, nestedLevel);			
 		}	
 	}	
 	
-	private static void attachSingleJsonObject(StringBuilder output, JSONArray arr, int level) {
-		attachTabs(output, level);
-		output.append("{\n");
+	private static void attachSingleJsonObject(StringBuilder output, JSONArray arr, int nestedLevel) {
+		appendTop(output, nestedLevel);
 
 		int length = arr.length();
 		String prefix="";
 		for (int i = 0; i < length; i++) {
 			output.append(prefix);
 			JSONObject current = arr.getJSONObject(i);
-			DataType type =  DataType.valueOf(current.getString("type"));
-			attachTabs(output, level);
+			DataType type = DataType.valueOf(current.getString("type"));
+			attachTabs(output, nestedLevel);
 			output.append(type.createJsonFragment(current.getString("name"), current.getJSONObject("options")));
 			prefix = ",\n";
 		}
 
+		appendBottom(output, nestedLevel);
+	}
+	
+	private static void appendTop(StringBuilder output, int nestedLevel) {
+		attachTabs(output, nestedLevel);
+		output.append("{\n");		
+	}
+	
+	private static void appendBottom(StringBuilder output, int nestedLevel) {
 		output.append("\n");
-		attachTabs(output, level);
-		output.append("}");
+		attachTabs(output, nestedLevel);
+		output.append("}");		
 	}
 
-	private static void attachTabs(StringBuilder output, int level) {
-		for (int i = 0; i < level; i++) {
+	private static void attachTabs(StringBuilder output, int nestedLevel) {
+		for (int i = 0; i < nestedLevel; i++) {
 			output.append("\t");
 		}
 	}
