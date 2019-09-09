@@ -30,7 +30,7 @@ public class ReadWriteUtil {
 		return structure.toString();
 	}
 	
-	public static boolean writeToFile(StringBuilder output, String fileName) {
+	public static String writeToFile(StringBuilder output, String fileName) {
 		fileName = generateUniqueName(fileName);
 		
 		try (BufferedWriter out = new BufferedWriter(
@@ -42,8 +42,7 @@ public class ReadWriteUtil {
 			e.printStackTrace();
 		}
 		
-		System.out.println("Data written to file: " + fileName);
-		return true;
+		return fileName;
 	}
 
 	private static String generateUniqueName(String fileName) {

@@ -7,6 +7,8 @@ public class AppConfig {
 	public static final String STRING_SYMBOLS = "abcdefghijklmnopqrstuvwyz";
 	public static final String DEFAULT_CONNECTOR = " ";
 	
+	public static final String APP_NAME = "JSON Generator";
+	
 	public static final String ERROR_PARSING = "Error parsing element: ";
 	public static final int NESTED_GROUND = 1;
 	

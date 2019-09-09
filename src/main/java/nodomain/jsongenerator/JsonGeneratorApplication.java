@@ -1,24 +1,25 @@
 package nodomain.jsongenerator;
 
+import javafx.application.Application;
+import javafx.stage.Stage;
 import nodomain.jsongenerator.config.AppConfig;
-import nodomain.jsongenerator.main.JsonGenerator;
+import nodomain.jsongenerator.gui.SceneCreator;
 
-public class JsonGeneratorApplication {
+public class JsonGeneratorApplication extends Application {
 
-	public static void main(String[] args) {
-		
-		int count = 1;
-		String outputName = args.length < 2 ? AppConfig.DEFAULT_OUTPUT_NAME : args[1];
-		
-		try {
-			count = Integer.parseInt(args[0]);
-			if (count < 1) {
-				count = 1;
-			}
-		} catch (Exception e) {
-			
-		}
-		
-		JsonGenerator.generateOutputFile(count, outputName);
+	public static void main(String[] args) {	
+		launch(args);
+	}
+
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		try {		
+			primaryStage.setTitle(AppConfig.APP_NAME);	 
+			primaryStage.setScene(SceneCreator.createMainScene());
+			primaryStage.show();
+	        
+		} catch(Exception e) {
+			e.printStackTrace();
+		}	
 	}
 }

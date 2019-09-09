@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 import nodomain.jsongenerator.config.AppConfig;
 import nodomain.jsongenerator.data.DataType;
+import nodomain.jsongenerator.gui.SceneCreator;
 import nodomain.jsongenerator.io.ReadWriteUtil;
 
 public class JsonGenerator {
@@ -13,7 +14,11 @@ public class JsonGenerator {
 		JSONArray arr = parseStructureFile();
 		StringBuilder output = generateJson(count, arr, AppConfig.NESTED_GROUND);
 	
-		ReadWriteUtil.writeToFile(output, outputName);
+		String fileName = ReadWriteUtil.writeToFile(output, outputName);
+		String message = "Data written to file: " + fileName;
+		
+		System.out.println(message);
+		SceneCreator.setOutputMessage(message);
 	}
 	
 	private static JSONArray parseStructureFile() {
