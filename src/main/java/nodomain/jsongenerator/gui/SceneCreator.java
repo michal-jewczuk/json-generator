@@ -86,7 +86,12 @@ public class SceneCreator {
             public void handle(ActionEvent event) {
             	setErrorMessage("");
             	setGenerationParameters();
-            	JsonGenerator.generateOutputFile(count, outputName);
+            	
+            	String fileName = JsonGenerator.generateOutputFile(count, outputName);
+        		String message = "Data written to file: " + fileName;
+        		
+        		System.out.println(message);
+        		setOutputMessage(message);
             }
         });
         bottom.setCenter(btn);
@@ -108,11 +113,11 @@ public class SceneCreator {
 		outputName = tfFileName.getText();
 	}
 
-	public static void setOutputMessage(String message) {
+	private static void setOutputMessage(String message) {
 		lblOutputMessage.setText(message);
 	}
 	
-	public static void setErrorMessage(String message) {
+	private static void setErrorMessage(String message) {
 		lblErrorMessage.setText(message);
 	}
 	

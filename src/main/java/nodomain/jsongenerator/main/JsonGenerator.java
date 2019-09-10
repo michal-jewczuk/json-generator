@@ -5,20 +5,15 @@ import org.json.JSONObject;
 
 import nodomain.jsongenerator.config.AppConfig;
 import nodomain.jsongenerator.data.DataType;
-import nodomain.jsongenerator.gui.SceneCreator;
 import nodomain.jsongenerator.io.ReadWriteUtil;
 
 public class JsonGenerator {
 	
-	public static void generateOutputFile(int count, String outputName) {
+	public static String generateOutputFile(int count, String outputName) {
 		JSONArray arr = parseStructureFile();
 		StringBuilder output = generateJson(count, arr, AppConfig.NESTED_GROUND);
 	
-		String fileName = ReadWriteUtil.writeToFile(output, outputName);
-		String message = "Data written to file: " + fileName;
-		
-		System.out.println(message);
-		SceneCreator.setOutputMessage(message);
+		return ReadWriteUtil.writeToFile(output, outputName);
 	}
 	
 	private static JSONArray parseStructureFile() {
