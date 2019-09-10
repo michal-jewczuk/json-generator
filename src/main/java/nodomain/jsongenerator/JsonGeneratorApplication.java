@@ -15,7 +15,7 @@ public class JsonGeneratorApplication extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		try {		
 			primaryStage.setTitle(AppConfig.APP_NAME);	 
-			primaryStage.setScene(SceneCreator.createMainScene());
+			primaryStage.setScene(new SceneCreator().createMainScene());
 			primaryStage.show();
 	        
 		} catch(Exception e) {

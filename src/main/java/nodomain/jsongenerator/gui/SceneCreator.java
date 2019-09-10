@@ -1,26 +1,22 @@
 package nodomain.jsongenerator.gui;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
+import java.io.IOException;
+
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.TilePane;
 import nodomain.jsongenerator.config.AppConfig;
-import nodomain.jsongenerator.main.JsonGenerator;
 
 public class SceneCreator {
 	
 	private static Integer count = 1;
 	private static String outputName = AppConfig.DEFAULT_OUTPUT_NAME;
 	
-	private static final Insets insets = new Insets(15, 12, 15, 12);
 	private static final Label lblOutputMessage = new Label();
 	private static final Label lblErrorMessage = new Label();
 	
@@ -28,7 +24,7 @@ public class SceneCreator {
 	private static final TextField tfFileName = new TextField(outputName);
 	
 
-	public static Scene createMainScene() {
+	public Scene createMainScene() {
 		
 		BorderPane root = new BorderPane();
 		attachTop(root);
@@ -40,20 +36,13 @@ public class SceneCreator {
 		return scene;
 	}
 
-	private static void attachTop(BorderPane root) {
-	    Button buttonMain = new Button(UIMessages.MENU_MAIN);
-	    Button buttonStructure = new Button(UIMessages.MENU_STRUCTURE);
-	    buttonMain.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-	    buttonStructure.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-	    
-	    TilePane tileButtons = new TilePane(Orientation.HORIZONTAL);
-	    tileButtons.setPadding(insets);
-	    tileButtons.setHgap(10);
-	    tileButtons.setVgap(12);
-	    tileButtons.getChildren().addAll(buttonMain, buttonStructure);
-	    tileButtons.setStyle("-fx-background-color: #336699;");
-	    
-	    root.setTop(tileButtons);
+	private void attachTop(BorderPane root) {
+		try {
+			Parent top = FXMLLoader.load(getClass().getResource("/fxml/top.fxml"));
+			root.setTop(top);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}  
 	}
 	
 	private static void attachMiddle(BorderPane root) {
@@ -75,31 +64,16 @@ public class SceneCreator {
         root.setCenter(grid);	
 	}
 	
-	private static void attachBottom(BorderPane root) {
-		BorderPane bottom = new BorderPane();
-		bottom.setPadding(insets);
-		bottom.setStyle("-fx-background-color: #336699;");
-        Button btn = new Button();
-        btn.setText(UIMessages.BUTTON_GENERATE);
-        btn.setOnAction(new EventHandler<ActionEvent>() {	 
-            @Override
-            public void handle(ActionEvent event) {
-            	setErrorMessage("");
-            	setGenerationParameters();
-            	
-            	String fileName = JsonGenerator.generateOutputFile(count, outputName);
-        		String message = "Data written to file: " + fileName;
-        		
-        		System.out.println(message);
-        		setOutputMessage(message);
-            }
-        });
-        bottom.setCenter(btn);
-        
-        root.setBottom(bottom);
+	private void attachBottom(BorderPane root) {   
+		try {
+			Parent bottom = FXMLLoader.load(getClass().getResource("/fxml/bottom.fxml"));
+			root.setBottom(bottom);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
-	protected static void setGenerationParameters() {
+	public static void setGenerationParameters() {
 		try {
 			count = Integer.parseInt(tfCount.getText());
 			if (count < 1) {
@@ -113,15 +87,23 @@ public class SceneCreator {
 		outputName = tfFileName.getText();
 	}
 
-	private static void setOutputMessage(String message) {
+	public static void setOutputMessage(String message) {
 		lblOutputMessage.setText(message);
 	}
 	
-	private static void setErrorMessage(String message) {
+	public static void setErrorMessage(String message) {
 		lblErrorMessage.setText(message);
 	}
 	
-	private static void setCountValue(Integer count) {
+	public static void setCountValue(Integer count) {
 		tfCount.setText(count.toString());
+	}
+	
+	public static Integer getCount() {
+		return count;
+	}
+	
+	public static String getOutputName() {
+		return outputName;
 	}
 }
