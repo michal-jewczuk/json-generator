@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.HBox?>
+
+<BorderPane prefHeight="-1.0" prefWidth="-1.0" stylesheets="@../css/styles.css"
+	xmlns:fx="http://javafx.com/fxml/1" fx:controller="nodomain.jsongenerator.gui.controller.StructureController">
+
+	<padding>
+		<Insets bottom="15.0" left="12.0" right="15.0" top="12.0" />
+    </padding>
+	
+    <top>
+        <Text text="Output structure" />
+    </top>
+    
+    <bottom>
+    	<BorderPane prefHeight="-1.0" prefWidth="-1.0" id="bottomPane">
+	
+			<padding>
+				<Insets bottom="15.0" left="12.0" right="15.0" top="12.0" />
+		    </padding>
+			
+		    <center>
+		    	<TilePane orientation="HORIZONTAL" hgap="20.0" alignment="CENTER">
+		    		<Button text="Add element" onAction="#addElement" />
+		        	<Button text="Save structure" onAction="#saveStructure" />
+		    	</TilePane>
+		    </center>
+		</BorderPane>
+    </bottom>
+</BorderPane>
