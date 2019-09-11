@@ -20,6 +20,11 @@
         <Text text="Output structure" />
     </top>
     
+	<center>
+		<Accordion fx:id="structureFields">
+		</Accordion>
+	</center>
+    
     <bottom>
     	<BorderPane prefHeight="-1.0" prefWidth="-1.0" id="bottomPane">
 	

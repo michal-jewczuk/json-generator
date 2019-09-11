@@ -16,7 +16,7 @@ public class JsonGenerator {
 		return ReadWriteUtil.writeToFile(output, outputName);
 	}
 	
-	private static JSONArray parseStructureFile() {
+	public static JSONArray parseStructureFile() {
 		String json_string = ReadWriteUtil.readStructure();
 		
 		JSONObject obj = new JSONObject(json_string);
