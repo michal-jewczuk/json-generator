@@ -6,8 +6,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.HBox?>
 
 <BorderPane prefHeight="-1.0" prefWidth="-1.0" stylesheets="@../css/styles.css"
 	xmlns:fx="http://javafx.com/fxml/1" fx:controller="nodomain.jsongenerator.gui.controller.StructureController">
@@ -34,8 +34,20 @@
 			
 		    <center>
 		    	<TilePane orientation="HORIZONTAL" hgap="20.0" alignment="CENTER">
-		    		<Button text="Add element" onAction="#addElement" />
-		        	<Button text="Save structure" onAction="#saveStructure" />
+		    	    <fx:define>
+            			<Image fx:id="plusIcon" url="/icons/plus.png"/>
+            			<Image fx:id="saveIcon" url="/icons/save.png"/>
+        			</fx:define>
+		    		<Button text="Add element" onAction="#addElement"> 
+		    			<graphic>
+                   			<ImageView image="$plusIcon"/>
+                		</graphic>
+		    		</Button>
+		        	<Button text="Save structure" onAction="#saveStructure">
+		        		<graphic>
+                   			<ImageView image="$saveIcon"/>
+                		</graphic>
+		        	</Button>
 		    	</TilePane>
 		    </center>
 		</BorderPane>

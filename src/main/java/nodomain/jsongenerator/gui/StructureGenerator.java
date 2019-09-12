@@ -14,6 +14,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -34,6 +36,9 @@ public enum StructureGenerator {
 	INSTANCE;
 	
 	private final double SPACING = 15.0;
+	private final Image imageArrowUp = new Image(getClass().getResourceAsStream("/icons/arrow-up.png"));
+	private final Image imageArrowDown = new Image(getClass().getResourceAsStream("/icons/arrow-down.png"));
+	private final Image imageDelete = new Image(getClass().getResourceAsStream("/icons/trash.png"));
 	
 	public Node createJsonString(String name, DataOptions doptions) {
 		StringDataOptions options = (StringDataOptions) doptions;
@@ -192,9 +197,13 @@ public enum StructureGenerator {
 	}
 	
 	private Node crateMenuButtons() {
-		Button up = new Button("up");
-		Button down = new Button("down");
-		Button remove = new Button("remove");
+		Button up = new Button();
+		Button down = new Button();
+		Button remove = new Button();
+		
+		up.setGraphic(new ImageView(imageArrowUp));
+		down.setGraphic(new ImageView(imageArrowDown));
+		remove.setGraphic(new ImageView(imageDelete));
 		
 		up.setOnAction((ActionEvent e) -> {
 			TitledPane pane = getParentPane(e);
