@@ -27,11 +27,9 @@ public class StructureController {
 	@FXML
 	private Accordion structureFields;
 	
-	private static List<TitledPane> PANES = null;
-	
     public void initialize() {
-    	structureFields.getPanes().addAll(createStructurePanes(JsonGenerator.parseStructureFile()));
-    	PANES = structureFields.getPanes();
+    	structureFields.getPanes()
+    		.addAll(createStructurePanes(JsonGenerator.parseStructureFile()));
     }
 	
     public List<TitledPane> createStructurePanes(JSONArray objects) {
@@ -119,28 +117,32 @@ public class StructureController {
 				+ "{\"length\": " + length + ", \"first_cap\": " + firstCapital + ", \"all_cap\": " + allCapital + "}}";
 		JSONObject json_object = new JSONObject(json_string);
 		
-		PANES.add(createSinglePane(json_object));
+		List<TitledPane> panes = structureFields.getPanes();
+		panes.add(createSinglePane(json_object));
 		
 		System.out.println("Add element");
 	}
 	
 	public static void removePanel(TitledPane pane) {
-		PANES.remove(pane);
+		List<TitledPane> panes = ((Accordion) pane.getParent()).getPanes();
+		panes.remove(pane);
 	}
 	
 	public static void movePanelUp(TitledPane pane) {
-		int index = PANES.indexOf(pane);
+		List<TitledPane> panes = ((Accordion) pane.getParent()).getPanes();
+		int index = panes.indexOf(pane);
 		if (index > 0) {
-			PANES.remove(pane);
-			PANES.add(index - 1, pane);
+			panes.remove(pane);
+			panes.add(index - 1, pane);
 		}
 	}
 	
 	public static void movePanelDown(TitledPane pane) {
-		int index = PANES.indexOf(pane);
-		if (index < PANES.size() - 1) {
-			PANES.remove(pane);
-			PANES.add(index + 1, pane);
+		List<TitledPane> panes = ((Accordion) pane.getParent()).getPanes();
+		int index = panes.indexOf(pane);
+		if (index < panes.size() - 1) {
+			panes.remove(pane);
+			panes.add(index + 1, pane);
 		}
 	}
 
