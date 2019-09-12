@@ -11,7 +11,7 @@ public enum PatternDataOptionsParser implements DataOptionsParser {
 	
 	INSTANCE;
 	
-	private final String SPLITERATOR = "-";
+	public static final String SPLITERATOR = "-";
 
 	@Override
 	public PatternDataOptions parseDataOptions(JSONObject options) {	
