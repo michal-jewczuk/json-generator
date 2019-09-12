@@ -17,7 +17,7 @@ public class SceneCreator {
 		attachTop();
 		showMiddle(new MenuController().showMainPage());
         
-		Scene scene = new Scene(root,600,600);
+		Scene scene = new Scene(root,600,800);
 		//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		return scene;
 	}

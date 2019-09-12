@@ -10,9 +10,15 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.TitledPane;
-import nodomain.jsongenerator.data.BoolDataOptions;
+import nodomain.jsongenerator.data.DataOptions;
 import nodomain.jsongenerator.data.DataType;
 import nodomain.jsongenerator.data.parsers.BoolDataOptionsParser;
+import nodomain.jsongenerator.data.parsers.DateDataOptionsParser;
+import nodomain.jsongenerator.data.parsers.DoubleDataOptionsParser;
+import nodomain.jsongenerator.data.parsers.NumberDataOptionsParser;
+import nodomain.jsongenerator.data.parsers.ObjectDataOptionsParser;
+import nodomain.jsongenerator.data.parsers.PatternDataOptionsParser;
+import nodomain.jsongenerator.data.parsers.StringDataOptionsParser;
 import nodomain.jsongenerator.gui.StructureGenerator;
 import nodomain.jsongenerator.main.JsonGenerator;
 
@@ -21,56 +27,68 @@ public class StructureController {
 	@FXML
 	private Accordion structureFields;
 	
+	private static List<TitledPane> PANES = null;
+	
     public void initialize() {
-    	structureFields.getPanes().addAll(createStructurePanes());
+    	structureFields.getPanes().addAll(createStructurePanes(JsonGenerator.parseStructureFile()));
+    	PANES = structureFields.getPanes();
     }
 	
-	private List<TitledPane> createStructurePanes() {
+    public List<TitledPane> createStructurePanes(JSONArray objects) {
 		List<TitledPane> panes = new ArrayList<>();
 
-		JSONArray objects = JsonGenerator.parseStructureFile();
 		int length = objects.length();
 		for (int i = 0; i < length; i++) {
-			JSONObject current = objects.getJSONObject(i);
-
-			final String tileName = createTileName(current);
-			final Node node = createNode(current);
-			
-			TitledPane pane = new TitledPane(tileName,node);
+			JSONObject current = objects.getJSONObject(i);		
+			TitledPane pane = createSinglePane(current);
 			panes.add(pane);
 		}
 		
 		return panes;
 	}
+    
+    private TitledPane createSinglePane(JSONObject obj) {
+		final String tileName = createTileName(obj);
+		final Node node = createNode(obj);
+		
+		return new TitledPane(tileName,node);	
+    }
 	
 	private Node createNode(JSONObject current) {
 		DataType type = DataType.valueOf(current.getString("type"));
 		String name = current.getString("name");
 		JSONObject rawOptions = current.getJSONObject("options");
 		Node node = null;
+		DataOptions options = null;
 		
 		switch (type) {
 			case JSON_STRING:
-				node = StructureGenerator.INSTANCE.createJsonString(name, null);
+				options = StringDataOptionsParser.INSTANCE.parseDataOptions(rawOptions);
+				node = StructureGenerator.INSTANCE.createJsonString(name, options);
 				break;
 			case JSON_NUMBER:
-				node = StructureGenerator.INSTANCE.createJsonNumber(name, null);
+				options = NumberDataOptionsParser.INSTANCE.parseDataOptions(rawOptions);
+				node = StructureGenerator.INSTANCE.createJsonNumber(name, options);
 				break;
 			case JSON_PATTERN:
-				node = StructureGenerator.INSTANCE.createJsonPattern(name, null);
+				options = PatternDataOptionsParser.INSTANCE.parseDataOptions(rawOptions);
+				node = StructureGenerator.INSTANCE.createJsonPattern(name, options);
 				break;
 			case JSON_BOOL:
-				BoolDataOptions options = BoolDataOptionsParser.INSTANCE.parseDataOptions(rawOptions);
+				options = BoolDataOptionsParser.INSTANCE.parseDataOptions(rawOptions);
 				node = StructureGenerator.INSTANCE.createJsonBool(name, options);
 				break;
 			case JSON_DOUBLE:
-				node = StructureGenerator.INSTANCE.createJsonDouble(name, null);
+				options = DoubleDataOptionsParser.INSTANCE.parseDataOptions(rawOptions);
+				node = StructureGenerator.INSTANCE.createJsonDouble(name, options);
 				break;
 			case JSON_DATE:
-				node = StructureGenerator.INSTANCE.createJsonDate(name, null);
+				options = DateDataOptionsParser.INSTANCE.parseDataOptions(rawOptions);
+				node = StructureGenerator.INSTANCE.createJsonDate(name, options);
 				break;
 			case JSON_OBJECT:
-				node = StructureGenerator.INSTANCE.createJsonObject(name, null);
+				options = ObjectDataOptionsParser.INSTANCE.parseDataOptions(rawOptions);
+				node = StructureGenerator.INSTANCE.createJsonObject(name, options);
 				break;
 			default:
 				node = null;
@@ -94,7 +112,36 @@ public class StructureController {
 	
 	@FXML
 	public void addElement() {
+		int length = 8;
+		boolean firstCapital = true;
+		boolean allCapital = false;
+		String json_string = "{\"type\": \"JSON_STRING\", \"name\": \"string_l8_first_cap\", \"options\" : "
+				+ "{\"length\": " + length + ", \"first_cap\": " + firstCapital + ", \"all_cap\": " + allCapital + "}}";
+		JSONObject json_object = new JSONObject(json_string);
+		
+		PANES.add(createSinglePane(json_object));
+		
 		System.out.println("Add element");
+	}
+	
+	public static void removePanel(TitledPane pane) {
+		PANES.remove(pane);
+	}
+	
+	public static void movePanelUp(TitledPane pane) {
+		int index = PANES.indexOf(pane);
+		if (index > 0) {
+			PANES.remove(pane);
+			PANES.add(index - 1, pane);
+		}
+	}
+	
+	public static void movePanelDown(TitledPane pane) {
+		int index = PANES.indexOf(pane);
+		if (index < PANES.size() - 1) {
+			PANES.remove(pane);
+			PANES.add(index + 1, pane);
+		}
 	}
 
 }
