@@ -5,7 +5,7 @@
 		"name": "identifier",
 		"options" : 
 			{
-			"pattern": "5-3-5",
+			"pattern": "5-3-5-",
 			"connector": "-",
 			"all_cap": true
 			}
