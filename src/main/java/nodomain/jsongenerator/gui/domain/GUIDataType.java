@@ -2,6 +2,7 @@ package nodomain.jsongenerator.gui.domain;
 
 import javafx.scene.layout.GridPane;
 import nodomain.jsongenerator.gui.processors.BoolItemProcessor;
+import nodomain.jsongenerator.gui.processors.PatternItemProcessor;
 
 public enum GUIDataType {
 
@@ -23,7 +24,7 @@ public enum GUIDataType {
 		@Override
 		public StringBuilder convertToJSON(GridPane pane) {
 			System.out.println("Processing pattern...");
-			return null;
+			return PatternItemProcessor.INSTANCE.fromeGuiToJSON(JSON_PATTERN, pane);
 		}
 	},
 	JSON_BOOL {

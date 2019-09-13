@@ -23,15 +23,6 @@ public enum BoolItemProcessor implements ItemProcessor {
 	}
 
 	@Override
-	public StringBuilder fromElementToJSON(Element element) {
-		StringBuilder sb = createHeader(element);
-		sb.append(returnOptionsAsString(element.getOptions()));
-		
-		sb.append("}");
-		return sb;
-	}
-
-	@Override
 	public StringBuilder returnOptionsAsString(DataOptions options) {
 		BoolDataOptions datao = (BoolDataOptions) options;
 		StringBuilder sb = new StringBuilder("{");

@@ -28,7 +28,6 @@ import nodomain.jsongenerator.data.NumberDataOptions;
 import nodomain.jsongenerator.data.ObjectDataOptions;
 import nodomain.jsongenerator.data.PatternDataOptions;
 import nodomain.jsongenerator.data.StringDataOptions;
-import nodomain.jsongenerator.data.parsers.PatternDataOptionsParser;
 import nodomain.jsongenerator.gui.controller.StructureController;
 
 public enum StructureGenerator {
@@ -86,7 +85,7 @@ public enum StructureGenerator {
 		BorderPane pane = createObjectLayout();
 		
 		Label patternL = new Label("pattern");
-		TextField patternF = new TextField(parsePattern(options.getParts()));
+		TextField patternF = new TextField(options.getPattern());
 		Label connectorL = new Label("connector");
 		TextField connectorF = new TextField(options.getConnector());
 		CheckBox allCapCB = new CheckBox("all capital");
@@ -260,14 +259,6 @@ public enum StructureGenerator {
 		pane.add(nameF, 1, 0);
 		
 		return pane;
-	}
-	
-	private String parsePattern(int[] parts) {
-		StringBuilder sb = new StringBuilder();
-		for (int part: parts) {
-			sb.append(part).append(PatternDataOptionsParser.SPLITERATOR);
-		}
-		return sb.toString();
 	}
 
 }

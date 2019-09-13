@@ -9,7 +9,6 @@ import nodomain.jsongenerator.gui.domain.GUIDataType;
 public interface ItemProcessor {
 	
 	Element fromGuiToElement(GUIDataType type, GridPane pane);
-	StringBuilder fromElementToJSON(Element element);
 	StringBuilder returnOptionsAsString(DataOptions options);
 
 	default StringBuilder fromeGuiToJSON(GUIDataType type, GridPane pane) {
@@ -26,6 +25,14 @@ public interface ItemProcessor {
 	default String extractName(GridPane pane) {	
 		TextField tf = (TextField) pane.getChildren().get(1);	
 		return tf.getText();
+	}
+	
+	default StringBuilder fromElementToJSON(Element element) {
+		StringBuilder sb = createHeader(element);
+		sb.append(returnOptionsAsString(element.getOptions()));
+		
+		sb.append("}");
+		return sb;
 	}
 	
 	default StringBuilder createHeader(Element element) {

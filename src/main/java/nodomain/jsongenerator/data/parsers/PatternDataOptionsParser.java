@@ -10,8 +10,6 @@ import nodomain.jsongenerator.exceptions.JsonParsingException;
 public enum PatternDataOptionsParser implements DataOptionsParser {
 	
 	INSTANCE;
-	
-	public static final String SPLITERATOR = "-";
 
 	@Override
 	public PatternDataOptions parseDataOptions(JSONObject options) {	
@@ -45,7 +43,7 @@ public enum PatternDataOptionsParser implements DataOptionsParser {
 	}
 	
 	private int[] parseStringPattern(String pattern) {
-		String[] patternParts = pattern.split(SPLITERATOR);
+		String[] patternParts = pattern.split(PatternDataOptions.SPLITERATOR);
 		int length = patternParts.length;
 		int[] parts = new int[length];
 
