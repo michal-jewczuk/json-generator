@@ -4,10 +4,14 @@ import java.util.List;
 
 import org.json.JSONObject;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Accordion;
+import javafx.scene.control.Button;
 import javafx.scene.control.TitledPane;
+import javafx.scene.layout.BorderPane;
 import nodomain.jsongenerator.gui.generators.PanelGenerator;
+import nodomain.jsongenerator.gui.processors.MainProcessor;
 import nodomain.jsongenerator.main.JsonGenerator;
 
 public class StructureController {
@@ -21,8 +25,10 @@ public class StructureController {
     }
 
 	@FXML
-	private void saveStructure() {
-		System.out.println("Structure saved");
+	private void saveStructure(ActionEvent e) {
+		//TODO change process to save when all done
+		BorderPane bp = (BorderPane) ((Button) e.getSource()).getParent().getParent().getParent();
+		MainProcessor.INSTANCE.proccessStructure((Accordion) bp.getCenter());
 	}
 	
 	@FXML
