@@ -1,4 +1,4 @@
-package nodomain.jsongenerator.gui;
+package nodomain.jsongenerator.gui.generators;
 
 import java.util.List;
 
@@ -175,7 +175,7 @@ public enum StructureGenerator {
 		add.setOnAction((ActionEvent e) -> {
 			GridPane parent = (GridPane) ((Button)e.getSource()).getParent();
 			Accordion acc = (Accordion) parent.getChildren().get(parent.getChildren().size() - 1);
-			TitledPane tmp = new StructureController().createSinglePane(StructureController.createMockObject());
+			TitledPane tmp = PanelGenerator.INSTANCE.createSinglePane(StructureController.createMockObject());
 			acc.getPanes().add(tmp);
 		});	
 		
@@ -184,7 +184,7 @@ public enum StructureGenerator {
 		Label elementsL = new Label("elements");
 		
     	Accordion acc = new Accordion();
-    	List<TitledPane> panes = new StructureController().createStructurePanes(options.getStructure());
+    	List<TitledPane> panes = PanelGenerator.INSTANCE.createStructurePanes(options.getStructure());
     	acc.getPanes().addAll(panes);
     	
     	GridPane gp = createGrid(name);	
