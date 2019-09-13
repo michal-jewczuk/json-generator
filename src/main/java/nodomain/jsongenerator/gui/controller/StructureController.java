@@ -45,7 +45,7 @@ public class StructureController {
 		return panes;
 	}
     
-    private TitledPane createSinglePane(JSONObject obj) {
+    public TitledPane createSinglePane(JSONObject obj) {
 		final String tileName = createTileName(obj);
 		final Node node = createNode(obj);
 		
@@ -104,21 +104,14 @@ public class StructureController {
 
 
 	@FXML
-	public void saveStructure() {
+	private void saveStructure() {
 		System.out.println("Structure saved");
 	}
 	
 	@FXML
-	public void addElement() {
-		int length = 8;
-		boolean firstCapital = true;
-		boolean allCapital = false;
-		String json_string = "{\"type\": \"JSON_STRING\", \"name\": \"string_l8_first_cap\", \"options\" : "
-				+ "{\"length\": " + length + ", \"first_cap\": " + firstCapital + ", \"all_cap\": " + allCapital + "}}";
-		JSONObject json_object = new JSONObject(json_string);
-		
+	private void addElement() {	
 		List<TitledPane> panes = structureFields.getPanes();
-		panes.add(createSinglePane(json_object));
+		panes.add(createSinglePane(createMockObject()));
 		
 		System.out.println("Add element");
 	}
@@ -144,6 +137,17 @@ public class StructureController {
 			panes.remove(pane);
 			panes.add(index + 1, pane);
 		}
+	}
+	
+	public static JSONObject createMockObject() {
+		int length = 8;
+		boolean firstCapital = true;
+		boolean allCapital = false;
+		String json_string = "{\"type\": \"JSON_STRING\", \"name\": \"string_l8_first_cap\", \"options\" : "
+				+ "{\"length\": " + length + ", \"first_cap\": " + firstCapital + ", \"all_cap\": " + allCapital + "}}";
+		JSONObject json_object = new JSONObject(json_string);
+		
+		return json_object;
 	}
 
 }

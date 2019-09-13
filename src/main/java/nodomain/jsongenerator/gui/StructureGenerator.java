@@ -39,6 +39,7 @@ public enum StructureGenerator {
 	private final Image imageArrowUp = new Image(getClass().getResourceAsStream("/icons/arrow-up.png"));
 	private final Image imageArrowDown = new Image(getClass().getResourceAsStream("/icons/arrow-down.png"));
 	private final Image imageDelete = new Image(getClass().getResourceAsStream("/icons/trash.png"));
+	private final Image imagePlus = new Image(getClass().getResourceAsStream("/icons/plus.png"));
 	
 	public Node createJsonString(String name, DataOptions doptions) {
 		StringDataOptions options = (StringDataOptions) doptions;
@@ -169,6 +170,15 @@ public enum StructureGenerator {
 		ObjectDataOptions options = (ObjectDataOptions) doptions;
 		BorderPane pane = createObjectLayout();
 		
+		Button add = new Button("Add element", new ImageView(imagePlus));
+		//TODO add real form
+		add.setOnAction((ActionEvent e) -> {
+			GridPane parent = (GridPane) ((Button)e.getSource()).getParent();
+			Accordion acc = (Accordion) parent.getChildren().get(parent.getChildren().size() - 1);
+			TitledPane tmp = new StructureController().createSinglePane(StructureController.createMockObject());
+			acc.getPanes().add(tmp);
+		});	
+		
 		Label countL = new Label("count");
 		TextField countF = new TextField(String.valueOf(options.getCount()));	
 		Label elementsL = new Label("elements");
@@ -177,10 +187,11 @@ public enum StructureGenerator {
     	List<TitledPane> panes = new StructureController().createStructurePanes(options.getStructure());
     	acc.getPanes().addAll(panes);
     	
-    	GridPane gp = createGrid(name);
+    	GridPane gp = createGrid(name);	
     	gp.add(countL, 0, 1);
     	gp.add(countF, 1, 1);
     	gp.add(elementsL, 0, 2);
+    	gp.add(add, 1, 2);
     	gp.add(acc, 0, 3, 2, 2);
 		
     	pane.setCenter(gp);
