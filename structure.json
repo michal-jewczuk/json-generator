@@ -24,6 +24,16 @@
 		},
 		
 		{
+		"type": "JSON_NUMBER",
+		"name": "employee_id",
+		"options" : 
+			{
+			"lower_bound": 10,
+			"upper_bound": 100
+			}
+		},
+		
+		{
 		"type": "JSON_DATE",
 		"name": "date_of_measurement",
 		"options" : 

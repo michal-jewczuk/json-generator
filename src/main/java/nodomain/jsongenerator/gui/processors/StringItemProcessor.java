@@ -40,6 +40,7 @@ public enum StringItemProcessor implements ItemProcessor {
 		sb.append("\"max_length\": ").append(datao.getMaxLength()).append(",");
 		sb.append("\"first_cap\": ").append(datao.isFirstCapital()).append(",");
 		sb.append("\"all_cap\": ").append(datao.isAllCapital());
+		sb.append("}");
 		
 		return sb;
 	}
