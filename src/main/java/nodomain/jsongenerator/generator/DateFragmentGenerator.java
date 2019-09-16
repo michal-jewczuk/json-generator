@@ -2,7 +2,6 @@ package nodomain.jsongenerator.generator;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Random;
 
 import org.json.JSONObject;
 
@@ -33,7 +32,7 @@ public enum DateFragmentGenerator implements FragmentGenerator {
 			genDate = options.getLowerBound();
 		} else {
 			long days = options.getUpperBound().toEpochDay() - options.getLowerBound().toEpochDay();
-			long generated = new Random().longs(1, 0, days).sum();
+			long generated = rnd.longs(1, 0, days).sum();
 			genDate = options.getLowerBound().plusDays(generated);
 		}
 		return genDate.format(DateTimeFormatter.ofPattern(options.getOutputPattern()));

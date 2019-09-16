@@ -2,7 +2,6 @@ package nodomain.jsongenerator.generator;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.Random;
 
 import org.json.JSONObject;
 
@@ -25,7 +24,6 @@ public enum DoubleFragmentGenerator implements FragmentGenerator {
 	}
 
 	private BigDecimal generateDoubleFragment(DoubleDataOptions options) {
-		Random rnd = new Random();
 		double result = rnd.doubles(1L, options.getLowerBound(), options.getUpperBound()).sum();
 		BigDecimal bd = BigDecimal.valueOf(result);
 		bd = bd.setScale(options.getPrecision(), RoundingMode.DOWN);

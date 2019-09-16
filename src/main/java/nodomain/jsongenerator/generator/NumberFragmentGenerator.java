@@ -1,8 +1,5 @@
 package nodomain.jsongenerator.generator;
 
-import java.util.Random;
-import java.util.stream.LongStream;
-
 import org.json.JSONObject;
 
 import nodomain.jsongenerator.data.NumberDataOptions;
@@ -28,10 +25,7 @@ public enum NumberFragmentGenerator implements FragmentGenerator {
 			return options.getLowerBound();
 		}
 		
-		Random rand = new Random();
-		LongStream str = rand.longs(1, options.getLowerBound(), options.getUpperBound());
-		
-		return str.sum();
+		return rnd.longs(1, options.getLowerBound(), options.getUpperBound()).sum();
 	}
 
 }

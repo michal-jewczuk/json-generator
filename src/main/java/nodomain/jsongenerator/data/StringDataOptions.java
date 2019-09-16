@@ -2,17 +2,24 @@ package nodomain.jsongenerator.data;
 
 public class StringDataOptions extends DataOptions {
 
-	private int length;
+	private int minLength;
+	private int maxLength;
 	private boolean firstCapital;
 	private boolean allCapital;
 	
 	public static class Builder {
-		private int length;
+		private int minLength;
+		private int maxLength;
 		private boolean firstCapital;
 		private boolean allCapital;
 		
-		public Builder length(int length) {
-			this.length = length;
+		public Builder minLength(int minLength) {
+			this.minLength = minLength;
+			return this;
+		}
+		
+		public Builder maxLength(int maxLength) {
+			this.maxLength = maxLength;
 			return this;
 		}
 		
@@ -31,21 +38,14 @@ public class StringDataOptions extends DataOptions {
 	}
 	
 	private StringDataOptions(Builder builder) {
-		length = builder.length;
+		minLength = builder.minLength;
+		maxLength = builder.maxLength;
 		firstCapital = builder.firstCapital;
 		allCapital = builder.allCapital;
 	}
 	
 	public StringDataOptions() {
 		
-	}
-
-	public int getLength() {
-		return length;
-	}
-
-	public void setLength(int length) {
-		this.length = length;
 	}
 
 	public boolean isFirstCapital() {
@@ -62,6 +62,22 @@ public class StringDataOptions extends DataOptions {
 
 	public void setAllCapital(boolean allCapital) {
 		this.allCapital = allCapital;
+	}
+
+	public int getMinLength() {
+		return minLength;
+	}
+
+	public void setMinLength(int minLength) {
+		this.minLength = minLength;
+	}
+
+	public int getMaxLength() {
+		return maxLength;
+	}
+
+	public void setMaxLength(int maxLength) {
+		this.maxLength = maxLength;
 	}
 	
 }

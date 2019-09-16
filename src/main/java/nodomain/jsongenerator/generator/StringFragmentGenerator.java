@@ -27,7 +27,7 @@ public enum StringFragmentGenerator implements FragmentGenerator {
 	private StringBuilder generateStringFragment(StringDataOptions options) {
 		
 		StringBuilder fragment = new StringBuilder();
-		String generated = StringUtil.generateStringFragment(options.getLength(), AppConfig.STRING_SYMBOLS);
+		String generated = StringUtil.generateStringFragment(generateLength(options), AppConfig.STRING_SYMBOLS);
 	
 		if (options.isAllCapital()) {
 			fragment = new StringBuilder(generated.toUpperCase());
@@ -40,6 +40,14 @@ public enum StringFragmentGenerator implements FragmentGenerator {
 		}
 		
 		return fragment;
+	}
+
+	private int generateLength(StringDataOptions options) {
+		if (options.getMinLength() == options.getMaxLength()) {
+			return options.getMinLength();
+		}
+		
+		return rnd.ints(1, options.getMinLength(), options.getMaxLength()).sum();
 	}
 	
 }
