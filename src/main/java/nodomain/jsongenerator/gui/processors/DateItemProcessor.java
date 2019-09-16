@@ -1,0 +1,42 @@
+package nodomain.jsongenerator.gui.processors;
+
+import java.time.LocalDate;
+
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+import nodomain.jsongenerator.data.DataOptions;
+import nodomain.jsongenerator.data.DateDataOptions;
+import nodomain.jsongenerator.gui.domain.Element;
+import nodomain.jsongenerator.gui.domain.GUIDataType;
+
+public enum DateItemProcessor implements ItemProcessor {
+	
+	INSTANCE;
+
+	@Override
+	public Element fromGuiToElement(GUIDataType type, GridPane pane) {
+		Element element = createGenericElement(type, pane);
+		
+		LocalDate lowerBound = LocalDate.parse(((TextField) pane.getChildren().get(3)).getText());
+		LocalDate upperBound = LocalDate.parse(((TextField) pane.getChildren().get(5)).getText());
+		String pattern = ((TextField) pane.getChildren().get(7)).getText();
+		
+		DateDataOptions options = new DateDataOptions(lowerBound, upperBound, pattern);
+		element.setOptions(options);
+		
+		return element;
+	}
+
+	@Override
+	public StringBuilder returnOptionsAsString(DataOptions options) {
+		DateDataOptions datao = (DateDataOptions) options;
+		StringBuilder sb = new StringBuilder("{");
+		sb.append("\"lower_bound\": ").append("\"").append(datao.getLowerBound()).append("\"").append(",");
+		sb.append("\"upper_bound\": ").append("\"").append(datao.getUpperBound()).append("\"").append(",");
+		sb.append("\"output_pattern\": ").append("\"").append(datao.getOutputPattern()).append("\"");
+		sb.append("}");
+		
+		return sb;
+	}
+
+}
