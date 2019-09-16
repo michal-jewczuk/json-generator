@@ -13,24 +13,31 @@ public enum StringDataOptionsParser implements DataOptionsParser {
 
 	@Override
 	public StringDataOptions parseDataOptions(JSONObject options) {
-		int length;
+		int minLength;
+		int maxLength;
 		boolean firstCapital;
 		boolean allCapital;
 		
 		try {
-			length = options.getInt("length");
+			minLength = options.getInt("min_length");
+			maxLength = options.getInt("max_length");
 			firstCapital = options.getBoolean("first_cap");
 			allCapital = options.getBoolean("all_cap");
 		} catch (JSONException e) {
 			throw new JsonParsingException(AppConfig.ERROR_PARSING + e.getLocalizedMessage());
 		}
 		
-		if (length < 1) {
+		if (minLength < 1) {
 			throw new IllegalArgumentException("Length < 1!");
 		}
 		
+		if (maxLength < minLength) {
+			throw new IllegalArgumentException("max < min!");
+		}
+		
 		return new StringDataOptions.Builder()
-				.length(length)
+				.minLength(minLength)
+				.maxLength(maxLength)
 				.firstCapital(firstCapital)
 				.allCapital(allCapital)
 				.build();

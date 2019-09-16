@@ -18,25 +18,30 @@ public class StringDataOptionsParserTest {
 	
 	@Test
 	public void shouldCorrectlyParseValidData() {
-		int length = 8;
+		int minLength = 8;
+		int maxLength = 8;
 		boolean firstCapital = true;
 		boolean allCapital = false;
-		String json_string = "{\"length\": " + length + ", \"first_cap\": " + firstCapital + ", \"all_cap\": " + allCapital + "}";
+		String json_string = "{\"min_length\": " + minLength + ", \"max_length\": " + maxLength 
+				+ ", \"first_cap\": " + firstCapital + ", \"all_cap\": " + allCapital + "}";
 		JSONObject json_object = new JSONObject(json_string);
 		
 		StringDataOptions options = (StringDataOptions) StringDataOptionsParser.INSTANCE.parseDataOptions(json_object);
 		
-		assertThat(options.getLength()).isEqualTo(length);
+		assertThat(options.getMinLength()).isEqualTo(minLength);
+		assertThat(options.getMaxLength()).isEqualTo(maxLength);
 		assertThat(options.isFirstCapital()).isTrue();
 		assertThat(options.isAllCapital()).isFalse();
 	}
 	
 	@Test
 	public void shouldThrowExceptionWhenLengthIsLessThan1() {
-		int length = -8;
+		int minLength = 8;
+		int maxLength = 8;
 		boolean firstCapital = true;
 		boolean allCapital = false;
-		String json_string = "{\"length\": " + length + ", \"first_cap\": " + firstCapital + ", \"all_cap\": " + allCapital + "}";
+		String json_string = "{\"min_length\": " + minLength + ", \"max_length\": " + maxLength 
+				+ ", \"first_cap\": " + firstCapital + ", \"all_cap\": " + allCapital + "}";
 		JSONObject json_object = new JSONObject(json_string);
 		
 		excE.expect(IllegalArgumentException.class);
@@ -44,24 +49,57 @@ public class StringDataOptionsParserTest {
 	}
 	
 	@Test
-	public void shouldThrowExceptionWhenLengthIsNotANumber() {
-		String length = "one";
+	public void shouldThrowExceptionWhenMaxIsLessThanMin() {
+		int minLength = 2;
+		int maxLength = 1;
 		boolean firstCapital = true;
 		boolean allCapital = false;
-		String json_string = "{\"length\": " + length + ", \"first_cap\": " + firstCapital + ", \"all_cap\": " + allCapital + "}";
+		String json_string = "{\"min_length\": " + minLength + ", \"max_length\": " + maxLength 
+				+ ", \"first_cap\": " + firstCapital + ", \"all_cap\": " + allCapital + "}";
+		JSONObject json_object = new JSONObject(json_string);
+		
+		excE.expect(IllegalArgumentException.class);
+		StringDataOptionsParser.INSTANCE.parseDataOptions(json_object);
+	}
+	
+	@Test
+	public void shouldThrowExceptionWhenMinLengthIsNotANumber() {
+		String minLength = "one";
+		int maxLength = 8;
+		boolean firstCapital = true;
+		boolean allCapital = false;
+		String json_string = "{\"min_length\": " + minLength + ", \"max_length\": " + maxLength 
+				+ ", \"first_cap\": " + firstCapital + ", \"all_cap\": " + allCapital + "}";
 		JSONObject json_object = new JSONObject(json_string);
 		
 		excE.expect(JsonParsingException.class);
-		excE.expectMessage(containsString("length"));
+		excE.expectMessage(containsString("min_length"));
+		StringDataOptionsParser.INSTANCE.parseDataOptions(json_object);
+	}
+	
+	@Test
+	public void shouldThrowExceptionWhenMaxLengthIsNotANumber() {
+		int minLength = 8;
+		boolean maxLength = true;
+		boolean firstCapital = true;
+		boolean allCapital = false;
+		String json_string = "{\"min_length\": " + minLength + ", \"max_length\": " + maxLength 
+				+ ", \"first_cap\": " + firstCapital + ", \"all_cap\": " + allCapital + "}";
+		JSONObject json_object = new JSONObject(json_string);
+		
+		excE.expect(JsonParsingException.class);
+		excE.expectMessage(containsString("max_length"));
 		StringDataOptionsParser.INSTANCE.parseDataOptions(json_object);
 	}
 	
 	@Test
 	public void shouldThrowExceptionWhenfirstCapitalIsNotBoolean() {
-		int length = 8;
+		int minLength = 8;
+		int maxLength = 18;
 		String firstCapital = "This is true";
 		boolean allCapital = false;
-		String json_string = "{\"length\": " + length + ", \"first_cap\": " + firstCapital + ", \"all_cap\": " + allCapital + "}";
+		String json_string = "{\"min_length\": " + minLength + ", \"max_length\": " + maxLength 
+				+ ", \"first_cap\": " + firstCapital + ", \"all_cap\": " + allCapital + "}";
 		JSONObject json_object = new JSONObject(json_string);
 		
 		excE.expect(JsonParsingException.class);
@@ -71,10 +109,12 @@ public class StringDataOptionsParserTest {
 	
 	@Test
 	public void shouldThrowExceptionWhenallCapitalIsNotBoolean() {
-		int length = 8;
+		int minLength = 8;
+		int maxLength = 10;
 		boolean firstCapital = true;
 		int allCapital = 0;
-		String json_string = "{\"length\": " + length + ", \"first_cap\": " + firstCapital + ", \"all_cap\": " + allCapital + "}";
+		String json_string = "{\"min_length\": " + minLength + ", \"max_length\": " + maxLength 
+				+ ", \"first_cap\": " + firstCapital + ", \"all_cap\": " + allCapital + "}";
 		JSONObject json_object = new JSONObject(json_string);
 		
 		excE.expect(JsonParsingException.class);

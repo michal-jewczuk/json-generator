@@ -1,7 +1,5 @@
 package nodomain.jsongenerator.generator;
 
-import java.util.Random;
-
 import org.json.JSONObject;
 
 import nodomain.jsongenerator.data.BoolDataOptions;
@@ -29,7 +27,7 @@ public enum BoolFragmentGenerator implements FragmentGenerator {
 		} else if (options.isOnlyFalse()) {
 			return false;
 		} else {
-			return new Random().nextBoolean();
+			return rnd.nextBoolean();
 		}
 	}
 

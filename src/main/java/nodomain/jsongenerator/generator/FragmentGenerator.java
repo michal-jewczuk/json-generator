@@ -1,8 +1,12 @@
 package nodomain.jsongenerator.generator;
 
+import java.util.Random;
+
 import org.json.JSONObject;
 
 public interface FragmentGenerator {
+	
+	static Random rnd = new Random();
 
 	StringBuilder generateFragment(String name, JSONObject dataOptions);
 	
