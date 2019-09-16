@@ -44,18 +44,22 @@ public enum StructureGenerator {
 		StringDataOptions options = (StringDataOptions) doptions;
 		BorderPane pane = createObjectLayout();
 		
-		Label lengthL = new Label("length");
-		TextField lengthF = new TextField(String.valueOf(options.getMinLength()));
+		Label minLengthL = new Label("min length");
+		TextField minLengthF = new TextField(String.valueOf(options.getMinLength()));
+		Label maxLengthL = new Label("max length");
+		TextField maxLengthF = new TextField(String.valueOf(options.getMaxLength()));
 		CheckBox firstCapCB = new CheckBox("first capital");
 		firstCapCB.setSelected(options.isFirstCapital());
 		CheckBox allCapCB = new CheckBox("all capital");
 		allCapCB.setSelected(options.isAllCapital());
 		
 		GridPane gp = createGrid(name);
-		gp.add(lengthL, 0, 1);
-		gp.add(lengthF, 1, 1);
-		gp.add(firstCapCB, 1, 2);
-		gp.add(allCapCB, 1, 3);
+		gp.add(minLengthL, 0, 1);
+		gp.add(minLengthF, 1, 1);
+		gp.add(maxLengthL, 0, 2);
+		gp.add(maxLengthF, 1, 2);
+		gp.add(firstCapCB, 1, 3);
+		gp.add(allCapCB, 1, 4);
 		
 		pane.setCenter(gp);
 		return pane;

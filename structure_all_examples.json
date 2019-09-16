@@ -26,17 +26,19 @@
 		"name": "string_l5_no_cap",
 		"options" : 
 			{
-			"length": 5,
+			"min_length": 5,
+			"max_length": 5,
 			"first_cap": false,
 			"all_cap": false
 			}
 		},
 		{
 		"type": "JSON_STRING",
-		"name": "string_l25_first_cap",
+		"name": "string_l20to25_first_cap",
 		"options" : 
 			{
-			"length": 25,
+			"min_length": 20,
+			"max_length": 25,
 			"first_cap": true,
 			"all_cap": false
 			}
