@@ -3,6 +3,7 @@ package nodomain.jsongenerator.gui.domain;
 import javafx.scene.layout.GridPane;
 import nodomain.jsongenerator.gui.processors.BoolItemProcessor;
 import nodomain.jsongenerator.gui.processors.PatternItemProcessor;
+import nodomain.jsongenerator.gui.processors.StringItemProcessor;
 
 public enum GUIDataType {
 
@@ -10,7 +11,7 @@ public enum GUIDataType {
 		@Override
 		public StringBuilder convertToJSON(GridPane pane) {
 			System.out.println("Processing string...");
-			return null;
+			return StringItemProcessor.INSTANCE.fromeGuiToJSON(JSON_STRING, pane);
 		}
 	},
 	JSON_NUMBER {
