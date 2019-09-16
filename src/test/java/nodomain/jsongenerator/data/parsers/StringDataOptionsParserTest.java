@@ -36,7 +36,7 @@ public class StringDataOptionsParserTest {
 	
 	@Test
 	public void shouldThrowExceptionWhenLengthIsLessThan1() {
-		int minLength = 8;
+		int minLength = -2;
 		int maxLength = 8;
 		boolean firstCapital = true;
 		boolean allCapital = false;

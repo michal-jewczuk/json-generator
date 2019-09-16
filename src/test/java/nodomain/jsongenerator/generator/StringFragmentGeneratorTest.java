@@ -29,6 +29,24 @@ public class StringFragmentGeneratorTest {
 	}
 	
 	@Test
+	public void shouldGenerateStringOfGivenLengthWhenMinNotMax() {
+		int minLength = 12;
+		int maxLength = 22;
+		boolean firstCapital = false;
+		boolean allCapital = false;
+		String name = "jsonString";
+		String json_string = "{\"min_length\": " + minLength + ", \"max_length\": " + maxLength 
+				+ ", \"first_cap\": " + firstCapital + ", \"all_cap\": " + allCapital + "}";
+		JSONObject json_object = new JSONObject(json_string);
+		
+		StringBuilder fragment = StringFragmentGenerator.INSTANCE.generateFragment(name, json_object);
+		
+		assertThat(fragment.toString()).contains(name);
+		assertThat(fragment.toString().length()).isBetween(minLength + name.length() + 6, maxLength + name.length() + 6);
+		assertThat(extractValue(fragment.toString()).length()).isEqualTo(minLength + 2);
+	}
+	
+	@Test
 	public void shouldGenerateStringThatIsAllCaps() {
 		int minLength = 7;
 		int maxLength = 7;

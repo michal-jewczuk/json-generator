@@ -45,7 +45,7 @@ public enum StructureGenerator {
 		BorderPane pane = createObjectLayout();
 		
 		Label lengthL = new Label("length");
-		TextField lengthF = new TextField(String.valueOf(options.getLength()));
+		TextField lengthF = new TextField(String.valueOf(options.getMinLength()));
 		CheckBox firstCapCB = new CheckBox("first capital");
 		firstCapCB.setSelected(options.isFirstCapital());
 		CheckBox allCapCB = new CheckBox("all capital");
