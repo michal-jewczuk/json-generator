@@ -13,7 +13,7 @@ public class JsonGenerator {
 		JSONArray arr = parseStructureFile();
 		StringBuilder output = generateJson(count, arr, AppConfig.NESTED_GROUND);
 	
-		return ReadWriteUtil.writeToFile(output, outputName);
+		return ReadWriteUtil.writeToUniqueFile(output, outputName);
 	}
 	
 	public static JSONArray parseStructureFile() {

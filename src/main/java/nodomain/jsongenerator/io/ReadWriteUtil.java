@@ -30,9 +30,13 @@ public class ReadWriteUtil {
 		return structure.toString();
 	}
 	
-	public static String writeToFile(StringBuilder output, String fileName) {
+	public static String writeToUniqueFile(StringBuilder output, String fileName) {
 		fileName = generateUniqueName(fileName);
 		
+		return writeToFile(output, fileName);
+	}
+	
+	public static String writeToFile(StringBuilder output, String fileName) {		
 		try (BufferedWriter out = new BufferedWriter(
 					new OutputStreamWriter(
 							new FileOutputStream(fileName), "UTF-8"))) {

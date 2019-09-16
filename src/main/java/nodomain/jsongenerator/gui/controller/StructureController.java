@@ -63,11 +63,10 @@ public class StructureController {
 	}
 	
 	public static JSONObject createMockObject() {
-		int length = 8;
-		boolean firstCapital = true;
-		boolean allCapital = false;
-		String json_string = "{\"type\": \"JSON_STRING\", \"name\": \"string_l8_first_cap\", \"options\" : "
-				+ "{\"length\": " + length + ", \"first_cap\": " + firstCapital + ", \"all_cap\": " + allCapital + "}}";
+		int lowerBound = 25;
+		int upperBound = 67;
+		String json_string = "{\"type\": \"JSON_NUMBER\", \"name\": \"number_25_to_67\", \"options\" : "
+				+ "{\"lower_bound\": " + lowerBound + ", \"upper_bound\": " + upperBound + "}}";
 		JSONObject json_object = new JSONObject(json_string);
 		
 		return json_object;
