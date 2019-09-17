@@ -8,15 +8,7 @@ import org.json.JSONObject;
 
 import javafx.scene.Node;
 import javafx.scene.control.TitledPane;
-import nodomain.jsongenerator.data.DataOptions;
 import nodomain.jsongenerator.data.DataType;
-import nodomain.jsongenerator.data.parsers.BoolDataOptionsParser;
-import nodomain.jsongenerator.data.parsers.DateDataOptionsParser;
-import nodomain.jsongenerator.data.parsers.DoubleDataOptionsParser;
-import nodomain.jsongenerator.data.parsers.NumberDataOptionsParser;
-import nodomain.jsongenerator.data.parsers.ObjectDataOptionsParser;
-import nodomain.jsongenerator.data.parsers.PatternDataOptionsParser;
-import nodomain.jsongenerator.data.parsers.StringDataOptionsParser;
 
 public enum PanelGenerator {
 	
@@ -46,41 +38,8 @@ public enum PanelGenerator {
 		DataType type = DataType.valueOf(current.getString("type"));
 		String name = current.getString("name");
 		JSONObject rawOptions = current.getJSONObject("options");
-		Node node = null;
-		DataOptions options = null;
-		
-		switch (type) {
-			case JSON_STRING:
-				options = StringDataOptionsParser.INSTANCE.parseDataOptions(rawOptions);
-				node = StructureGenerator.INSTANCE.createJsonString(name, options);
-				break;
-			case JSON_NUMBER:
-				options = NumberDataOptionsParser.INSTANCE.parseDataOptions(rawOptions);
-				node = StructureGenerator.INSTANCE.createJsonNumber(name, options);
-				break;
-			case JSON_PATTERN:
-				options = PatternDataOptionsParser.INSTANCE.parseDataOptions(rawOptions);
-				node = StructureGenerator.INSTANCE.createJsonPattern(name, options);
-				break;
-			case JSON_BOOL:
-				options = BoolDataOptionsParser.INSTANCE.parseDataOptions(rawOptions);
-				node = StructureGenerator.INSTANCE.createJsonBool(name, options);
-				break;
-			case JSON_DOUBLE:
-				options = DoubleDataOptionsParser.INSTANCE.parseDataOptions(rawOptions);
-				node = StructureGenerator.INSTANCE.createJsonDouble(name, options);
-				break;
-			case JSON_DATE:
-				options = DateDataOptionsParser.INSTANCE.parseDataOptions(rawOptions);
-				node = StructureGenerator.INSTANCE.createJsonDate(name, options);
-				break;
-			case JSON_OBJECT:
-				options = ObjectDataOptionsParser.INSTANCE.parseDataOptions(rawOptions);
-				node = StructureGenerator.INSTANCE.createJsonObject(name, options);
-				break;
-			default:
-				node = null;
-		}
+		Node node = type.createGUIElement(name, rawOptions);
+
 		return node;
 	}
 
