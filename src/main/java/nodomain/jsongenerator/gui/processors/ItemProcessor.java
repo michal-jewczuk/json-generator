@@ -3,19 +3,19 @@ package nodomain.jsongenerator.gui.processors;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import nodomain.jsongenerator.data.DataOptions;
+import nodomain.jsongenerator.data.DataType;
 import nodomain.jsongenerator.gui.domain.Element;
-import nodomain.jsongenerator.gui.domain.GUIDataType;
 
 public interface ItemProcessor {
 	
-	Element fromGuiToElement(GUIDataType type, GridPane pane);
+	Element fromGuiToElement(DataType type, GridPane pane);
 	StringBuilder returnOptionsAsString(DataOptions options);
 
-	default StringBuilder fromeGuiToJSON(GUIDataType type, GridPane pane) {
+	default StringBuilder fromeGuiToJSON(DataType type, GridPane pane) {
 		return fromElementToJSON(fromGuiToElement(type, pane));
 	}
 	
-	default Element createGenericElement(GUIDataType type, GridPane pane) {
+	default Element createGenericElement(DataType type, GridPane pane) {
 		Element element = new Element();
 		element.setType(type);
 		element.setName(extractName(pane));

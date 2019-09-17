@@ -5,16 +5,16 @@ import java.time.LocalDate;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import nodomain.jsongenerator.data.DataOptions;
+import nodomain.jsongenerator.data.DataType;
 import nodomain.jsongenerator.data.DateDataOptions;
 import nodomain.jsongenerator.gui.domain.Element;
-import nodomain.jsongenerator.gui.domain.GUIDataType;
 
 public enum DateItemProcessor implements ItemProcessor {
 	
 	INSTANCE;
 
 	@Override
-	public Element fromGuiToElement(GUIDataType type, GridPane pane) {
+	public Element fromGuiToElement(DataType type, GridPane pane) {
 		Element element = createGenericElement(type, pane);
 		
 		LocalDate lowerBound = LocalDate.parse(((TextField) pane.getChildren().get(3)).getText());

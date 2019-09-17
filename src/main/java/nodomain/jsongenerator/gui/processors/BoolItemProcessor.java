@@ -4,15 +4,15 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.layout.GridPane;
 import nodomain.jsongenerator.data.BoolDataOptions;
 import nodomain.jsongenerator.data.DataOptions;
+import nodomain.jsongenerator.data.DataType;
 import nodomain.jsongenerator.gui.domain.Element;
-import nodomain.jsongenerator.gui.domain.GUIDataType;
 
 public enum BoolItemProcessor implements ItemProcessor {
 	
 	INSTANCE;
 
 	@Override
-	public Element fromGuiToElement(GUIDataType type, GridPane pane) {
+	public Element fromGuiToElement(DataType type, GridPane pane) {
 		Element element = createGenericElement(type, pane);
 		
 		boolean onlyTrue = ((CheckBox) pane.getChildren().get(2)).isSelected();

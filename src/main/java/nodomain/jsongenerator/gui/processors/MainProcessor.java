@@ -4,7 +4,7 @@ import javafx.scene.control.Accordion;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import nodomain.jsongenerator.gui.domain.GUIDataType;
+import nodomain.jsongenerator.data.DataType;
 import nodomain.jsongenerator.io.ReadWriteUtil;
 
 public enum MainProcessor {
@@ -14,7 +14,7 @@ public enum MainProcessor {
 	public void proccessStructure(Accordion acc) {
 		StringBuilder sb = new StringBuilder("{\"types\": [");
 		for (TitledPane pane: acc.getPanes()) {
-			GUIDataType type = GUIDataType.valueOf(getType(pane.getText()));
+			DataType type = DataType.valueOf(getType(pane.getText()));
 			sb.append(type.convertToJSON(getObjectOptions(pane))).append(",");
 		}
 		sb.setCharAt(sb.length() - 1, ']');

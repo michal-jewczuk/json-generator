@@ -3,16 +3,16 @@ package nodomain.jsongenerator.gui.processors;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import nodomain.jsongenerator.data.DataOptions;
+import nodomain.jsongenerator.data.DataType;
 import nodomain.jsongenerator.data.NumberDataOptions;
 import nodomain.jsongenerator.gui.domain.Element;
-import nodomain.jsongenerator.gui.domain.GUIDataType;
 
 public enum NumberItemProcessor implements ItemProcessor {
 	
 	INSTANCE;
 
 	@Override
-	public Element fromGuiToElement(GUIDataType type, GridPane pane) {
+	public Element fromGuiToElement(DataType type, GridPane pane) {
 		Element element = createGenericElement(type, pane);
 		
 		int lowerBound = Integer.valueOf(((TextField) pane.getChildren().get(3)).getText());

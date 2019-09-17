@@ -4,16 +4,16 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import nodomain.jsongenerator.data.DataOptions;
+import nodomain.jsongenerator.data.DataType;
 import nodomain.jsongenerator.data.PatternDataOptions;
 import nodomain.jsongenerator.gui.domain.Element;
-import nodomain.jsongenerator.gui.domain.GUIDataType;
 
 public enum PatternItemProcessor implements ItemProcessor {
 	
 	INSTANCE;
 
 	@Override
-	public Element fromGuiToElement(GUIDataType type, GridPane pane) {
+	public Element fromGuiToElement(DataType type, GridPane pane) {
 		Element element = createGenericElement(type, pane);
 		
 		String pattern = ((TextField) pane.getChildren().get(3)).getText();

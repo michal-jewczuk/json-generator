@@ -7,23 +7,23 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.GridPane;
 import nodomain.jsongenerator.data.DataOptions;
+import nodomain.jsongenerator.data.DataType;
 import nodomain.jsongenerator.data.ObjectDataOptions;
 import nodomain.jsongenerator.gui.domain.Element;
-import nodomain.jsongenerator.gui.domain.GUIDataType;
 
 public enum ObjectItemProcessor implements ItemProcessor {
 	
 	INSTANCE;
 
 	@Override
-	public Element fromGuiToElement(GUIDataType type, GridPane pane) {
+	public Element fromGuiToElement(DataType type, GridPane pane) {
 		Element element = createGenericElement(type, pane);
 		
 		int count = Integer.valueOf(((TextField) pane.getChildren().get(3)).getText());
 		Accordion acc = (Accordion) pane.getChildren().get(6);
 		StringBuilder sb = new StringBuilder("{\"structure\": [");
 		for (TitledPane currentP: acc.getPanes()) {
-			GUIDataType currentT = GUIDataType.valueOf(MainProcessor.INSTANCE.getType(currentP.getText()));
+			DataType currentT = DataType.valueOf(MainProcessor.INSTANCE.getType(currentP.getText()));
 			sb.append(currentT.convertToJSON(MainProcessor.INSTANCE.getObjectOptions(currentP))).append(",");
 		}
 		sb.setCharAt(sb.length() - 1, ']');

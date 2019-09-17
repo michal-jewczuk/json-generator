@@ -1,10 +1,11 @@
 package nodomain.jsongenerator.gui.domain;
 
 import nodomain.jsongenerator.data.DataOptions;
+import nodomain.jsongenerator.data.DataType;
 
 public class Element {
 
-	GUIDataType type;
+	DataType type;
 	String name;
 	DataOptions options;
 	
@@ -12,11 +13,11 @@ public class Element {
 		
 	}
 
-	public GUIDataType getType() {
+	public DataType getType() {
 		return type;
 	}
 
-	public void setType(GUIDataType type) {
+	public void setType(DataType type) {
 		this.type = type;
 	}
 
