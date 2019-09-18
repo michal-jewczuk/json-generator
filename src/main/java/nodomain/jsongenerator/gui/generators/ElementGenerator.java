@@ -50,15 +50,15 @@ public interface ElementGenerator {
 		
 		up.setOnAction((ActionEvent e) -> {
 			TitledPane pane = getParentPane(e);
-		    StructureController.movePanelUp(pane);
+			StructureController.movePanelUp(pane);
 		});		
 		down.setOnAction((ActionEvent e) -> {
 			TitledPane pane = getParentPane(e);
-		    StructureController.movePanelDown(pane);
+			StructureController.movePanelDown(pane);
 		});	
 		remove.setOnAction((ActionEvent e) -> {
 			TitledPane pane = getParentPane(e);
-		    StructureController.removePanel(pane);
+			StructureController.removePanel(pane);
 		});
 		
 		TilePane buttons = new TilePane();

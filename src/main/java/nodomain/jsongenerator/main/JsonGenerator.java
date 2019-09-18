@@ -9,17 +9,15 @@ import nodomain.jsongenerator.io.ReadWriteUtil;
 
 public class JsonGenerator {
 	
-	public static String generateOutputFile(int count, String outputName) {
-		JSONArray arr = parseStructureFile();
+	public static String generateOutputFile(String structure, int count, String outputName) {
+		JSONArray arr = parseStructureFile(structure);
 		StringBuilder output = generateJson(count, arr, AppConfig.NESTED_GROUND);
 	
 		return ReadWriteUtil.writeToUniqueFile(output, outputName);
 	}
 	
-	public static JSONArray parseStructureFile() {
-		String json_string = ReadWriteUtil.readStructure();
-		
-		JSONObject obj = new JSONObject(json_string);
+	public static JSONArray parseStructureFile(String structure) {
+		JSONObject obj = new JSONObject(structure);
 		return obj.getJSONArray("types");
 	}
 	
