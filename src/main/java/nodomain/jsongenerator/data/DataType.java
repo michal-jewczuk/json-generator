@@ -40,8 +40,8 @@ public enum DataType {
 		}
 
 		@Override
-		public Node createGUIElement(String name, JSONObject dataOptions) {
-			return StringElementGenerator.INSTANCE.generateElement(name, dataOptions);
+		public Node createGUIElement(String name, JSONObject dataOptions, boolean showButtons) {
+			return StringElementGenerator.INSTANCE.generateElement(name, dataOptions, showButtons);
 		}
 	},
 	JSON_NUMBER {
@@ -56,8 +56,8 @@ public enum DataType {
 		}
 
 		@Override
-		public Node createGUIElement(String name, JSONObject dataOptions) {
-			return NumberElementGenerator.INSTANCE.generateElement(name, dataOptions);
+		public Node createGUIElement(String name, JSONObject dataOptions, boolean showButtons) {
+			return NumberElementGenerator.INSTANCE.generateElement(name, dataOptions, showButtons);
 		}
 	},
 	JSON_PATTERN {
@@ -72,8 +72,8 @@ public enum DataType {
 		}
 
 		@Override
-		public Node createGUIElement(String name, JSONObject dataOptions) {
-			return PatternElementGenerator.INSTANCE.generateElement(name, dataOptions);
+		public Node createGUIElement(String name, JSONObject dataOptions, boolean showButtons) {
+			return PatternElementGenerator.INSTANCE.generateElement(name, dataOptions, showButtons);
 		}		
 	},
 	JSON_BOOL {
@@ -88,8 +88,8 @@ public enum DataType {
 		}
 
 		@Override
-		public Node createGUIElement(String name, JSONObject dataOptions) {
-			return BoolElementGenerator.INSTANCE.generateElement(name, dataOptions);
+		public Node createGUIElement(String name, JSONObject dataOptions, boolean showButtons) {
+			return BoolElementGenerator.INSTANCE.generateElement(name, dataOptions, showButtons);
 		}
 	},
 	JSON_DOUBLE {
@@ -104,8 +104,8 @@ public enum DataType {
 		}
 
 		@Override
-		public Node createGUIElement(String name, JSONObject dataOptions) {
-			return DoubleElementGenerator.INSTANCE.generateElement(name, dataOptions);
+		public Node createGUIElement(String name, JSONObject dataOptions, boolean showButtons) {
+			return DoubleElementGenerator.INSTANCE.generateElement(name, dataOptions, showButtons);
 		}
 	},
 	JSON_DATE {
@@ -120,8 +120,8 @@ public enum DataType {
 		}
 
 		@Override
-		public Node createGUIElement(String name, JSONObject dataOptions) {
-			return DateElementGenerator.INSTANCE.generateElement(name, dataOptions);
+		public Node createGUIElement(String name, JSONObject dataOptions, boolean showButtons) {
+			return DateElementGenerator.INSTANCE.generateElement(name, dataOptions, showButtons);
 		}
 	},
 	JSON_OBJECT {
@@ -136,13 +136,13 @@ public enum DataType {
 		}
 
 		@Override
-		public Node createGUIElement(String name, JSONObject dataOptions) {
-			return ObjectElementGenerator.INSTANCE.generateElement(name, dataOptions);
+		public Node createGUIElement(String name, JSONObject dataOptions, boolean showButtons) {
+			return ObjectElementGenerator.INSTANCE.generateElement(name, dataOptions, showButtons);
 		}
 	};
 	
 	public abstract StringBuilder createJsonFragment(String name, JSONObject dataOptions);
 	public abstract StringBuilder convertToJSON(GridPane pane);
-	public abstract Node createGUIElement(String name, JSONObject dataOptions);
+	public abstract Node createGUIElement(String name, JSONObject dataOptions, boolean showButtons);
 	
 }

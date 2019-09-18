@@ -16,6 +16,10 @@ public enum BoolDataOptionsParser implements DataOptionsParser {
 		boolean onlyTrue;
 		boolean onlyFalse;
 		
+		if (options == null) {
+			return new BoolDataOptions(false, false);
+		}
+		
 		try {
 			onlyTrue = options.getBoolean("only_true");
 			onlyFalse = options.getBoolean("only_false");

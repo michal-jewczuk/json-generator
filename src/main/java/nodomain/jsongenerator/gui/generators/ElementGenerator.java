@@ -22,7 +22,7 @@ import nodomain.jsongenerator.gui.controller.StructureController;
 
 public interface ElementGenerator {
 
-	Node generateElement(String name, JSONObject rawOptions);
+	Node generateElement(String name, JSONObject rawOptions, boolean showButtons);
 	
 	final double SPACING = 15.0;
 	final Image imageArrowUp = new Image(Object.class.getResourceAsStream("/icons/arrow-up.png"));
@@ -30,11 +30,13 @@ public interface ElementGenerator {
 	final Image imageDelete = new Image(Object.class.getResourceAsStream("/icons/trash.png"));
 	final Image imagePlus = new Image(Object.class.getResourceAsStream("/icons/plus.png"));	
 	
-	default BorderPane createObjectLayout() {
+	default BorderPane createObjectLayout(boolean showButtons) {
 		BorderPane pane = new BorderPane();
 		pane.setPadding(new Insets(15, 0, 15, 0));
 		
-		pane.setRight(crateMenuButtons());
+		if (showButtons) {
+			pane.setRight(crateMenuButtons());
+		}
 		
 		return pane;
 	}

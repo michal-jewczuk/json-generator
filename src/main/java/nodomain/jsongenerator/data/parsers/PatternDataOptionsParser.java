@@ -17,6 +17,14 @@ public enum PatternDataOptionsParser implements DataOptionsParser {
 		String connector;
 		boolean allCapital;
 		
+		if (options == null) {
+			return new PatternDataOptions.Builder()
+					.parts("-")
+					.connector("")
+					.allCapital(false)
+					.build();
+		}
+		
 		try {
 			pattern = options.getString("pattern");
 			connector = options.getString("connector");

@@ -18,6 +18,15 @@ public enum StringDataOptionsParser implements DataOptionsParser {
 		boolean firstCapital;
 		boolean allCapital;
 		
+		if (options == null) {
+			return new StringDataOptions.Builder()
+					.minLength(0)
+					.maxLength(0)
+					.firstCapital(false)
+					.allCapital(false)
+					.build();
+		}
+		
 		try {
 			minLength = options.getInt("min_length");
 			maxLength = options.getInt("max_length");

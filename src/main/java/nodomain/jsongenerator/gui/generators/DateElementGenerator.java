@@ -15,9 +15,9 @@ public enum DateElementGenerator implements ElementGenerator {
 	INSTANCE;
 
 	@Override
-	public Node generateElement(String name, JSONObject rawOptions) {
+	public Node generateElement(String name, JSONObject rawOptions, boolean showButtons) {
 		DateDataOptions options = DateDataOptionsParser.INSTANCE.parseDataOptions(rawOptions);
-		BorderPane pane = createObjectLayout();		
+		BorderPane pane = createObjectLayout(showButtons);		
 		
 		Label lowerL = new Label("lower bound");
 		TextField lowerF = new TextField(options.getLowerBound().toString());		

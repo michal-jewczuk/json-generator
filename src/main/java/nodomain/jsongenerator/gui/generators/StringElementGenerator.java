@@ -16,9 +16,9 @@ public enum StringElementGenerator implements ElementGenerator {
 	INSTANCE;
 
 	@Override
-	public Node generateElement(String name, JSONObject rawOptions) {
+	public Node generateElement(String name, JSONObject rawOptions, boolean showButtons) {
 		StringDataOptions options = StringDataOptionsParser.INSTANCE.parseDataOptions(rawOptions);
-		BorderPane pane = createObjectLayout();
+		BorderPane pane = createObjectLayout(showButtons);
 		
 		Label minLengthL = new Label("min length");
 		TextField minLengthF = new TextField(String.valueOf(options.getMinLength()));

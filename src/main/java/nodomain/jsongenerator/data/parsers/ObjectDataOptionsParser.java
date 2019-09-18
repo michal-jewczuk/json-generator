@@ -17,6 +17,10 @@ public enum ObjectDataOptionsParser implements DataOptionsParser {
 		int count;
 		JSONArray structure;
 		
+		if (options == null) {
+			new ObjectDataOptions(null, 1);
+		}
+		
 		try {
 			count = options.getInt("count");
 			structure = options.getJSONArray("structure");

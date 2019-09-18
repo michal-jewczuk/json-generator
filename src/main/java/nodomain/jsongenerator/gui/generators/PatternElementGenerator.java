@@ -16,9 +16,9 @@ public enum PatternElementGenerator implements ElementGenerator {
 	INSTANCE;
 
 	@Override
-	public Node generateElement(String name, JSONObject rawOptions) {
+	public Node generateElement(String name, JSONObject rawOptions, boolean showButtons) {
 		PatternDataOptions options = PatternDataOptionsParser.INSTANCE.parseDataOptions(rawOptions);
-		BorderPane pane = createObjectLayout();
+		BorderPane pane = createObjectLayout(showButtons);
 		
 		Label patternL = new Label("pattern");
 		TextField patternF = new TextField(options.getPattern());

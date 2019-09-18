@@ -38,7 +38,7 @@ public enum PanelGenerator {
 		DataType type = DataType.valueOf(current.getString("type"));
 		String name = current.getString("name");
 		JSONObject rawOptions = current.getJSONObject("options");
-		Node node = type.createGUIElement(name, rawOptions);
+		Node node = type.createGUIElement(name, rawOptions, true);
 
 		return node;
 	}

@@ -14,9 +14,9 @@ public enum BoolElementGenerator implements ElementGenerator {
 	INSTANCE;
 
 	@Override
-	public Node generateElement(String name, JSONObject rawOptions) {
+	public Node generateElement(String name, JSONObject rawOptions, boolean showButtons) {
 		BoolDataOptions options = BoolDataOptionsParser.INSTANCE.parseDataOptions(rawOptions);
-		BorderPane pane = createObjectLayout();		
+		BorderPane pane = createObjectLayout(showButtons);		
 
 		CheckBox onlyTrueCB = new CheckBox("only TRUE");
 		onlyTrueCB.setSelected(options.isOnlyTrue());

@@ -21,6 +21,11 @@ public enum DateDataOptionsParser implements DataOptionsParser {
 		String upperBound;
 		String outputPattern;
 		
+		if (options == null) {
+			LocalDate defDate = LocalDate.now();
+			return new DateDataOptions(defDate, defDate, "uuuu-MM-dd");
+		}
+		
 		try {
 			lowerBound = options.getString("lower_bound");
 			upperBound = options.getString("upper_bound");

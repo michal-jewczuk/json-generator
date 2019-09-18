@@ -16,6 +16,11 @@ public enum DoubleDataOptionsParser implements DataOptionsParser {
 		double lowerBound;
 		double upperBound;
 		int precision;
+		
+		if (options == null) {
+			return new DoubleDataOptions(0.0, 0.0, 0);
+		}
+		
 		try {
 			lowerBound = options.getDouble("lower_bound");
 			upperBound = options.getDouble("upper_bound");

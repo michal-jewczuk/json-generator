@@ -23,9 +23,9 @@ public enum ObjectElementGenerator implements ElementGenerator {
 	INSTANCE;
 
 	@Override
-	public Node generateElement(String name, JSONObject rawOptions) {
+	public Node generateElement(String name, JSONObject rawOptions, boolean showButtons) {
 		ObjectDataOptions options = ObjectDataOptionsParser.INSTANCE.parseDataOptions(rawOptions);
-		BorderPane pane = createObjectLayout();
+		BorderPane pane = createObjectLayout(showButtons);
 		
 		Button add = new Button("Add element", new ImageView(imagePlus));
 		//TODO add real form

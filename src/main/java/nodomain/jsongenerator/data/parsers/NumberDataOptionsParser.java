@@ -15,6 +15,11 @@ public enum NumberDataOptionsParser implements DataOptionsParser {
 	public NumberDataOptions parseDataOptions(JSONObject options) {
 		long lowerBound;
 		long upperBound;
+		
+		if (options == null) {
+			return new NumberDataOptions(0, 0);
+		}
+		
 		try {
 			lowerBound = options.getLong("lower_bound");
 			upperBound = options.getLong("upper_bound");
