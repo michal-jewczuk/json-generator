@@ -40,8 +40,11 @@ public class StructureController {
 	@FXML
 	private void addElement(ActionEvent e) {	
 		List<TitledPane> panes = structureFields.getPanes();
-		panes.add(PanelGenerator.INSTANCE.createSinglePane(clickShow()));
-		updateStructure();		
+		JSONObject element = showFormAddElement();
+		if (element != null) {
+			panes.add(PanelGenerator.INSTANCE.createSinglePane(element));
+			updateStructure();				
+		}
 	}
 	
 	public static void removePanel(TitledPane pane) {
@@ -70,25 +73,20 @@ public class StructureController {
 		updateStructure();
 	}
 	
-	public static JSONObject createMockObject() {
-		int lowerBound = 25;
-		int upperBound = 67;
-		String json_string = "{\"type\": \"JSON_NUMBER\", \"name\": \"number_25_to_67\", \"options\" : "
-				+ "{\"lower_bound\": " + lowerBound + ", \"upper_bound\": " + upperBound + "}}";
-		JSONObject json_object = new JSONObject(json_string);
-		
-		return json_object;
-	}
-	
-	private static void updateStructure() {
+	public static void updateStructure() {
 		MainController.CURRENT_STRUCTURE = 
 				MainProcessor.INSTANCE.proccessStructure(staticStructure).toString(); 
 	}
 	
-	private JSONObject clickShow() {
+	private JSONObject showFormAddElement() {
 		AddController addController = new AddController();
 		addController.showStage();
-		return new JSONObject(addController.getElement());
+		String element = addController.getElement();
+		if (element.length() == 0) {
+			return null;
+		} else {
+			return new JSONObject(addController.getElement());
+		}
 	}
 
 }

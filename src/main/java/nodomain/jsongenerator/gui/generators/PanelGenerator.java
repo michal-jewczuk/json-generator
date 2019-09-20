@@ -27,7 +27,7 @@ public enum PanelGenerator {
 		return panes;
 	}
 	
-    public TitledPane createSinglePane(JSONObject obj) {
+    public TitledPane createSinglePane(JSONObject obj) { 	
 		final String tileName = createTileName(obj);
 		final Node node = createNode(obj);
 		

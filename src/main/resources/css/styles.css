@@ -6,3 +6,12 @@
 	-fx-background-color: #336699;
 }
 
+.header {
+	-fx-background-color: #336699;
+	-fx-padding: 10px;
+}
+
+.header Label {
+	-fx-text-fill: #ffffff;
+}
+

@@ -12,12 +12,19 @@ public enum MainProcessor {
 	
 	public StringBuilder proccessStructure(Accordion acc) {
 		StringBuilder sb = new StringBuilder("{\"types\": [");
-		for (TitledPane pane: acc.getPanes()) {
-			DataType type = DataType.valueOf(getType(pane.getText()));
-			sb.append(type.convertToJSON(getObjectOptions(pane))).append(",");
+
+		if (acc.getPanes().size() > 0) {
+			for (TitledPane pane: acc.getPanes()) {
+				DataType type = DataType.valueOf(getType(pane.getText()));
+				sb.append(type.convertToJSON(getObjectOptions(pane))).append(",");
+			}
+			sb.setCharAt(sb.length() - 1, ']');
+		} else {
+			sb.append("]");
 		}
-		sb.setCharAt(sb.length() - 1, ']');
+
 		sb.append("}");
+
 		return sb;
 	}
 	

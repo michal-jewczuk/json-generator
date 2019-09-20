@@ -22,13 +22,19 @@ public enum ObjectItemProcessor implements ItemProcessor {
 		int count = Integer.valueOf(((TextField) pane.getChildren().get(3)).getText());
 		Accordion acc = (Accordion) pane.getChildren().get(6);
 		StringBuilder sb = new StringBuilder("{\"structure\": [");
-		for (TitledPane currentP: acc.getPanes()) {
-			DataType currentT = DataType.valueOf(MainProcessor.INSTANCE.getType(currentP.getText()));
-			sb.append(currentT.convertToJSON(MainProcessor.INSTANCE.getObjectOptions(currentP))).append(",");
-		}
-		sb.setCharAt(sb.length() - 1, ']');
-		sb.append("}");
 		
+		if (acc.getPanes().size() > 0) {
+			for (TitledPane currentP: acc.getPanes()) {
+				DataType currentT = DataType.valueOf(MainProcessor.INSTANCE.getType(currentP.getText()));
+				sb.append(currentT.convertToJSON(MainProcessor.INSTANCE.getObjectOptions(currentP))).append(",");
+			}
+			sb.setCharAt(sb.length() - 1, ']');
+		} else {
+			sb.append("]");
+		}
+
+		sb.append("}");
+
 		JSONObject obj = new JSONObject(sb.toString());
 		ObjectDataOptions options = new ObjectDataOptions(obj.getJSONArray("structure"), count);
 		element.setOptions(options);

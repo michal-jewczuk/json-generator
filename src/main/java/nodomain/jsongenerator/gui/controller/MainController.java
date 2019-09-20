@@ -39,7 +39,6 @@ public class MainController {
 
     @FXML
     private void generateJSON(ActionEvent event) {
-    	System.out.println(CURRENT_STRUCTURE);
     	setGenerationParameters();	
     	String fileName = JsonGenerator.generateOutputFile(CURRENT_STRUCTURE, count, outputName);
     	setOutputMessage(fileName);

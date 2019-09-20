@@ -20,7 +20,7 @@ import nodomain.jsongenerator.data.DataType;
 public class AddController {
 	
 	private Stage stage;
-	private StringBuilder json;
+	private StringBuilder json = new StringBuilder();
 	
 	@FXML
 	private ComboBox<String> elements;
@@ -44,9 +44,6 @@ public class AddController {
 	
 	public void initialize() {
 		for (DataType type: DataType.values()) {
-			if (type.equals(DataType.JSON_OBJECT)) {
-				continue;
-			}
 			elements.getItems().add(type.toString());
 		}
 	}
@@ -59,7 +56,7 @@ public class AddController {
 		return json.toString();
 	}
     
-    private void closeStatge() {
+    private void closeStage() {
     	stage.close();
     }
 	
@@ -81,13 +78,14 @@ public class AddController {
 		@SuppressWarnings("unchecked")
 		ComboBox<String> choice = (ComboBox<String>) top.getChildren().get(1);
 		if (choice.getValue() == null) {
-			closeStatge();
+			closeStage();
 			return;
 		}
+		
 		DataType type = DataType.valueOf(choice.getValue());
 		json = type.convertToJSON(pane);
 
-		closeStatge();
+		closeStage();
 	}
 
 }

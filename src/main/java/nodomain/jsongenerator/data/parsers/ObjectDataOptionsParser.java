@@ -18,7 +18,7 @@ public enum ObjectDataOptionsParser implements DataOptionsParser {
 		JSONArray structure;
 		
 		if (options == null) {
-			new ObjectDataOptions(null, 1);
+			return new ObjectDataOptions(null, 1);
 		}
 		
 		try {

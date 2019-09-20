@@ -16,6 +16,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import nodomain.jsongenerator.data.ObjectDataOptions;
 import nodomain.jsongenerator.data.parsers.ObjectDataOptionsParser;
+import nodomain.jsongenerator.gui.controller.AddController;
 import nodomain.jsongenerator.gui.controller.StructureController;
 
 public enum ObjectElementGenerator implements ElementGenerator {
@@ -28,12 +29,9 @@ public enum ObjectElementGenerator implements ElementGenerator {
 		BorderPane pane = createObjectLayout(showButtons);
 		
 		Button add = new Button("Add element", new ImageView(imagePlus));
-		//TODO add real form
+
 		add.setOnAction((ActionEvent e) -> {
-			GridPane parent = (GridPane) ((Button)e.getSource()).getParent();
-			Accordion acc = (Accordion) parent.getChildren().get(parent.getChildren().size() - 1);
-			TitledPane tmp = PanelGenerator.INSTANCE.createSinglePane(StructureController.createMockObject());
-			acc.getPanes().add(tmp);
+			handleAddElement(e);
 		});	
 		
 		Label countL = new Label("count");
@@ -41,8 +39,10 @@ public enum ObjectElementGenerator implements ElementGenerator {
 		Label elementsL = new Label("elements");
 		
     	Accordion acc = new Accordion();
-    	List<TitledPane> panes = PanelGenerator.INSTANCE.createStructurePanes(options.getStructure());
-    	acc.getPanes().addAll(panes);
+    	if (options.getStructure() != null) {
+        	List<TitledPane> panes = PanelGenerator.INSTANCE.createStructurePanes(options.getStructure());
+        	acc.getPanes().addAll(panes);   		
+    	}
     	
     	GridPane gp = createGrid(name);	
     	gp.add(countL, 0, 1);
@@ -53,6 +53,28 @@ public enum ObjectElementGenerator implements ElementGenerator {
 		
     	pane.setCenter(gp);
 		return pane;
+	}
+	
+	private void handleAddElement(ActionEvent e) {
+		GridPane parent = (GridPane) ((Button)e.getSource()).getParent();
+		Accordion acc = (Accordion) parent.getChildren().get(parent.getChildren().size() - 1);
+		JSONObject element = showFormAddElement();
+		if (element != null) {
+			TitledPane tmp = PanelGenerator.INSTANCE.createSinglePane(element);
+			acc.getPanes().add(tmp);				
+		}	
+		StructureController.updateStructure();
+	}
+
+	private JSONObject showFormAddElement() {
+		AddController addController = new AddController();
+		addController.showStage();
+		String element = addController.getElement();
+		if (element.length() == 0) {
+			return null;
+		} else {
+			return new JSONObject(addController.getElement());
+		}
 	}
 
 }

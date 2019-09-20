@@ -17,7 +17,7 @@
     </padding>
     
     <top>
-    	<TilePane orientation="HORIZONTAL" hgap="20.0" alignment="CENTER">
+    	<TilePane orientation="HORIZONTAL" hgap="20.0" alignment="CENTER" styleClass="header">
     		<Label text="Click element to display add form" />
     		<ComboBox fx:id="elements" onAction="#displayForm"></ComboBox>
     	</TilePane>	
@@ -25,8 +25,8 @@
     </top>
     
 	<bottom>
-		<TilePane orientation="HORIZONTAL" alignment="CENTER">
-			<Button text="Add element" onAction="#addElement" />
+		<TilePane orientation="HORIZONTAL" alignment="CENTER" styleClass="header">
+			<Button text="Add element to list" onAction="#addElement" />
 		</TilePane>	
 	</bottom>
 	
