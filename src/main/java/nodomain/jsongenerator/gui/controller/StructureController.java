@@ -1,22 +1,15 @@
 package nodomain.jsongenerator.gui.controller;
 
-import java.io.IOException;
 import java.util.List;
 
 import org.json.JSONObject;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import nodomain.jsongenerator.config.AppConfig;
 import nodomain.jsongenerator.gui.generators.PanelGenerator;
 import nodomain.jsongenerator.gui.processors.MainProcessor;
@@ -47,15 +40,8 @@ public class StructureController {
 	@FXML
 	private void addElement(ActionEvent e) {	
 		List<TitledPane> panes = structureFields.getPanes();
-		//panes.add(PanelGenerator.INSTANCE.createSinglePane(createMockObject()));
-		
-		try {
-			clickShow(e);
-			updateStructure();
-		} catch (IOException e1) {
-			System.out.println("Could not load add.fxml");
-			e1.printStackTrace();
-		}
+		panes.add(PanelGenerator.INSTANCE.createSinglePane(clickShow()));
+		updateStructure();		
 	}
 	
 	public static void removePanel(TitledPane pane) {
@@ -99,15 +85,10 @@ public class StructureController {
 				MainProcessor.INSTANCE.proccessStructure(staticStructure).toString(); 
 	}
 	
-	private void clickShow(ActionEvent event) throws IOException {
-	    Stage stage = new Stage();
-
-		Parent root = FXMLLoader.load(getClass().getResource("/fxml/add.fxml"));
-		stage.setScene(new Scene(root, 400, 400));
-		stage.setTitle("Add new element");
-		stage.initModality(Modality.WINDOW_MODAL);
-		stage.initOwner(((Node)event.getSource()).getScene().getWindow() );
-		stage.show();
+	private JSONObject clickShow() {
+		AddController addController = new AddController();
+		addController.showStage();
+		return new JSONObject(addController.getElement());
 	}
 
 }

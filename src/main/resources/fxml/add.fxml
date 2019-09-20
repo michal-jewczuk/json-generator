@@ -10,27 +10,25 @@
 <?import javafx.scene.control.ComboBox?>
 
 <BorderPane prefHeight="-1.0" prefWidth="-1.0" stylesheets="@../css/styles.css"
-	xmlns:fx="http://javafx.com/fxml/1" fx:controller="nodomain.jsongenerator.gui.controller.AddController">
+	xmlns:fx="http://javafx.com/fxml/1" fx:id="formPane">
 	
 	<padding>
 		<Insets bottom="15.0" left="12.0" right="15.0" top="12.0" />
     </padding>
     
-    <center>
-		<BorderPane prefHeight="-1.0" prefWidth="-1.0" fx:id="formPane">
-			<padding>
-				<Insets bottom="15.0" left="12.0" right="15.0" top="12.0" />
-		    </padding>
-		</BorderPane>    
-    </center>
-    
     <top>
-    	<VBox spacing="10.0">
+    	<TilePane orientation="HORIZONTAL" hgap="20.0" alignment="CENTER">
     		<Label text="Click element to display add form" />
     		<ComboBox fx:id="elements" onAction="#displayForm"></ComboBox>
-    	</VBox>
+    	</TilePane>	
     	
     </top>
+    
+	<bottom>
+		<TilePane orientation="HORIZONTAL" alignment="CENTER">
+			<Button text="Add element" onAction="#addElement" />
+		</TilePane>	
+	</bottom>
 	
 </BorderPane>
 
