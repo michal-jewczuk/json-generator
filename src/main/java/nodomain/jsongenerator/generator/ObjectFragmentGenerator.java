@@ -22,7 +22,7 @@ public enum ObjectFragmentGenerator implements FragmentGenerator {
 	}
 
 	private StringBuilder generateObjectFragment(ObjectDataOptions options) {
-		return JsonGenerator.generateJson(options.getCount(), options.getStructure(), 2);
+		return JsonGenerator.generateJson(options.getCount(), options.getStructure(), true);
 	}
 
 }
