@@ -32,6 +32,18 @@ public enum BoolItemProcessor implements ItemProcessor {
 		return sb;
 	}
 
+	@Override
+	public StringBuilder extractOptionsFromGUI(DataType type, GridPane pane) {
+		boolean onlyTrue = ((CheckBox) pane.getChildren().get(2)).isSelected();
+		boolean onlyFalse = ((CheckBox) pane.getChildren().get(3)).isSelected();
+		
+		StringBuilder sb = new StringBuilder("{");
+		sb.append("\"only_true\": ").append(onlyTrue).append(",");
+		sb.append("\"only_false\": ").append(onlyFalse);
+		sb.append("}");
+		return sb;
+	}
+
 
 
 }

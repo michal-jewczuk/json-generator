@@ -10,6 +10,7 @@ public interface ItemProcessor {
 	
 	Element fromGuiToElement(DataType type, GridPane pane);
 	StringBuilder returnOptionsAsString(DataOptions options);
+	StringBuilder extractOptionsFromGUI(DataType type, GridPane pane);
 
 	default StringBuilder fromeGuiToJSON(DataType type, GridPane pane) {
 		return fromElementToJSON(fromGuiToElement(type, pane));

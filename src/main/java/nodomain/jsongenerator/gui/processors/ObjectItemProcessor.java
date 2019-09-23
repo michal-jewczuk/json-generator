@@ -53,4 +53,32 @@ public enum ObjectItemProcessor implements ItemProcessor {
 		return sb;
 	}
 
+	@Override
+	public StringBuilder extractOptionsFromGUI(DataType type, GridPane pane) {
+		int count = Integer.valueOf(((TextField) pane.getChildren().get(3)).getText());
+		
+		Accordion acc = (Accordion) pane.getChildren().get(6);
+		StringBuilder sb1 = new StringBuilder("{\"structure\": [");
+		
+		if (acc.getPanes().size() > 0) {
+			for (TitledPane currentP: acc.getPanes()) {
+				DataType currentT = DataType.valueOf(MainProcessor.INSTANCE.getType(currentP.getText()));
+				sb1.append(currentT.convertToJSON(MainProcessor.INSTANCE.getObjectOptions(currentP))).append(",");
+			}
+			sb1.setCharAt(sb1.length() - 1, ']');
+		} else {
+			sb1.append("]");
+		}
+		sb1.append("}");
+		
+		StringBuilder sb = new StringBuilder("{");
+		sb.append("\"count\": ").append(count).append(",");
+		sb.append("\"structure\": ").append(sb1);
+		sb.append("}");
+		
+		return sb;
+	}
+	
+	
+
 }
