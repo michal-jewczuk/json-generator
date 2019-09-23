@@ -1,6 +1,7 @@
 package nodomain.jsongenerator.gui.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.json.JSONObject;
 
@@ -10,9 +11,12 @@ import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import nodomain.jsongenerator.config.AppConfig;
+import nodomain.jsongenerator.gui.generators.ComponentGenerator;
 import nodomain.jsongenerator.gui.generators.PanelGenerator;
 import nodomain.jsongenerator.gui.processors.MainProcessor;
+import nodomain.jsongenerator.gui.validators.MainValidator;
 import nodomain.jsongenerator.io.ReadWriteUtil;
 import nodomain.jsongenerator.main.JsonGenerator;
 
@@ -21,6 +25,12 @@ public class StructureController {
 	@FXML
 	private Accordion structureFields;
 	
+	@FXML
+	private VBox validationBox;
+	
+	@FXML
+	private VBox validationMessages;
+	
 	private static Accordion staticStructure;
 	
     public void initialize() {
@@ -28,13 +38,22 @@ public class StructureController {
     		.addAll(PanelGenerator.INSTANCE
     					.createStructurePanes(JsonGenerator.parseStructureFile(MainController.CURRENT_STRUCTURE)));
     	staticStructure = structureFields;
+    	validationBox.setVisible(false);
     }
     
 	@FXML
 	private void saveStructure(ActionEvent e) {
+		validationBox.setVisible(false);
 		BorderPane bp = (BorderPane) ((Button) e.getSource()).getParent().getParent().getParent();
 		StringBuilder structure = MainProcessor.INSTANCE.proccessStructure((Accordion) bp.getCenter());
-		ReadWriteUtil.writeToFile(structure, AppConfig.CONFIGURATION_FILE);
+		Map<String, String> errors = MainValidator.INSTANCE.validateStructure(structure.toString());
+    	if (errors.size() == 0) {
+    		ReadWriteUtil.writeToFile(structure, AppConfig.CONFIGURATION_FILE);
+    	} else {
+    		validationBox.setVisible(true);
+    		validationMessages.getChildren()
+    			.setAll(ComponentGenerator.INSTANCE.returnErrorLabels(errors));
+    	}
 	}
 	
 	@FXML
@@ -76,6 +95,7 @@ public class StructureController {
 	public static void updateStructure() {
 		MainController.CURRENT_STRUCTURE = 
 				MainProcessor.INSTANCE.proccessStructure(staticStructure).toString(); 
+		System.out.println(MainController.CURRENT_STRUCTURE);
 	}
 	
 	private JSONObject showFormAddElement() {

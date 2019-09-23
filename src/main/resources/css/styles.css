@@ -15,3 +15,7 @@
 	-fx-text-fill: #ffffff;
 }
 
+#validationBox Label {
+	-fx-text-fill: #ffffff;
+}
+

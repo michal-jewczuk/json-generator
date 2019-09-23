@@ -1,10 +1,15 @@
 package nodomain.jsongenerator.gui.controller;
 
+import java.util.Map;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import nodomain.jsongenerator.config.AppConfig;
+import nodomain.jsongenerator.gui.generators.ComponentGenerator;
+import nodomain.jsongenerator.gui.validators.MainValidator;
 import nodomain.jsongenerator.io.ReadWriteUtil;
 import nodomain.jsongenerator.main.JsonGenerator;
 
@@ -29,19 +34,34 @@ public class MainController {
 	@FXML
 	private Label outputLabel;
 	
+	@FXML
+	private VBox validationBox;
+	
+	@FXML
+	private VBox validationMessages;
+	
     public void initialize() {
     	countField.setText(count.toString());
     	outputNameField.setText(outputName);
     	if (CURRENT_STRUCTURE == null) {
     		CURRENT_STRUCTURE = ReadWriteUtil.readStructure();
     	}
+    	validationBox.setVisible(false);
     }
 
     @FXML
     private void generateJSON(ActionEvent event) {
-    	setGenerationParameters();	
-    	String fileName = JsonGenerator.generateOutputFile(CURRENT_STRUCTURE, count, outputName);
-    	setOutputMessage(fileName);
+    	validationBox.setVisible(false);
+    	Map<String, String> errors = MainValidator.INSTANCE.validateStructure(CURRENT_STRUCTURE);
+    	if (errors.size() == 0) {
+        	setGenerationParameters();	
+        	String fileName = JsonGenerator.generateOutputFile(CURRENT_STRUCTURE, count, outputName);
+        	setOutputMessage(fileName);
+    	} else {
+    		validationBox.setVisible(true);
+    		validationMessages.getChildren()
+    			.setAll(ComponentGenerator.INSTANCE.returnErrorLabels(errors));
+    	}
     }
     
     private void setOutputMessage(String fileName) {
@@ -64,6 +84,5 @@ public class MainController {
 		}
 		outputName = outputNameField.getText();
 	}
-	
 	
 }

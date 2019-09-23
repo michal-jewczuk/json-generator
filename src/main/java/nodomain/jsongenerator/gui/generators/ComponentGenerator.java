@@ -1,7 +1,12 @@
 package nodomain.jsongenerator.gui.generators;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import javafx.event.ActionEvent;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import nodomain.jsongenerator.gui.controller.StructureController;
 
@@ -27,5 +32,14 @@ public enum ComponentGenerator {
 		});
 		
 		return cb;
+	}
+	
+	public List<Label> returnErrorLabels(Map<String, String> errors) {	
+		List<Label> labels = new ArrayList<>();
+		errors.forEach((key, value) -> {
+			labels.add(new Label(key + ": " + value));
+		});
+		
+		return labels;
 	}
 }

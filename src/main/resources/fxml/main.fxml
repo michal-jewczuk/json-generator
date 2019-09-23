@@ -47,6 +47,18 @@
 			<padding>
 				<Insets bottom="15.0" left="12.0" right="15.0" top="12.0" />
 		    </padding>
+		    
+		    <top>
+				<VBox fx:id="validationBox" spacing="12.0">
+					<padding>
+						<Insets bottom="5.0" left="12.0" right="12.0" top="5.0" />
+				    </padding>
+			    	<Label text="There where validation errors"></Label>
+			    	<Separator></Separator>
+			    	<VBox fx:id="validationMessages" spacing="12.0"></VBox>
+			    	<Separator></Separator>
+			    </VBox>			    
+		    </top>
 			
 		    <center>
 		        <Button text="Generate JSON" onAction="#generateJSON" />
