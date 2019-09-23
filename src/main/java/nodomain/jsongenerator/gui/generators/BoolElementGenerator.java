@@ -18,9 +18,9 @@ public enum BoolElementGenerator implements ElementGenerator {
 		BoolDataOptions options = BoolDataOptionsParser.INSTANCE.parseDataOptions(rawOptions);
 		BorderPane pane = createObjectLayout(showButtons);		
 
-		CheckBox onlyTrueCB = new CheckBox("only TRUE");
+		CheckBox onlyTrueCB = ComponentGenerator.INSTANCE.generateCheckBox("only TRUE");
 		onlyTrueCB.setSelected(options.isOnlyTrue());
-		CheckBox onlyFalseCB = new CheckBox("only FALSE");
+		CheckBox onlyFalseCB = ComponentGenerator.INSTANCE.generateCheckBox("only FALSE");
 		onlyFalseCB.setSelected(options.isOnlyFalse());	
 		
 		GridPane gp = createGrid(name);

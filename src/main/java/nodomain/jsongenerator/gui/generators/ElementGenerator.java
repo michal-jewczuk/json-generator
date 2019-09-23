@@ -89,7 +89,7 @@ public interface ElementGenerator {
 		pane.setVgap(SPACING);
 		pane.setAlignment(Pos.CENTER);
 		Label nameL = new Label("name");
-		TextField nameF = new TextField(name);
+		TextField nameF = ComponentGenerator.INSTANCE.generateTextField(name);
 		pane.add(nameL, 0, 0);
 		pane.add(nameF, 1, 0);
 		

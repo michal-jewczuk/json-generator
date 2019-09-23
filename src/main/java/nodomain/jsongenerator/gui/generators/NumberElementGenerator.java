@@ -20,9 +20,9 @@ public enum NumberElementGenerator implements ElementGenerator {
 		BorderPane pane = createObjectLayout(showButtons);
 		
 		Label lowerL = new Label("lower bound");
-		TextField lowerF = new TextField(String.valueOf(options.getLowerBound()));		
+		TextField lowerF = ComponentGenerator.INSTANCE.generateTextField(String.valueOf(options.getLowerBound()));		
 		Label upperL = new Label("upper bound");
-		TextField upperF = new TextField(String.valueOf(options.getUpperBound()));
+		TextField upperF = ComponentGenerator.INSTANCE.generateTextField(String.valueOf(options.getUpperBound()));
 		
 		GridPane gp = createGrid(name);
 		gp.add(lowerL, 0, 1);

@@ -21,12 +21,12 @@ public enum StringElementGenerator implements ElementGenerator {
 		BorderPane pane = createObjectLayout(showButtons);
 		
 		Label minLengthL = new Label("min length");
-		TextField minLengthF = new TextField(String.valueOf(options.getMinLength()));
+		TextField minLengthF = ComponentGenerator.INSTANCE.generateTextField(String.valueOf(options.getMinLength()));
 		Label maxLengthL = new Label("max length");
-		TextField maxLengthF = new TextField(String.valueOf(options.getMaxLength()));
-		CheckBox firstCapCB = new CheckBox("first capital");
+		TextField maxLengthF = ComponentGenerator.INSTANCE.generateTextField(String.valueOf(options.getMaxLength()));
+		CheckBox firstCapCB = ComponentGenerator.INSTANCE.generateCheckBox("first capital");
 		firstCapCB.setSelected(options.isFirstCapital());
-		CheckBox allCapCB = new CheckBox("all capital");
+		CheckBox allCapCB = ComponentGenerator.INSTANCE.generateCheckBox("all capital");
 		allCapCB.setSelected(options.isAllCapital());
 		
 		GridPane gp = createGrid(name);

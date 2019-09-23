@@ -21,10 +21,10 @@ public enum PatternElementGenerator implements ElementGenerator {
 		BorderPane pane = createObjectLayout(showButtons);
 		
 		Label patternL = new Label("pattern");
-		TextField patternF = new TextField(options.getPattern());
+		TextField patternF = ComponentGenerator.INSTANCE.generateTextField(options.getPattern());
 		Label connectorL = new Label("connector");
-		TextField connectorF = new TextField(options.getConnector());
-		CheckBox allCapCB = new CheckBox("all capital");
+		TextField connectorF = ComponentGenerator.INSTANCE.generateTextField(options.getConnector());
+		CheckBox allCapCB = ComponentGenerator.INSTANCE.generateCheckBox("all capital");
 		allCapCB.setSelected(options.isAllCapital());
 		
 		GridPane gp = createGrid(name);

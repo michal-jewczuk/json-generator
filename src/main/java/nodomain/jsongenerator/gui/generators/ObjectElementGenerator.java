@@ -35,7 +35,7 @@ public enum ObjectElementGenerator implements ElementGenerator {
 		});	
 		
 		Label countL = new Label("count");
-		TextField countF = new TextField(String.valueOf(options.getCount()));	
+		TextField countF = ComponentGenerator.INSTANCE.generateTextField(String.valueOf(options.getCount()));	
 		Label elementsL = new Label("elements");
 		
     	Accordion acc = new Accordion();

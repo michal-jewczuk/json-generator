@@ -20,11 +20,11 @@ public enum DateElementGenerator implements ElementGenerator {
 		BorderPane pane = createObjectLayout(showButtons);		
 		
 		Label lowerL = new Label("lower bound");
-		TextField lowerF = new TextField(options.getLowerBound().toString());		
+		TextField lowerF = ComponentGenerator.INSTANCE.generateTextField(options.getLowerBound().toString());
 		Label upperL = new Label("upper bound");
-		TextField upperF = new TextField(options.getUpperBound().toString());
+		TextField upperF = ComponentGenerator.INSTANCE.generateTextField(options.getUpperBound().toString());
 		Label patternL = new Label("output pattern");
-		TextField patternF = new TextField(options.getOutputPattern());
+		TextField patternF = ComponentGenerator.INSTANCE.generateTextField(options.getOutputPattern());
 		
 		GridPane gp = createGrid(name);
 		gp.add(lowerL, 0, 1);
