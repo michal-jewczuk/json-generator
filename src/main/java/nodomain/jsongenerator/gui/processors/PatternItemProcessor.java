@@ -42,7 +42,7 @@ public enum PatternItemProcessor implements ItemProcessor {
 	}
 
 	@Override
-	public StringBuilder extractOptionsFromGUI(DataType type, GridPane pane) {
+	public StringBuilder extractOptionsFromGUI(GridPane pane) {
 		String pattern = ((TextField) pane.getChildren().get(3)).getText();
 		String connector = ((TextField) pane.getChildren().get(5)).getText();
 		boolean allCaps = ((CheckBox) pane.getChildren().get(6)).isSelected();

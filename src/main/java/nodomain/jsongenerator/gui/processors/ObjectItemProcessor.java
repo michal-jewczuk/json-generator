@@ -54,7 +54,7 @@ public enum ObjectItemProcessor implements ItemProcessor {
 	}
 
 	@Override
-	public StringBuilder extractOptionsFromGUI(DataType type, GridPane pane) {
+	public StringBuilder extractOptionsFromGUI(GridPane pane) {
 		int count = Integer.valueOf(((TextField) pane.getChildren().get(3)).getText());
 		
 		Accordion acc = (Accordion) pane.getChildren().get(6);
@@ -70,10 +70,11 @@ public enum ObjectItemProcessor implements ItemProcessor {
 			sb1.append("]");
 		}
 		sb1.append("}");
+		JSONObject obj = new JSONObject(sb1.toString());
 		
 		StringBuilder sb = new StringBuilder("{");
 		sb.append("\"count\": ").append(count).append(",");
-		sb.append("\"structure\": ").append(sb1);
+		sb.append("\"structure\": ").append(obj.getJSONArray("structure"));
 		sb.append("}");
 		
 		return sb;

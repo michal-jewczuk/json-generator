@@ -40,7 +40,7 @@ public enum DateItemProcessor implements ItemProcessor {
 	}
 
 	@Override
-	public StringBuilder extractOptionsFromGUI(DataType type, GridPane pane) {
+	public StringBuilder extractOptionsFromGUI(GridPane pane) {
 		LocalDate lowerBound = LocalDate.parse(((TextField) pane.getChildren().get(3)).getText());
 		LocalDate upperBound = LocalDate.parse(((TextField) pane.getChildren().get(5)).getText());
 		String pattern = ((TextField) pane.getChildren().get(7)).getText();

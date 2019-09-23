@@ -10,10 +10,15 @@ public interface ItemProcessor {
 	
 	Element fromGuiToElement(DataType type, GridPane pane);
 	StringBuilder returnOptionsAsString(DataOptions options);
-	StringBuilder extractOptionsFromGUI(DataType type, GridPane pane);
+	StringBuilder extractOptionsFromGUI(GridPane pane);
 
 	default StringBuilder fromeGuiToJSON(DataType type, GridPane pane) {
-		return fromElementToJSON(fromGuiToElement(type, pane));
+		//return fromElementToJSON(fromGuiToElement(type, pane));
+		StringBuilder sb = createHeader(type, extractName(pane));
+		sb.append(extractOptionsFromGUI(pane));	
+		sb.append("}");
+		
+		return sb;
 	}
 	
 	default Element createGenericElement(DataType type, GridPane pane) {
@@ -40,6 +45,15 @@ public interface ItemProcessor {
 		StringBuilder sb = new StringBuilder("{");
 		sb.append("\"type\": ").append("\"").append(element.getType()).append("\",");
 		sb.append("\"name\": ").append("\"").append(element.getName()).append("\",");
+		sb.append("\"options\": ");
+		
+		return sb;
+	}
+	
+	default StringBuilder createHeader(DataType type, String name) {
+		StringBuilder sb = new StringBuilder("{");
+		sb.append("\"type\": ").append("\"").append(type).append("\",");
+		sb.append("\"name\": ").append("\"").append(name).append("\",");
 		sb.append("\"options\": ");
 		
 		return sb;

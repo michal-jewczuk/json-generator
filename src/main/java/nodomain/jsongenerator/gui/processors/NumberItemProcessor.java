@@ -35,7 +35,7 @@ public enum NumberItemProcessor implements ItemProcessor {
 	}
 
 	@Override
-	public StringBuilder extractOptionsFromGUI(DataType type, GridPane pane) {
+	public StringBuilder extractOptionsFromGUI(GridPane pane) {
 		int lowerBound = Integer.valueOf(((TextField) pane.getChildren().get(3)).getText());
 		int upperBound = Integer.valueOf(((TextField) pane.getChildren().get(5)).getText());
 		

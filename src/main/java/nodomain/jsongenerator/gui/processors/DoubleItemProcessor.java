@@ -38,7 +38,7 @@ public enum DoubleItemProcessor implements ItemProcessor {
 	}
 
 	@Override
-	public StringBuilder extractOptionsFromGUI(DataType type, GridPane pane) {
+	public StringBuilder extractOptionsFromGUI(GridPane pane) {
 		double lowerBound = Double.valueOf(((TextField) pane.getChildren().get(3)).getText());
 		double upperBound = Double.valueOf(((TextField) pane.getChildren().get(5)).getText());
 		int precision = Integer.valueOf(((TextField) pane.getChildren().get(7)).getText());
