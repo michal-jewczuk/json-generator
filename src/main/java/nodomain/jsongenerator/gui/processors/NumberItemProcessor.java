@@ -36,8 +36,8 @@ public enum NumberItemProcessor implements ItemProcessor {
 
 	@Override
 	public StringBuilder extractOptionsFromGUI(GridPane pane) {
-		int lowerBound = Integer.valueOf(((TextField) pane.getChildren().get(3)).getText());
-		int upperBound = Integer.valueOf(((TextField) pane.getChildren().get(5)).getText());
+		String lowerBound = ((TextField) pane.getChildren().get(3)).getText();
+		String upperBound = ((TextField) pane.getChildren().get(5)).getText();
 		
 		StringBuilder sb = new StringBuilder("{");
 		sb.append("\"lower_bound\": ").append(lowerBound).append(",");

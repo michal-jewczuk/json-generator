@@ -12,8 +12,7 @@ public interface ItemProcessor {
 	StringBuilder returnOptionsAsString(DataOptions options);
 	StringBuilder extractOptionsFromGUI(GridPane pane);
 
-	default StringBuilder fromeGuiToJSON(DataType type, GridPane pane) {
-		//return fromElementToJSON(fromGuiToElement(type, pane));
+	default StringBuilder fromGuiToJSON(DataType type, GridPane pane) {
 		StringBuilder sb = createHeader(type, extractName(pane));
 		sb.append(extractOptionsFromGUI(pane));	
 		sb.append("}");

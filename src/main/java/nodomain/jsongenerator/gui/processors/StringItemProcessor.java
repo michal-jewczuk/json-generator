@@ -47,8 +47,8 @@ public enum StringItemProcessor implements ItemProcessor {
 
 	@Override
 	public StringBuilder extractOptionsFromGUI(GridPane pane) {
-		int minLength = Integer.valueOf(((TextField) pane.getChildren().get(3)).getText());
-		int maxLength = Integer.valueOf(((TextField) pane.getChildren().get(5)).getText());
+		String minLength = ((TextField) pane.getChildren().get(3)).getText();
+		String maxLength = ((TextField) pane.getChildren().get(5)).getText();
 		boolean firstCap = ((CheckBox) pane.getChildren().get(6)).isSelected();
 		boolean allCaps = ((CheckBox) pane.getChildren().get(7)).isSelected();
 		

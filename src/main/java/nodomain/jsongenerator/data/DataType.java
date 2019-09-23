@@ -36,7 +36,7 @@ public enum DataType {
 
 		@Override
 		public StringBuilder convertToJSON(GridPane pane) {
-			return StringItemProcessor.INSTANCE.fromeGuiToJSON(JSON_STRING, pane);
+			return StringItemProcessor.INSTANCE.fromGuiToJSON(JSON_STRING, pane);
 		}
 
 		@Override
@@ -52,7 +52,7 @@ public enum DataType {
 
 		@Override
 		public StringBuilder convertToJSON(GridPane pane) {
-			return NumberItemProcessor.INSTANCE.fromeGuiToJSON(JSON_NUMBER, pane);
+			return NumberItemProcessor.INSTANCE.fromGuiToJSON(JSON_NUMBER, pane);
 		}
 
 		@Override
@@ -68,7 +68,7 @@ public enum DataType {
 
 		@Override
 		public StringBuilder convertToJSON(GridPane pane) {
-			return PatternItemProcessor.INSTANCE.fromeGuiToJSON(JSON_PATTERN, pane);
+			return PatternItemProcessor.INSTANCE.fromGuiToJSON(JSON_PATTERN, pane);
 		}
 
 		@Override
@@ -84,7 +84,7 @@ public enum DataType {
 
 		@Override
 		public StringBuilder convertToJSON(GridPane pane) {
-			return BoolItemProcessor.INSTANCE.fromeGuiToJSON(JSON_BOOL, pane);
+			return BoolItemProcessor.INSTANCE.fromGuiToJSON(JSON_BOOL, pane);
 		}
 
 		@Override
@@ -100,7 +100,7 @@ public enum DataType {
 
 		@Override
 		public StringBuilder convertToJSON(GridPane pane) {
-			return DoubleItemProcessor.INSTANCE.fromeGuiToJSON(JSON_DOUBLE, pane);
+			return DoubleItemProcessor.INSTANCE.fromGuiToJSON(JSON_DOUBLE, pane);
 		}
 
 		@Override
@@ -116,7 +116,7 @@ public enum DataType {
 
 		@Override
 		public StringBuilder convertToJSON(GridPane pane) {
-			return DateItemProcessor.INSTANCE.fromeGuiToJSON(JSON_DATE, pane);
+			return DateItemProcessor.INSTANCE.fromGuiToJSON(JSON_DATE, pane);
 		}
 
 		@Override
@@ -132,7 +132,7 @@ public enum DataType {
 
 		@Override
 		public StringBuilder convertToJSON(GridPane pane) {
-			return ObjectItemProcessor.INSTANCE.fromeGuiToJSON(JSON_OBJECT, pane);
+			return ObjectItemProcessor.INSTANCE.fromGuiToJSON(JSON_OBJECT, pane);
 		}
 
 		@Override
