@@ -7,24 +7,24 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import nodomain.jsongenerator.data.DateDataOptions;
-import nodomain.jsongenerator.data.parsers.DateDataOptionsParser;
 
 public enum DateElementGenerator implements ElementGenerator {
 	
 	INSTANCE;
 
 	@Override
-	public Node generateElement(String name, JSONObject rawOptions, boolean showButtons) {
-		DateDataOptions options = DateDataOptionsParser.INSTANCE.parseDataOptions(rawOptions);
+	public Node generateElement(String name, JSONObject options, boolean showButtons) {
 		BorderPane pane = createObjectLayout(showButtons);		
 		
 		Label lowerL = new Label("lower bound");
-		TextField lowerF = ComponentGenerator.INSTANCE.generateTextField(options.getLowerBound().toString());
+		TextField lowerF = ComponentGenerator.INSTANCE
+					.generateTextField(options.get("lower_bound").toString());
 		Label upperL = new Label("upper bound");
-		TextField upperF = ComponentGenerator.INSTANCE.generateTextField(options.getUpperBound().toString());
+		TextField upperF = ComponentGenerator.INSTANCE
+					.generateTextField(options.get("upper_bound").toString());
 		Label patternL = new Label("output pattern");
-		TextField patternF = ComponentGenerator.INSTANCE.generateTextField(options.getOutputPattern());
+		TextField patternF = ComponentGenerator.INSTANCE
+					.generateTextField(options.get("output_pattern").toString());
 		
 		GridPane gp = createGrid(name);
 		gp.add(lowerL, 0, 1);

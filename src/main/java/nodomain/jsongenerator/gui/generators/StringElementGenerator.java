@@ -8,26 +8,25 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import nodomain.jsongenerator.data.StringDataOptions;
-import nodomain.jsongenerator.data.parsers.StringDataOptionsParser;
 
 public enum StringElementGenerator implements ElementGenerator {
 	
 	INSTANCE;
 
 	@Override
-	public Node generateElement(String name, JSONObject rawOptions, boolean showButtons) {
-		StringDataOptions options = StringDataOptionsParser.INSTANCE.parseDataOptions(rawOptions);
+	public Node generateElement(String name, JSONObject options, boolean showButtons) {
 		BorderPane pane = createObjectLayout(showButtons);
 		
 		Label minLengthL = new Label("min length");
-		TextField minLengthF = ComponentGenerator.INSTANCE.generateTextField(String.valueOf(options.getMinLength()));
+		TextField minLengthF = ComponentGenerator.INSTANCE
+					.generateTextField(options.get("min_length").toString());
 		Label maxLengthL = new Label("max length");
-		TextField maxLengthF = ComponentGenerator.INSTANCE.generateTextField(String.valueOf(options.getMaxLength()));
+		TextField maxLengthF = ComponentGenerator.INSTANCE
+					.generateTextField(options.get("max_length").toString());
 		CheckBox firstCapCB = ComponentGenerator.INSTANCE.generateCheckBox("first capital");
-		firstCapCB.setSelected(options.isFirstCapital());
+		firstCapCB.setSelected(options.getBoolean("first_cap"));
 		CheckBox allCapCB = ComponentGenerator.INSTANCE.generateCheckBox("all capital");
-		allCapCB.setSelected(options.isAllCapital());
+		allCapCB.setSelected(options.getBoolean("all_cap"));
 		
 		GridPane gp = createGrid(name);
 		gp.add(minLengthL, 0, 1);

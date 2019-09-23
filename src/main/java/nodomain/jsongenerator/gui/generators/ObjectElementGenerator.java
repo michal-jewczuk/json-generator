@@ -2,6 +2,7 @@ package nodomain.jsongenerator.gui.generators;
 
 import java.util.List;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import javafx.event.ActionEvent;
@@ -14,8 +15,6 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import nodomain.jsongenerator.data.ObjectDataOptions;
-import nodomain.jsongenerator.data.parsers.ObjectDataOptionsParser;
 import nodomain.jsongenerator.gui.controller.AddController;
 import nodomain.jsongenerator.gui.controller.StructureController;
 
@@ -24,23 +23,23 @@ public enum ObjectElementGenerator implements ElementGenerator {
 	INSTANCE;
 
 	@Override
-	public Node generateElement(String name, JSONObject rawOptions, boolean showButtons) {
-		ObjectDataOptions options = ObjectDataOptionsParser.INSTANCE.parseDataOptions(rawOptions);
+	public Node generateElement(String name, JSONObject options, boolean showButtons) {
 		BorderPane pane = createObjectLayout(showButtons);
 		
 		Button add = new Button("Add element", new ImageView(imagePlus));
-
 		add.setOnAction((ActionEvent e) -> {
 			handleAddElement(e);
 		});	
 		
 		Label countL = new Label("count");
-		TextField countF = ComponentGenerator.INSTANCE.generateTextField(String.valueOf(options.getCount()));	
+		TextField countF = ComponentGenerator.INSTANCE
+					.generateTextField(options.get("count").toString());	
 		Label elementsL = new Label("elements");
 		
     	Accordion acc = new Accordion();
-    	if (options.getStructure() != null) {
-        	List<TitledPane> panes = PanelGenerator.INSTANCE.createStructurePanes(options.getStructure());
+    	JSONArray arr = options.getJSONArray("structure");
+    	if (!arr.isEmpty()) {
+        	List<TitledPane> panes = PanelGenerator.INSTANCE.createStructurePanes(arr);
         	acc.getPanes().addAll(panes);   		
     	}
     	
