@@ -24,12 +24,10 @@ public enum MainValidator {
 			JSONObject current = arr.getJSONObject(i);
 			DataType type = DataType.valueOf(current.getString("type"));
 			try {
-				type.createJsonFragment(current.getString("name"), 
-										current.getJSONObject("options"));
+				type.validate(current.getJSONObject("options"));
 			} catch (Exception e) {
 				errors.put(current.getString("name"), e.getLocalizedMessage());
 			}
-
 		}
 		
 		return errors;

@@ -4,6 +4,7 @@ import org.json.JSONObject;
 
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
+import nodomain.jsongenerator.exceptions.ValidationException;
 import nodomain.jsongenerator.generator.BoolFragmentGenerator;
 import nodomain.jsongenerator.generator.DateFragmentGenerator;
 import nodomain.jsongenerator.generator.DoubleFragmentGenerator;
@@ -25,6 +26,13 @@ import nodomain.jsongenerator.gui.processors.NumberItemProcessor;
 import nodomain.jsongenerator.gui.processors.ObjectItemProcessor;
 import nodomain.jsongenerator.gui.processors.PatternItemProcessor;
 import nodomain.jsongenerator.gui.processors.StringItemProcessor;
+import nodomain.jsongenerator.validators.BoolValidator;
+import nodomain.jsongenerator.validators.DateValidator;
+import nodomain.jsongenerator.validators.DoubleValidator;
+import nodomain.jsongenerator.validators.NumberValidator;
+import nodomain.jsongenerator.validators.ObjectValidator;
+import nodomain.jsongenerator.validators.PatternValidator;
+import nodomain.jsongenerator.validators.StringValidator;
 
 public enum DataType {
 
@@ -43,6 +51,11 @@ public enum DataType {
 		public Node createGUIElement(String name, JSONObject dataOptions, boolean showButtons) {
 			return StringElementGenerator.INSTANCE.generateElement(name, dataOptions, showButtons);
 		}
+
+		@Override
+		public boolean validate(JSONObject structure) throws ValidationException {
+			return StringValidator.INSTANCE.validateItem(structure);
+		}
 	},
 	JSON_NUMBER {
 		@Override
@@ -59,6 +72,11 @@ public enum DataType {
 		public Node createGUIElement(String name, JSONObject dataOptions, boolean showButtons) {
 			return NumberElementGenerator.INSTANCE.generateElement(name, dataOptions, showButtons);
 		}
+
+		@Override
+		public boolean validate(JSONObject structure) throws ValidationException {
+			return NumberValidator.INSTANCE.validateItem(structure);
+		}
 	},
 	JSON_PATTERN {
 		@Override
@@ -74,6 +92,11 @@ public enum DataType {
 		@Override
 		public Node createGUIElement(String name, JSONObject dataOptions, boolean showButtons) {
 			return PatternElementGenerator.INSTANCE.generateElement(name, dataOptions, showButtons);
+		}
+
+		@Override
+		public boolean validate(JSONObject structure) throws ValidationException {
+			return PatternValidator.INSTANCE.validateItem(structure);
 		}		
 	},
 	JSON_BOOL {
@@ -91,6 +114,11 @@ public enum DataType {
 		public Node createGUIElement(String name, JSONObject dataOptions, boolean showButtons) {
 			return BoolElementGenerator.INSTANCE.generateElement(name, dataOptions, showButtons);
 		}
+
+		@Override
+		public boolean validate(JSONObject structure) throws ValidationException {
+			return BoolValidator.INSTANCE.validateItem(structure);
+		}
 	},
 	JSON_DOUBLE {
 		@Override
@@ -106,6 +134,11 @@ public enum DataType {
 		@Override
 		public Node createGUIElement(String name, JSONObject dataOptions, boolean showButtons) {
 			return DoubleElementGenerator.INSTANCE.generateElement(name, dataOptions, showButtons);
+		}
+
+		@Override
+		public boolean validate(JSONObject structure) throws ValidationException {
+			return DoubleValidator.INSTANCE.validateItem(structure);
 		}
 	},
 	JSON_DATE {
@@ -123,6 +156,11 @@ public enum DataType {
 		public Node createGUIElement(String name, JSONObject dataOptions, boolean showButtons) {
 			return DateElementGenerator.INSTANCE.generateElement(name, dataOptions, showButtons);
 		}
+
+		@Override
+		public boolean validate(JSONObject structure) throws ValidationException {
+			return DateValidator.INSTANCE.validateItem(structure);
+		}
 	},
 	JSON_OBJECT {
 		@Override
@@ -139,10 +177,15 @@ public enum DataType {
 		public Node createGUIElement(String name, JSONObject dataOptions, boolean showButtons) {
 			return ObjectElementGenerator.INSTANCE.generateElement(name, dataOptions, showButtons);
 		}
+
+		@Override
+		public boolean validate(JSONObject structure) throws ValidationException {
+			return ObjectValidator.INSTANCE.validateItem(structure);
+		}
 	};
 	
 	public abstract StringBuilder createJsonFragment(String name, JSONObject dataOptions);
 	public abstract StringBuilder convertToJSON(GridPane pane);
 	public abstract Node createGUIElement(String name, JSONObject dataOptions, boolean showButtons);
-	
+	public abstract boolean validate(JSONObject structure) throws ValidationException;
 }
