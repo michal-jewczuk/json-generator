@@ -14,11 +14,13 @@ public enum BoolElementGenerator implements ElementGenerator {
 	@Override
 	public Node generateElement(String name, JSONObject options, boolean showButtons) {
 		BorderPane pane = createObjectLayout(showButtons);		
-
+		boolean onlyTrue = options == null ? false : options.getBoolean("only_true");
+		boolean onlyFalse = options == null ? false : options.getBoolean("only_false");
+		
 		CheckBox onlyTrueCB = ComponentGenerator.INSTANCE.generateCheckBox("only TRUE");
-		onlyTrueCB.setSelected(options.getBoolean("only_true"));
+		onlyTrueCB.setSelected(onlyTrue);
 		CheckBox onlyFalseCB = ComponentGenerator.INSTANCE.generateCheckBox("only FALSE");
-		onlyFalseCB.setSelected(options.getBoolean("only_false"));	
+		onlyFalseCB.setSelected(onlyFalse);	
 		
 		GridPane gp = createGrid(name);
 		gp.add(onlyTrueCB, 1, 1);

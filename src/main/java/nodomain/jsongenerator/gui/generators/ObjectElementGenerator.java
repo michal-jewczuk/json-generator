@@ -25,6 +25,7 @@ public enum ObjectElementGenerator implements ElementGenerator {
 	@Override
 	public Node generateElement(String name, JSONObject options, boolean showButtons) {
 		BorderPane pane = createObjectLayout(showButtons);
+		String count = options == null ? "1" : options.get("count").toString();
 		
 		Button add = new Button("Add element", new ImageView(imagePlus));
 		add.setOnAction((ActionEvent e) -> {
@@ -32,15 +33,14 @@ public enum ObjectElementGenerator implements ElementGenerator {
 		});	
 		
 		Label countL = new Label("count");
-		TextField countF = ComponentGenerator.INSTANCE
-					.generateTextField(options.get("count").toString());	
+		TextField countF = ComponentGenerator.INSTANCE.generateTextField(count);	
 		Label elementsL = new Label("elements");
 		
     	Accordion acc = new Accordion();
-    	JSONArray arr = options.getJSONArray("structure");
-    	if (!arr.isEmpty()) {
-        	List<TitledPane> panes = PanelGenerator.INSTANCE.createStructurePanes(arr);
-        	acc.getPanes().addAll(panes);   		
+    	if (options != null) {
+    		JSONArray arr = options.getJSONArray("structure");
+    		List<TitledPane> panes = PanelGenerator.INSTANCE.createStructurePanes(arr);
+        	acc.getPanes().addAll(panes); 
     	}
     	
     	GridPane gp = createGrid(name);	

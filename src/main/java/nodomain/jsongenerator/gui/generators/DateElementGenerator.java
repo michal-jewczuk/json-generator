@@ -14,17 +14,17 @@ public enum DateElementGenerator implements ElementGenerator {
 
 	@Override
 	public Node generateElement(String name, JSONObject options, boolean showButtons) {
-		BorderPane pane = createObjectLayout(showButtons);		
+		BorderPane pane = createObjectLayout(showButtons);	
+		String lowerBound = options == null ? "" : options.get("lower_bound").toString();
+		String upperBound = options == null ? "" : options.get("upper_bound").toString();
+		String pattern = options == null ? "" : options.get("output_pattern").toString();
 		
 		Label lowerL = new Label("lower bound");
-		TextField lowerF = ComponentGenerator.INSTANCE
-					.generateTextField(options.get("lower_bound").toString());
+		TextField lowerF = ComponentGenerator.INSTANCE.generateTextField(lowerBound);
 		Label upperL = new Label("upper bound");
-		TextField upperF = ComponentGenerator.INSTANCE
-					.generateTextField(options.get("upper_bound").toString());
+		TextField upperF = ComponentGenerator.INSTANCE.generateTextField(upperBound);
 		Label patternL = new Label("output pattern");
-		TextField patternF = ComponentGenerator.INSTANCE
-					.generateTextField(options.get("output_pattern").toString());
+		TextField patternF = ComponentGenerator.INSTANCE.generateTextField(pattern);
 		
 		GridPane gp = createGrid(name);
 		gp.add(lowerL, 0, 1);
