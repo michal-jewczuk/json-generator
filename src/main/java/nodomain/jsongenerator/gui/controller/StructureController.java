@@ -7,6 +7,7 @@ import org.json.JSONObject;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
 import javafx.scene.control.TitledPane;
@@ -28,9 +29,6 @@ public class StructureController {
 	@FXML
 	private VBox validationBox;
 	
-	@FXML
-	private VBox validationMessages;
-	
 	private static Accordion staticStructure;
 	
     public void initialize() {
@@ -43,16 +41,15 @@ public class StructureController {
     
 	@FXML
 	private void saveStructure(ActionEvent e) {
-		validationBox.setVisible(false);
 		BorderPane bp = (BorderPane) ((Button) e.getSource()).getParent().getParent().getParent();
 		StringBuilder structure = MainProcessor.INSTANCE.proccessStructure((Accordion) bp.getCenter());
 		Map<String, String> errors = MainValidator.INSTANCE.validateStructure(structure.toString());
     	if (errors.size() == 0) {
     		ReadWriteUtil.writeToFile(structure, AppConfig.CONFIGURATION_FILE);
+    		displaySuccessMessage(
+    				ComponentGenerator.INSTANCE.displayMessage("The structure was saved."));
     	} else {
-    		validationBox.setVisible(true);
-    		validationMessages.getChildren()
-				.setAll(ComponentGenerator.INSTANCE.returnErrorTexts(errors));
+    		displayValidationErrors(errors);
     	}
 	}
 	
@@ -68,18 +65,18 @@ public class StructureController {
 	
 	@FXML
 	private void validateStructure(ActionEvent e) {
-		validationBox.setVisible(false);
 		BorderPane bp = (BorderPane) ((Button) e.getSource()).getParent().getParent().getParent();
 		StringBuilder structure = MainProcessor.INSTANCE.proccessStructure((Accordion) bp.getCenter());
 		Map<String, String> errors = MainValidator.INSTANCE.validateStructure(structure.toString());
     	if (errors.size() == 0) {
-    		System.out.println("No errors");
+    		displaySuccessMessage(
+    				ComponentGenerator.INSTANCE.displayMessage("The structure is valid."));
     	} else {
-    		validationBox.setVisible(true);
-    		validationMessages.getChildren()
-				.setAll(ComponentGenerator.INSTANCE.returnErrorTexts(errors));
+    		displayValidationErrors(errors);
     	}
 	}
+
+
 	
 	public static void removePanel(TitledPane pane) {
 		List<TitledPane> panes = ((Accordion) pane.getParent()).getPanes();
@@ -121,6 +118,17 @@ public class StructureController {
 		} else {
 			return new JSONObject(addController.getElement());
 		}
+	}
+	
+	private void displayValidationErrors(Map<String, String> errors) {
+		validationBox.setVisible(true);
+		validationBox.getChildren()
+			.setAll(ComponentGenerator.INSTANCE.displayValidationErrors(errors));
+	}
+	
+	private void displaySuccessMessage(List<Node> nodes) {
+		validationBox.setVisible(true);
+		validationBox.getChildren().setAll(nodes);
 	}
 
 }

@@ -5,8 +5,12 @@ import java.util.List;
 import java.util.Map;
 
 import javafx.event.ActionEvent;
+import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
@@ -51,4 +55,26 @@ public enum ComponentGenerator {
 		
 		return texts;
 	}
+	
+	public List<Node> displayValidationErrors(Map<String, String> errors) {
+		List<Node> nodes = new ArrayList<>();
+		nodes.add(new Label("There where validation errors"));
+		nodes.add(new Separator());
+		
+		VBox messages = new VBox(12);
+		messages.getChildren().addAll(returnErrorTexts(errors));
+		nodes.add(messages);
+		nodes.add(new Separator());
+		
+		return nodes;
+	}
+	
+	public List<Node> displayMessage(String message) {
+		List<Node> nodes = new ArrayList<>();
+		nodes.add(new Label(message));
+		nodes.add(new Separator());
+		
+		return nodes;
+	}
+	
 }

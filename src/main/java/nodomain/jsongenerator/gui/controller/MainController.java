@@ -19,8 +19,8 @@ public class MainController {
 	
 	private static Integer count = 1;
 	private static String outputName = AppConfig.DEFAULT_OUTPUT_NAME;
-	private static final String INVALID_COUNT = "Invalid format. Setting count to 1";
-	private static final String EMPTY_MESSAGE = "";
+	private static final String COUNT_NOT_A_NUMBER = "Could not parse # of objects to create.";
+	private static final String COUNT_TOO_SMALL = "# of objects to create has to be greater than 0";
 	
 	@FXML
 	private TextField countField;
@@ -32,13 +32,7 @@ public class MainController {
 	private Label errorLabel;
 	
 	@FXML
-	private Label outputLabel;
-	
-	@FXML
 	private VBox validationBox;
-	
-	@FXML
-	private VBox validationMessages;
 	
     public void initialize() {
     	countField.setText(count.toString());
@@ -51,36 +45,37 @@ public class MainController {
 
     @FXML
     private void generateJSON(ActionEvent event) {
-    	validationBox.setVisible(false);
     	Map<String, String> errors = MainValidator.INSTANCE.validateStructure(CURRENT_STRUCTURE);
     	if (errors.size() == 0) {
-        	setGenerationParameters();	
-        	String fileName = JsonGenerator.generateOutputFile(CURRENT_STRUCTURE, count, outputName);
-        	setOutputMessage(fileName);
+    		try {
+    			setGenerationParameters();
+            	String fileName = JsonGenerator.generateOutputFile(CURRENT_STRUCTURE, count, outputName);
+            	displayMessage("Data written to file: " + fileName);
+    		} catch (IllegalArgumentException e) {
+    			displayMessage(e.getMessage());
+    		}		
     	} else {
     		validationBox.setVisible(true);
-    		validationMessages.getChildren()
-    			.setAll(ComponentGenerator.INSTANCE.returnErrorTexts(errors));
+    		validationBox.getChildren()
+    			.setAll(ComponentGenerator.INSTANCE.displayValidationErrors(errors));
     	}
     }
     
-    private void setOutputMessage(String fileName) {
-    	String message = "Data written to file: " + fileName;
-    	System.out.println(message);
-    	outputLabel.setText(message);
+    private void displayMessage(String message) {
+    	validationBox.setVisible(true);
+		validationBox.getChildren()
+			.setAll(ComponentGenerator.INSTANCE.displayMessage(message));
     }
     
 	private void setGenerationParameters() {
-		errorLabel.setText(EMPTY_MESSAGE);
 		try {
 			count = Integer.parseInt(countField.getText());
-			if (count < 1) {
-				count = 1;
-			}
-		} catch (Exception e) {
-			count = 1;
-			countField.setText(count.toString());
-			errorLabel.setText(INVALID_COUNT);
+		} catch (NumberFormatException e) {
+			throw new IllegalArgumentException(COUNT_NOT_A_NUMBER);
+		}
+		
+		if (count < 1) {
+			throw new IllegalArgumentException(COUNT_TOO_SMALL);
 		}
 		outputName = outputNameField.getText();
 	}
