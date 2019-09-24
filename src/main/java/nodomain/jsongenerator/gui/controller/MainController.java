@@ -60,7 +60,7 @@ public class MainController {
     	} else {
     		validationBox.setVisible(true);
     		validationMessages.getChildren()
-    			.setAll(ComponentGenerator.INSTANCE.returnErrorLabels(errors));
+    			.setAll(ComponentGenerator.INSTANCE.returnErrorTexts(errors));
     	}
     }
     

@@ -6,8 +6,10 @@ import java.util.Map;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import nodomain.jsongenerator.gui.controller.StructureController;
 
 public enum ComponentGenerator {
@@ -34,12 +36,19 @@ public enum ComponentGenerator {
 		return cb;
 	}
 	
-	public List<Label> returnErrorLabels(Map<String, String> errors) {	
-		List<Label> labels = new ArrayList<>();
-		errors.forEach((key, value) -> {
-			labels.add(new Label(key + ": " + value));
+	public List<TextFlow> returnErrorTexts(Map<String, String> errors) {	
+		List<TextFlow> texts = new ArrayList<>();
+		
+		errors.forEach((key, value) -> {		
+			Text key_text = new Text(key + ": ");
+				key_text.setFill(Color.WHITE);
+				key_text.setStyle("-fx-font-weight: bold");
+			Text value_text = new Text(value);
+				value_text.setFill(Color.WHITE);
+
+			texts.add(new TextFlow(key_text, value_text));
 		});
 		
-		return labels;
+		return texts;
 	}
 }

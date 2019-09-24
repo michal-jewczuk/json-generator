@@ -52,7 +52,7 @@ public class StructureController {
     	} else {
     		validationBox.setVisible(true);
     		validationMessages.getChildren()
-    			.setAll(ComponentGenerator.INSTANCE.returnErrorLabels(errors));
+				.setAll(ComponentGenerator.INSTANCE.returnErrorTexts(errors));
     	}
 	}
 	
@@ -77,7 +77,7 @@ public class StructureController {
     	} else {
     		validationBox.setVisible(true);
     		validationMessages.getChildren()
-    			.setAll(ComponentGenerator.INSTANCE.returnErrorLabels(errors));
+				.setAll(ComponentGenerator.INSTANCE.returnErrorTexts(errors));
     	}
 	}
 	
@@ -110,7 +110,6 @@ public class StructureController {
 	public static void updateStructure() {
 		MainController.CURRENT_STRUCTURE = 
 				MainProcessor.INSTANCE.proccessStructure(staticStructure).toString(); 
-		System.out.println(MainController.CURRENT_STRUCTURE);
 	}
 	
 	private JSONObject showFormAddElement() {
