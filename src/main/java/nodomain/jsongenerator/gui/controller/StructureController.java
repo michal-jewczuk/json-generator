@@ -66,6 +66,21 @@ public class StructureController {
 		}
 	}
 	
+	@FXML
+	private void validateStructure(ActionEvent e) {
+		validationBox.setVisible(false);
+		BorderPane bp = (BorderPane) ((Button) e.getSource()).getParent().getParent().getParent();
+		StringBuilder structure = MainProcessor.INSTANCE.proccessStructure((Accordion) bp.getCenter());
+		Map<String, String> errors = MainValidator.INSTANCE.validateStructure(structure.toString());
+    	if (errors.size() == 0) {
+    		System.out.println("No errors");
+    	} else {
+    		validationBox.setVisible(true);
+    		validationMessages.getChildren()
+    			.setAll(ComponentGenerator.INSTANCE.returnErrorLabels(errors));
+    	}
+	}
+	
 	public static void removePanel(TitledPane pane) {
 		List<TitledPane> panes = ((Accordion) pane.getParent()).getPanes();
 		panes.remove(pane);
