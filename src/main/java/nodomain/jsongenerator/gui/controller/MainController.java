@@ -9,9 +9,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import nodomain.jsongenerator.config.AppConfig;
 import nodomain.jsongenerator.gui.generators.ComponentGenerator;
-import nodomain.jsongenerator.gui.validators.MainValidator;
 import nodomain.jsongenerator.io.ReadWriteUtil;
 import nodomain.jsongenerator.main.JsonGenerator;
+import nodomain.jsongenerator.validators.MainValidator;
 
 public class MainController {
 	

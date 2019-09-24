@@ -1,4 +1,4 @@
-package nodomain.jsongenerator.gui.validators;
+package nodomain.jsongenerator.validators;
 
 import java.util.HashMap;
 import java.util.Map;

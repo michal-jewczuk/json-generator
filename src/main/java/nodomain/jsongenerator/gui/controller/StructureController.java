@@ -16,9 +16,9 @@ import nodomain.jsongenerator.config.AppConfig;
 import nodomain.jsongenerator.gui.generators.ComponentGenerator;
 import nodomain.jsongenerator.gui.generators.PanelGenerator;
 import nodomain.jsongenerator.gui.processors.MainProcessor;
-import nodomain.jsongenerator.gui.validators.MainValidator;
 import nodomain.jsongenerator.io.ReadWriteUtil;
 import nodomain.jsongenerator.main.JsonGenerator;
+import nodomain.jsongenerator.validators.MainValidator;
 
 public class StructureController {
 	
