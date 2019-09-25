@@ -15,6 +15,7 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import nodomain.jsongenerator.gui.UIMessages;
 import nodomain.jsongenerator.gui.controller.AddController;
 import nodomain.jsongenerator.gui.controller.StructureController;
 
@@ -32,9 +33,9 @@ public enum ObjectElementGenerator implements ElementGenerator {
 			handleAddElement(e);
 		});	
 		
-		Label countL = new Label("count");
+		Label countL = ComponentGenerator.INSTANCE.generateLabel(UIMessages.LABEL_COUNT);
 		TextField countF = ComponentGenerator.INSTANCE.generateTextField(count);	
-		Label elementsL = new Label("elements");
+		Label elementsL = ComponentGenerator.INSTANCE.generateLabel(UIMessages.LABEL_ELEMENTS);
 		
     	Accordion acc = new Accordion();
     	if (options != null) {

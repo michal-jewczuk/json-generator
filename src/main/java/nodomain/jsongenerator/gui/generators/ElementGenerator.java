@@ -17,7 +17,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.TilePane;
+import nodomain.jsongenerator.gui.UIMessages;
 import nodomain.jsongenerator.gui.controller.StructureController;
 
 public interface ElementGenerator {
@@ -85,13 +87,16 @@ public interface ElementGenerator {
 
 	default GridPane createGrid(String name) {
 		GridPane pane = new GridPane();
+		pane.setPadding(new Insets(0, 25, 0, 25));
 		pane.setHgap(SPACING);
 		pane.setVgap(SPACING);
 		pane.setAlignment(Pos.CENTER);
-		Label nameL = new Label("name");
+		Label nameL = ComponentGenerator.INSTANCE.generateLabel(UIMessages.LABEL_NAME);
 		TextField nameF = ComponentGenerator.INSTANCE.generateTextField(name);
 		pane.add(nameL, 0, 0);
 		pane.add(nameF, 1, 0);
+		GridPane.setHgrow(nameL, Priority.ALWAYS);
+		GridPane.setHgrow(nameF, Priority.ALWAYS);
 		
 		return pane;
 	}

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javafx.event.ActionEvent;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -40,6 +41,13 @@ public enum ComponentGenerator {
 		return cb;
 	}
 	
+	public Label generateLabel(String value) {
+		Label label = new Label(value);
+		label.setAlignment(Pos.CENTER_RIGHT);
+		label.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+		return label;
+	}
+ 	
 	public List<TextFlow> returnErrorTexts(Map<String, String> errors) {	
 		List<TextFlow> texts = new ArrayList<>();
 		

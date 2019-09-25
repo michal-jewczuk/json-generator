@@ -22,7 +22,7 @@
     </top>
     
 	<center>
-		<Accordion fx:id="structureFields"></Accordion>
+		<Accordion fx:id="structureFields" prefHeight="-1.0" prefWidth="-1.0" ></Accordion>
 	</center>
     
     <bottom>

@@ -5,4 +5,20 @@ public class UIMessages {
 	public static final String BUTTON_GENERATE = "Generate JSON";
 	public static final String MENU_MAIN = "General";
 	public static final String MENU_STRUCTURE = "Structure";
+	
+	public static final String LABEL_NAME = "name";
+	public static final String LABEL_LOWER_BOUND = "lower bound";
+	public static final String LABEL_UPPER_BOUND = "upper bound";
+	public static final String LABEL_PRECISION = "precision";
+	public static final String LABEL_OUTPUT_PATTERN = "output pattern";
+	public static final String LABEL_PATTERN = "pattern";
+	public static final String LABEL_CONNECTOR = "connector";
+	public static final String LABEL_ALL_CAP = "all capital";
+	public static final String LABEL_FIRST_CAP = "first capital";
+	public static final String LABEL_MIN_LENGTH = "min length";
+	public static final String LABEL_MAX_LENGTH = "max length";
+	public static final String LABEL_COUNT = "count";
+	public static final String LABEL_ELEMENTS = "elements";
+	public static final String LABEL_ONLY_TRUE = "only TRUE";
+	public static final String LABEL_ONLY_FALSE = "only FALSE";
 }

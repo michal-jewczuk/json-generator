@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import nodomain.jsongenerator.gui.UIMessages;
 
 public enum PatternElementGenerator implements ElementGenerator {
 	
@@ -20,11 +21,11 @@ public enum PatternElementGenerator implements ElementGenerator {
 		String connector = options == null ? "" : options.get("connector").toString();
 		boolean allCap = options == null ? false : options.getBoolean("all_cap");
 		
-		Label patternL = new Label("pattern");
+		Label patternL = ComponentGenerator.INSTANCE.generateLabel(UIMessages.LABEL_PATTERN);
 		TextField patternF = ComponentGenerator.INSTANCE.generateTextField(pattern);
-		Label connectorL = new Label("connector");
+		Label connectorL = ComponentGenerator.INSTANCE.generateLabel(UIMessages.LABEL_CONNECTOR);
 		TextField connectorF = ComponentGenerator.INSTANCE.generateTextField(connector);
-		CheckBox allCapCB = ComponentGenerator.INSTANCE.generateCheckBox("all capital");
+		CheckBox allCapCB = ComponentGenerator.INSTANCE.generateCheckBox(UIMessages.LABEL_ALL_CAP);
 		allCapCB.setSelected(allCap);
 		
 		GridPane gp = createGrid(name);

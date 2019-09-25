@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import nodomain.jsongenerator.gui.UIMessages;
 
 public enum DoubleElementGenerator implements ElementGenerator {
 	
@@ -19,11 +20,11 @@ public enum DoubleElementGenerator implements ElementGenerator {
 		String upperBound = options == null ? "" : options.get("upper_bound").toString();
 		String precision = options == null ? "" : options.get("precision").toString();
 		
-		Label lowerL = new Label("lower bound");
+		Label lowerL = ComponentGenerator.INSTANCE.generateLabel(UIMessages.LABEL_LOWER_BOUND);
 		TextField lowerF = ComponentGenerator.INSTANCE.generateTextField(lowerBound);		
-		Label upperL = new Label("upper bound");
+		Label upperL = ComponentGenerator.INSTANCE.generateLabel(UIMessages.LABEL_UPPER_BOUND);
 		TextField upperF = ComponentGenerator.INSTANCE.generateTextField(upperBound);
-		Label precisionL = new Label("precision");
+		Label precisionL = ComponentGenerator.INSTANCE.generateLabel(UIMessages.LABEL_PRECISION);
 		TextField precisionF = ComponentGenerator.INSTANCE.generateTextField(precision);
 
 		GridPane gp = createGrid(name);

@@ -6,6 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import nodomain.jsongenerator.gui.UIMessages;
 
 public enum BoolElementGenerator implements ElementGenerator {
 	
@@ -17,9 +18,11 @@ public enum BoolElementGenerator implements ElementGenerator {
 		boolean onlyTrue = options == null ? false : options.getBoolean("only_true");
 		boolean onlyFalse = options == null ? false : options.getBoolean("only_false");
 		
-		CheckBox onlyTrueCB = ComponentGenerator.INSTANCE.generateCheckBox("only TRUE");
+		CheckBox onlyTrueCB = 
+				ComponentGenerator.INSTANCE.generateCheckBox(UIMessages.LABEL_ONLY_TRUE);
 		onlyTrueCB.setSelected(onlyTrue);
-		CheckBox onlyFalseCB = ComponentGenerator.INSTANCE.generateCheckBox("only FALSE");
+		CheckBox onlyFalseCB = 
+				ComponentGenerator.INSTANCE.generateCheckBox(UIMessages.LABEL_ONLY_FALSE);
 		onlyFalseCB.setSelected(onlyFalse);	
 		
 		GridPane gp = createGrid(name);

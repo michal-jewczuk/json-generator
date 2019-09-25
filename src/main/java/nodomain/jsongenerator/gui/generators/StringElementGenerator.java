@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import nodomain.jsongenerator.gui.UIMessages;
 
 public enum StringElementGenerator implements ElementGenerator {
 	
@@ -21,13 +22,13 @@ public enum StringElementGenerator implements ElementGenerator {
 		boolean firstCap = options == null ? false : options.getBoolean("first_cap");
 		boolean allCap = options == null ? false : options.getBoolean("all_cap");
 		
-		Label minLengthL = new Label("min length");
+		Label minLengthL = ComponentGenerator.INSTANCE.generateLabel(UIMessages.LABEL_MIN_LENGTH);
 		TextField minLengthF = ComponentGenerator.INSTANCE.generateTextField(minLength);
-		Label maxLengthL = new Label("max length");
+		Label maxLengthL = ComponentGenerator.INSTANCE.generateLabel(UIMessages.LABEL_MAX_LENGTH);
 		TextField maxLengthF = ComponentGenerator.INSTANCE.generateTextField(maxLength);
-		CheckBox firstCapCB = ComponentGenerator.INSTANCE.generateCheckBox("first capital");
+		CheckBox firstCapCB = ComponentGenerator.INSTANCE.generateCheckBox(UIMessages.LABEL_FIRST_CAP);
 		firstCapCB.setSelected(firstCap);
-		CheckBox allCapCB = ComponentGenerator.INSTANCE.generateCheckBox("all capital");
+		CheckBox allCapCB = ComponentGenerator.INSTANCE.generateCheckBox(UIMessages.LABEL_ALL_CAP);
 		allCapCB.setSelected(allCap);
 		
 		GridPane gp = createGrid(name);
