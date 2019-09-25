@@ -15,6 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import nodomain.jsongenerator.config.AppConfig;
 import nodomain.jsongenerator.gui.controller.StructureController;
 
 public enum ComponentGenerator {
@@ -28,6 +29,7 @@ public enum ComponentGenerator {
 				StructureController.updateStructure();
 			}
 		});
+		tf.setMaxWidth(AppConfig.TF_MAX_WIDTH);
 		
 		return tf;
 	}

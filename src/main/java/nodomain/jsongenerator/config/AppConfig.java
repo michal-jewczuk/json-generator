@@ -12,4 +12,7 @@ public class AppConfig {
 	
 	public static final String ERROR_PARSING = "Error parsing element: ";
 	
+	public static final double SCENE_WIDTH = 700.0;
+	public static final double SCENE_HEIGHT = 800.0;
+	public static final double TF_MAX_WIDTH = 500.0;
 }

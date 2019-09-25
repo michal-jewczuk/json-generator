@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import nodomain.jsongenerator.config.AppConfig;
 import nodomain.jsongenerator.gui.controller.MenuController;
 
 public class SceneCreator {
@@ -17,8 +18,7 @@ public class SceneCreator {
 		attachTop();
 		showMiddle(new MenuController().showMainPage());
         
-		Scene scene = new Scene(root,600,800);
-		//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		Scene scene = new Scene(root,AppConfig.SCENE_WIDTH,AppConfig.SCENE_HEIGHT);
 		return scene;
 	}
 

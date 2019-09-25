@@ -19,3 +19,7 @@
 	-fx-text-fill: #ffffff;
 }
 
+.scroll-pane {
+    -fx-background-color:transparent;
+}
+
