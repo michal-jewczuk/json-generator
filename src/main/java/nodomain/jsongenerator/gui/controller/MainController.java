@@ -38,7 +38,7 @@ public class MainController {
     	countField.setText(count.toString());
     	outputNameField.setText(outputName);
     	if (CURRENT_STRUCTURE == null) {
-    		CURRENT_STRUCTURE = ReadWriteUtil.readStructure();
+    		CURRENT_STRUCTURE = ReadWriteUtil.readStructure(AppConfig.CONFIGURATION_FILE);
     	}
     	validationBox.setVisible(false);
     }

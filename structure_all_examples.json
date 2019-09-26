@@ -117,7 +117,8 @@
 				"name": "string_l8_all_cap",
 				"options" : 
 					{
-					"length": 8,
+                	"min_length": 8,
+                	"max_length": 8,
 					"first_cap": false,
 					"all_cap": true
 					}

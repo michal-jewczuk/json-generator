@@ -1,5 +1,6 @@
 package nodomain.jsongenerator.gui.controller;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import nodomain.jsongenerator.config.AppConfig;
 import nodomain.jsongenerator.gui.generators.ComponentGenerator;
 import nodomain.jsongenerator.gui.generators.PanelGenerator;
@@ -28,12 +30,10 @@ public class StructureController {
 	private VBox validationBox;
 	
 	private static Accordion staticStructure;
+	final FileChooser fileChooser = new FileChooser();
 	
     public void initialize() {
-    	structureFields.getPanes()
-    		.addAll(PanelGenerator.INSTANCE.createStructurePanes(
-    				JsonGenerator.parseStructureFile(MainController.CURRENT_STRUCTURE)));
-    	staticStructure = structureFields;
+    	setStructure(MainController.CURRENT_STRUCTURE);
     	validationBox.setVisible(false);
     }
     
@@ -43,8 +43,7 @@ public class StructureController {
 		Map<String, String> errors = MainValidator.INSTANCE.validateStructure(structure.toString());
     	if (errors.size() == 0) {
     		ReadWriteUtil.writeToFile(structure, AppConfig.CONFIGURATION_FILE);
-    		displaySuccessMessage(
-    				ComponentGenerator.INSTANCE.displayMessage("The structure was saved."));
+    		displaySuccessMessage("The structure was saved.");
     	} else {
     		displayValidationErrors(errors);
     	}
@@ -65,8 +64,7 @@ public class StructureController {
 		StringBuilder structure = processCurrentStructure(e);
 		Map<String, String> errors = MainValidator.INSTANCE.validateStructure(structure.toString());
     	if (errors.size() == 0) {
-    		displaySuccessMessage(
-    				ComponentGenerator.INSTANCE.displayMessage("The structure is valid."));
+    		displaySuccessMessage("The structure is valid.");
     	} else {
     		displayValidationErrors(errors);
     	}
@@ -75,6 +73,19 @@ public class StructureController {
 	@FXML
 	private void clearStructure() {
 		structureFields.getPanes().clear();
+		displaySuccessMessage("The structure was cleared.");
+	}
+	
+	@FXML
+	private void loadStructure(ActionEvent event) {
+		configureFileChooser(fileChooser);
+		File file = fileChooser.showOpenDialog(structureFields.getScene().getWindow());
+		if (file != null) {
+			String loadedStructure = ReadWriteUtil.readStructure(file.getAbsolutePath());
+			setStructure(loadedStructure);
+	    	updateStructure();
+	    	displaySuccessMessage("The structure was loaded.");
+        }
 	}
 	
 	public static void removePanel(TitledPane pane) {
@@ -125,7 +136,8 @@ public class StructureController {
 			.setAll(ComponentGenerator.INSTANCE.displayValidationErrors(errors));
 	}
 	
-	private void displaySuccessMessage(List<Node> nodes) {
+	private void displaySuccessMessage(String message) {
+		List<Node> nodes = ComponentGenerator.INSTANCE.displayMessage(message);
 		validationBox.setVisible(true);
 		validationBox.getChildren().setAll(nodes);
 	}
@@ -134,5 +146,25 @@ public class StructureController {
 		structureFields.setExpandedPane(null);
 		return MainProcessor.INSTANCE.proccessStructure(structureFields);
 	}
+	
+    private static void configureFileChooser(final FileChooser fileChooser) {      
+    	fileChooser.setTitle("Load Structure");
+    	fileChooser.setInitialDirectory(
+    		new File(System.getProperty("user.home"))
+        );                 
+    	fileChooser.getExtensionFilters().clear();
+        fileChooser.getExtensionFilters().addAll(
+        	new FileChooser.ExtensionFilter("json", "*.json"),
+        	new FileChooser.ExtensionFilter("All files", "*.*")
+        );
+    }
+    
+    private void setStructure(String structure) {
+    	structureFields.getPanes().clear();
+    	structureFields.getPanes()
+			.addAll(PanelGenerator.INSTANCE.createStructurePanes(
+				JsonGenerator.parseStructureFile(structure)));
+    	staticStructure = structureFields;
+    }
 
 }

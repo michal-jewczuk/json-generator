@@ -48,6 +48,7 @@
             			<Image fx:id="saveIcon" url="/icons/save.png"/>
             			<Image fx:id="infoIcon" url="/icons/information.png"/>
             			<Image fx:id="trashIcon" url="/icons/trash.png"/>
+            			<Image fx:id="loadIcon" url="/icons/open-folder.png"/>
         			</fx:define>
 		    		<Button text="Add element" onAction="#addElement"> 
 		    			<graphic>
@@ -67,6 +68,11 @@
 		       		<Button text="Clear structure" onAction="#clearStructure">
 		        		<graphic>
                    			<ImageView image="$trashIcon"/>
+                		</graphic>
+		        	</Button>
+		        	<Button text="Load structure" onAction="#loadStructure">
+		        		<graphic>
+                   			<ImageView image="$loadIcon"/>
                 		</graphic>
 		        	</Button>
 		    	</TilePane>
