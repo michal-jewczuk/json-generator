@@ -1,12 +1,15 @@
 package nodomain.jsongenerator.gui.controller;
 
+import java.io.File;
 import java.util.Map;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import nodomain.jsongenerator.config.AppConfig;
 import nodomain.jsongenerator.gui.generators.ComponentGenerator;
 import nodomain.jsongenerator.io.ReadWriteUtil;
@@ -22,6 +25,8 @@ public class MainController {
 	private static final String COUNT_NOT_A_NUMBER = "Could not parse # of objects to create.";
 	private static final String COUNT_TOO_SMALL = "# of objects to create has to be greater than 0";
 	
+	final FileChooser fileChooser = new FileChooser();
+	
 	@FXML
 	private TextField countField;
 	
@@ -33,6 +38,9 @@ public class MainController {
 	
 	@FXML
 	private VBox validationBox;
+	
+	@FXML
+	private CheckBox chooseFile;
 	
     public void initialize() {
     	countField.setText(count.toString());
@@ -49,7 +57,10 @@ public class MainController {
     	if (errors.size() == 0) {
     		try {
     			setGenerationParameters();
-            	String fileName = JsonGenerator.generateOutputFile(CURRENT_STRUCTURE, count, outputName);
+    			String fileName = JsonGenerator.generateOutputFile(CURRENT_STRUCTURE, 
+											    				count, 
+											    				outputName, 
+											    				chooseFile.isSelected());
             	displayMessage("Data written to file: " + fileName);
     		} catch (IllegalArgumentException e) {
     			displayMessage(e.getMessage());
@@ -77,7 +88,14 @@ public class MainController {
 		if (count < 1) {
 			throw new IllegalArgumentException(COUNT_TOO_SMALL);
 		}
-		outputName = outputNameField.getText();
+		
+		if (!chooseFile.isSelected()) {
+    		StructureController.configureFileChooser(fileChooser, "Save generated json");
+    		File file = fileChooser.showSaveDialog(validationBox.getScene().getWindow());
+    		outputName = file.getAbsolutePath();
+		} else {
+			outputName = outputNameField.getText();
+		}
 	}
 	
 }

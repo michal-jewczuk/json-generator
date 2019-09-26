@@ -44,7 +44,7 @@ public class StructureController {
     		configureFileChooser(fileChooser, "Save structure");
     		File file = fileChooser.showSaveDialog(structureFields.getScene().getWindow());
     		ReadWriteUtil.writeToFile(structure, file.getAbsolutePath());
-    		displaySuccessMessage("The structure was saved to a file: " + file.getName());
+    		displayMessage("The structure was saved to a file: " + file.getName());
     	} else {
     		displayValidationErrors(errors);
     	}
@@ -65,7 +65,7 @@ public class StructureController {
 		StringBuilder structure = processCurrentStructure(e);
 		Map<String, String> errors = MainValidator.INSTANCE.validateStructure(structure.toString());
     	if (errors.size() == 0) {
-    		displaySuccessMessage("The structure is valid.");
+    		displayMessage("The structure is valid.");
     	} else {
     		displayValidationErrors(errors);
     	}
@@ -74,7 +74,7 @@ public class StructureController {
 	@FXML
 	private void clearStructure() {
 		structureFields.getPanes().clear();
-		displaySuccessMessage("The structure was cleared.");
+		displayMessage("The structure was cleared.");
 	}
 	
 	@FXML
@@ -85,7 +85,7 @@ public class StructureController {
 			String loadedStructure = ReadWriteUtil.readStructure(file.getAbsolutePath());
 			setStructure(loadedStructure);
 	    	updateStructure();
-	    	displaySuccessMessage("The structure was loaded.");
+	    	displayMessage("The structure was loaded.");
         }
 	}
 	
@@ -137,7 +137,7 @@ public class StructureController {
 			.setAll(ComponentGenerator.INSTANCE.displayValidationErrors(errors));
 	}
 	
-	private void displaySuccessMessage(String message) {
+	private void displayMessage(String message) {
 		List<Node> nodes = ComponentGenerator.INSTANCE.displayMessage(message);
 		validationBox.setVisible(true);
 		validationBox.getChildren().setAll(nodes);
@@ -148,7 +148,7 @@ public class StructureController {
 		return MainProcessor.INSTANCE.proccessStructure(structureFields);
 	}
 	
-    private static void configureFileChooser(final FileChooser fileChooser, final String title) {      
+    public static void configureFileChooser(final FileChooser fileChooser, final String title) {      
     	fileChooser.setTitle(title);
     	fileChooser.setInitialDirectory(
     		new File(System.getProperty("user.home"))
