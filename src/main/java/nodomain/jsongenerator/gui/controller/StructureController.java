@@ -13,7 +13,6 @@ import javafx.scene.control.Accordion;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
-import nodomain.jsongenerator.config.AppConfig;
 import nodomain.jsongenerator.gui.generators.ComponentGenerator;
 import nodomain.jsongenerator.gui.generators.PanelGenerator;
 import nodomain.jsongenerator.gui.processors.MainProcessor;
@@ -36,14 +35,16 @@ public class StructureController {
     	setStructure(MainController.CURRENT_STRUCTURE);
     	validationBox.setVisible(false);
     }
-    
+	
 	@FXML
 	private void saveStructure(ActionEvent e) {
 		StringBuilder structure = processCurrentStructure(e);
 		Map<String, String> errors = MainValidator.INSTANCE.validateStructure(structure.toString());
     	if (errors.size() == 0) {
-    		ReadWriteUtil.writeToFile(structure, AppConfig.CONFIGURATION_FILE);
-    		displaySuccessMessage("The structure was saved.");
+    		configureFileChooser(fileChooser, "Save structure");
+    		File file = fileChooser.showSaveDialog(structureFields.getScene().getWindow());
+    		ReadWriteUtil.writeToFile(structure, file.getAbsolutePath());
+    		displaySuccessMessage("The structure was saved to a file: " + file.getName());
     	} else {
     		displayValidationErrors(errors);
     	}
@@ -78,7 +79,7 @@ public class StructureController {
 	
 	@FXML
 	private void loadStructure(ActionEvent event) {
-		configureFileChooser(fileChooser);
+		configureFileChooser(fileChooser, "Load structure");
 		File file = fileChooser.showOpenDialog(structureFields.getScene().getWindow());
 		if (file != null) {
 			String loadedStructure = ReadWriteUtil.readStructure(file.getAbsolutePath());
@@ -147,8 +148,8 @@ public class StructureController {
 		return MainProcessor.INSTANCE.proccessStructure(structureFields);
 	}
 	
-    private static void configureFileChooser(final FileChooser fileChooser) {      
-    	fileChooser.setTitle("Load Structure");
+    private static void configureFileChooser(final FileChooser fileChooser, final String title) {      
+    	fileChooser.setTitle(title);
     	fileChooser.setInitialDirectory(
     		new File(System.getProperty("user.home"))
         );                 
