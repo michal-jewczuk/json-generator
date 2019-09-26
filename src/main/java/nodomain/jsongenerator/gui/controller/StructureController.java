@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
@@ -41,8 +42,7 @@ public class StructureController {
     
 	@FXML
 	private void saveStructure(ActionEvent e) {
-		BorderPane bp = (BorderPane) ((Button) e.getSource()).getParent().getParent().getParent();
-		StringBuilder structure = MainProcessor.INSTANCE.proccessStructure((Accordion) bp.getCenter());
+		StringBuilder structure = processCurrentStructure(e);
 		Map<String, String> errors = MainValidator.INSTANCE.validateStructure(structure.toString());
     	if (errors.size() == 0) {
     		ReadWriteUtil.writeToFile(structure, AppConfig.CONFIGURATION_FILE);
@@ -65,8 +65,7 @@ public class StructureController {
 	
 	@FXML
 	private void validateStructure(ActionEvent e) {
-		BorderPane bp = (BorderPane) ((Button) e.getSource()).getParent().getParent().getParent();
-		StringBuilder structure = MainProcessor.INSTANCE.proccessStructure((Accordion) bp.getCenter());
+		StringBuilder structure = processCurrentStructure(e);
 		Map<String, String> errors = MainValidator.INSTANCE.validateStructure(structure.toString());
     	if (errors.size() == 0) {
     		displaySuccessMessage(
@@ -75,8 +74,6 @@ public class StructureController {
     		displayValidationErrors(errors);
     	}
 	}
-
-
 	
 	public static void removePanel(TitledPane pane) {
 		List<TitledPane> panes = ((Accordion) pane.getParent()).getPanes();
@@ -129,6 +126,13 @@ public class StructureController {
 	private void displaySuccessMessage(List<Node> nodes) {
 		validationBox.setVisible(true);
 		validationBox.getChildren().setAll(nodes);
+	}
+	
+	private StringBuilder processCurrentStructure(ActionEvent event) {
+		BorderPane bp = (BorderPane) ((Button) event.getSource()).getParent().getParent().getParent();
+		Accordion panels = (Accordion) ((ScrollPane) bp.getCenter()).getContent();
+		panels.setExpandedPane(null);
+		return MainProcessor.INSTANCE.proccessStructure(panels);
 	}
 
 }
