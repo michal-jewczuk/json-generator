@@ -9,10 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Accordion;
-import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TitledPane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import nodomain.jsongenerator.config.AppConfig;
 import nodomain.jsongenerator.gui.generators.ComponentGenerator;
@@ -34,8 +31,8 @@ public class StructureController {
 	
     public void initialize() {
     	structureFields.getPanes()
-    		.addAll(PanelGenerator.INSTANCE
-    					.createStructurePanes(JsonGenerator.parseStructureFile(MainController.CURRENT_STRUCTURE)));
+    		.addAll(PanelGenerator.INSTANCE.createStructurePanes(
+    				JsonGenerator.parseStructureFile(MainController.CURRENT_STRUCTURE)));
     	staticStructure = structureFields;
     	validationBox.setVisible(false);
     }
@@ -73,6 +70,11 @@ public class StructureController {
     	} else {
     		displayValidationErrors(errors);
     	}
+	}
+	
+	@FXML
+	private void clearStructure() {
+		structureFields.getPanes().clear();
 	}
 	
 	public static void removePanel(TitledPane pane) {
@@ -129,10 +131,8 @@ public class StructureController {
 	}
 	
 	private StringBuilder processCurrentStructure(ActionEvent event) {
-		BorderPane bp = (BorderPane) ((Button) event.getSource()).getParent().getParent().getParent();
-		Accordion panels = (Accordion) ((ScrollPane) bp.getCenter()).getContent();
-		panels.setExpandedPane(null);
-		return MainProcessor.INSTANCE.proccessStructure(panels);
+		structureFields.setExpandedPane(null);
+		return MainProcessor.INSTANCE.proccessStructure(structureFields);
 	}
 
 }

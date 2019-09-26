@@ -42,11 +42,12 @@
 		    </top>
 			
 		    <center>
-		    	<TilePane orientation="HORIZONTAL" hgap="20.0" alignment="CENTER">
+		    	<TilePane orientation="HORIZONTAL" hgap="20.0" vgap="20.0" alignment="CENTER">
 		    	    <fx:define>
             			<Image fx:id="plusIcon" url="/icons/plus.png"/>
             			<Image fx:id="saveIcon" url="/icons/save.png"/>
             			<Image fx:id="infoIcon" url="/icons/information.png"/>
+            			<Image fx:id="trashIcon" url="/icons/trash.png"/>
         			</fx:define>
 		    		<Button text="Add element" onAction="#addElement"> 
 		    			<graphic>
@@ -61,6 +62,11 @@
 		        	<Button text="Validate structure" onAction="#validateStructure">
 		        		<graphic>
                    			<ImageView image="$infoIcon"/>
+                		</graphic>
+		        	</Button>
+		       		<Button text="Clear structure" onAction="#clearStructure">
+		        		<graphic>
+                   			<ImageView image="$trashIcon"/>
                 		</graphic>
 		        	</Button>
 		    	</TilePane>
