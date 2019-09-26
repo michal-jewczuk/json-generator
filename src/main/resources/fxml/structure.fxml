@@ -9,7 +9,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.geometry.Insets?>
 
-<BorderPane prefHeight="-1.0" prefWidth="-1.0" stylesheets="@../css/styles.css"
+<BorderPane prefHeight="-1.0" prefWidth="-1.0" stylesheets="@../css/styles.css" 
 	xmlns:fx="http://javafx.com/fxml/1" fx:controller="nodomain.jsongenerator.gui.controller.StructureController">
 
 	<padding>
@@ -17,11 +17,16 @@
     </padding>
 	
     <top>
-        <Text text="Output structure" />
+    	<TilePane orientation="HORIZONTAL" alignment="CENTER">
+    		<Label id="header-text">JSON structure</Label>
+    	</TilePane>
     </top>
     
 	<center>
 		<ScrollPane fitToWidth="true">
+			<padding>
+				<Insets bottom="0.0" left="0.0" right="0.0" top="15.0" />
+    		</padding>
 			<Accordion fx:id="structureFields" prefHeight="-1.0" prefWidth="-1.0" ></Accordion>
 		</ScrollPane>
 	</center>
@@ -55,11 +60,6 @@
                    			<ImageView image="$plusIcon"/>
                 		</graphic>
 		    		</Button>
-		        	<Button text="Save structure" onAction="#saveStructure">
-		        		<graphic>
-                   			<ImageView image="$saveIcon"/>
-                		</graphic>
-		        	</Button>
 		        	<Button text="Validate structure" onAction="#validateStructure">
 		        		<graphic>
                    			<ImageView image="$infoIcon"/>
@@ -73,6 +73,11 @@
 		        	<Button text="Load structure" onAction="#loadStructure">
 		        		<graphic>
                    			<ImageView image="$loadIcon"/>
+                		</graphic>
+		        	</Button>
+		        	<Button text="Save structure" onAction="#saveStructure">
+		        		<graphic>
+                   			<ImageView image="$saveIcon"/>
                 		</graphic>
 		        	</Button>
 		    	</TilePane>
