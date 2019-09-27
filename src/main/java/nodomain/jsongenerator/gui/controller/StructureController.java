@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.List;
 import java.util.Map;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import javafx.event.ActionEvent;
@@ -13,6 +14,7 @@ import javafx.scene.control.Accordion;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
+import nodomain.jsongenerator.config.AppConfig;
 import nodomain.jsongenerator.gui.generators.ComponentGenerator;
 import nodomain.jsongenerator.gui.generators.PanelGenerator;
 import nodomain.jsongenerator.gui.processors.MainProcessor;
@@ -32,8 +34,8 @@ public class StructureController {
 	final FileChooser fileChooser = new FileChooser();
 	
     public void initialize() {
-    	setStructure(MainController.CURRENT_STRUCTURE);
     	validationBox.setVisible(false);
+    	setStructure(MainController.CURRENT_STRUCTURE);
     }
 	
 	@FXML
@@ -75,6 +77,7 @@ public class StructureController {
 	private void clearStructure() {
 		structureFields.getPanes().clear();
 		displayMessage("The structure was cleared.");
+		updateStructure();
 	}
 	
 	@FXML
@@ -83,9 +86,9 @@ public class StructureController {
 		File file = fileChooser.showOpenDialog(structureFields.getScene().getWindow());
 		if (file != null) {
 			String loadedStructure = ReadWriteUtil.readStructure(file.getAbsolutePath());
+			displayMessage("The structure was loaded.");
 			setStructure(loadedStructure);
-	    	updateStructure();
-	    	displayMessage("The structure was loaded.");
+	    	updateStructure();	
         }
 	}
 	
@@ -162,6 +165,19 @@ public class StructureController {
     
     private void setStructure(String structure) {
     	structureFields.getPanes().clear();
+    	try {
+    		MainValidator.INSTANCE.validateStructure(structure.toString());
+    	} catch (IllegalArgumentException iae) {
+    		structure = AppConfig.EMPTY_STRUCTURE;
+    		displayMessage(AppConfig.INVALID_ELEMENTS);
+    	} catch (JSONException je) {
+    		structure = AppConfig.EMPTY_STRUCTURE;
+    		displayMessage(AppConfig.NOT_A_JSON);   		
+    	} catch (Exception oe) {
+    		structure = AppConfig.EMPTY_STRUCTURE;
+    		displayMessage(AppConfig.OTHER_PARSING_ERROR);
+    	}
+    	
     	structureFields.getPanes()
 			.addAll(PanelGenerator.INSTANCE.createStructurePanes(
 				JsonGenerator.parseStructureFile(structure)));
