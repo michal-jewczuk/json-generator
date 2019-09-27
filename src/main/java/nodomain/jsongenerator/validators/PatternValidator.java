@@ -3,9 +3,9 @@ package nodomain.jsongenerator.validators;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import nodomain.jsongenerator.data.PatternDataOptions;
 import nodomain.jsongenerator.exceptions.Errors;
 import nodomain.jsongenerator.exceptions.ValidationException;
+import nodomain.jsongenerator.generator.PatternFragmentGenerator;
 
 public enum PatternValidator implements ItemValidator {
 	
@@ -34,7 +34,7 @@ public enum PatternValidator implements ItemValidator {
 	}
 	
 	private void parseStringPattern(String pattern) {
-		String[] patternParts = pattern.split(PatternDataOptions.SPLITERATOR);
+		String[] patternParts = pattern.split(PatternFragmentGenerator.SPLITERATOR);
 		
 		for (String part: patternParts) {
 			Integer.parseInt(part);

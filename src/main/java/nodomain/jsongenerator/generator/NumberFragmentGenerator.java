@@ -2,30 +2,30 @@ package nodomain.jsongenerator.generator;
 
 import org.json.JSONObject;
 
-import nodomain.jsongenerator.data.NumberDataOptions;
-import nodomain.jsongenerator.data.parsers.NumberDataOptionsParser;
-
 public enum NumberFragmentGenerator implements FragmentGenerator {
 	
 	INSTANCE;
+	
+	private long lowerBound;
+	private long upperBound;
 
 	@Override
-	public StringBuilder generateFragment(String name, JSONObject dataOptions) {
-		NumberDataOptions options = 
-				NumberDataOptionsParser.INSTANCE.parseDataOptions(dataOptions);
+	public StringBuilder generateFragment(String name, JSONObject options) {
+		lowerBound = options.getLong("lower_bound");
+		upperBound = options.getLong("upper_bound");
 		
 		StringBuilder fragment = generateBegining(name);
-		fragment.append(generateNumber(options));
+		fragment.append(generateNumber());
 
 		return fragment;
 	}
 	
-	private long generateNumber(NumberDataOptions options) {
-		if (options.getLowerBound() == options.getUpperBound()) {
-			return options.getLowerBound();
+	private long generateNumber() {
+		if (lowerBound == upperBound) {
+			return lowerBound;
 		}
 		
-		return rnd.longs(1, options.getLowerBound(), options.getUpperBound()).sum();
+		return rnd.longs(1, lowerBound, upperBound).sum();
 	}
 
 }

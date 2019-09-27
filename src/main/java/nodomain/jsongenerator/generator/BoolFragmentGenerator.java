@@ -2,29 +2,29 @@ package nodomain.jsongenerator.generator;
 
 import org.json.JSONObject;
 
-import nodomain.jsongenerator.data.BoolDataOptions;
-import nodomain.jsongenerator.data.parsers.BoolDataOptionsParser;
-
 public enum BoolFragmentGenerator implements FragmentGenerator {
 	
 	INSTANCE;
+	
+	private boolean onlyTrue;
+	private boolean onlyFalse;
 
 	@Override
-	public StringBuilder generateFragment(String name, JSONObject dataOptions) {
-		BoolDataOptions options = 
-				BoolDataOptionsParser.INSTANCE.parseDataOptions(dataOptions);
+	public StringBuilder generateFragment(String name, JSONObject options) {
+		onlyTrue = options.getBoolean("only_true");
+		onlyFalse = options.getBoolean("only_false");
 		
 		StringBuilder fragment = generateBegining(name);
-		fragment.append(generateBoolean(options));
+		fragment.append(generateBoolean());
 
 		return fragment;
 	}
 
-	private boolean generateBoolean(BoolDataOptions options) {
+	private boolean generateBoolean() {
 	
-		if (options.isOnlyTrue()) {
+		if (onlyTrue) {
 			return true;
-		} else if (options.isOnlyFalse()) {
+		} else if (onlyFalse) {
 			return false;
 		} else {
 			return rnd.nextBoolean();

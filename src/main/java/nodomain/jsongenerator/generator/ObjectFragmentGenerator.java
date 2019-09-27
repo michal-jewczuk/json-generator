@@ -1,28 +1,30 @@
 package nodomain.jsongenerator.generator;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
-import nodomain.jsongenerator.data.ObjectDataOptions;
-import nodomain.jsongenerator.data.parsers.ObjectDataOptionsParser;
 import nodomain.jsongenerator.main.JsonGenerator;
 
 public enum ObjectFragmentGenerator implements FragmentGenerator {
 	
 	INSTANCE;
+	
+	private int count;
+	private JSONArray structure;
 
 	@Override
-	public StringBuilder generateFragment(String name, JSONObject dataOptions) {
-		ObjectDataOptions options = 
-				ObjectDataOptionsParser.INSTANCE.parseDataOptions(dataOptions);
+	public StringBuilder generateFragment(String name, JSONObject options) {
+		count = options.getInt("count");
+		structure = options.getJSONArray("structure");
 		
 		StringBuilder fragment = generateBegining(name);
-		fragment.append(generateObjectFragment(options));
+		fragment.append(generateObjectFragment());
 		
 		return fragment;
 	}
 
-	private StringBuilder generateObjectFragment(ObjectDataOptions options) {
-		return JsonGenerator.generateJson(options.getCount(), options.getStructure(), true);
+	private StringBuilder generateObjectFragment() {
+		return JsonGenerator.generateJson(count, structure, true);
 	}
 
 }

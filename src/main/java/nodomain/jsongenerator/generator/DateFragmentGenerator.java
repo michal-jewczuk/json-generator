@@ -5,37 +5,41 @@ import java.time.format.DateTimeFormatter;
 
 import org.json.JSONObject;
 
-import nodomain.jsongenerator.data.DateDataOptions;
-import nodomain.jsongenerator.data.parsers.DateDataOptionsParser;
-
 public enum DateFragmentGenerator implements FragmentGenerator {
 	
 	INSTANCE;
+	
+	private LocalDate lowerBound;
+	private LocalDate upperBound;
+	private String outputPattern;
 
 	@Override
-	public StringBuilder generateFragment(String name, JSONObject dataOptions) {
-		DateDataOptions options = 
-				DateDataOptionsParser.INSTANCE.parseDataOptions(dataOptions);
+	public StringBuilder generateFragment(String name, JSONObject options) {
+		String lowerBoundString = options.getString("lower_bound");
+		String upperBoundString = options.getString("upper_bound");
+		outputPattern = options.getString("output_pattern");
+		lowerBound = LocalDate.parse(lowerBoundString);
+		upperBound = LocalDate.parse(upperBoundString);
 		
 		StringBuilder fragment = generateBegining(name);
 		fragment.append("\"");
-		fragment.append(generateDateFragment(options));
+		fragment.append(generateDateFragment());
 		fragment.append("\"");
 		
 		return fragment;
 	}
 
-	private String generateDateFragment(DateDataOptions options) {
+	private String generateDateFragment() {
 		LocalDate genDate;
 		
-		if (options.getLowerBound().equals(options.getUpperBound())) {
-			genDate = options.getLowerBound();
+		if (lowerBound.equals(upperBound)) {
+			genDate = lowerBound;
 		} else {
-			long days = options.getUpperBound().toEpochDay() - options.getLowerBound().toEpochDay();
+			long days = upperBound.toEpochDay() - lowerBound.toEpochDay();
 			long generated = rnd.longs(1, 0, days).sum();
-			genDate = options.getLowerBound().plusDays(generated);
+			genDate = lowerBound.plusDays(generated);
 		}
-		return genDate.format(DateTimeFormatter.ofPattern(options.getOutputPattern()));
+		return genDate.format(DateTimeFormatter.ofPattern(outputPattern));
 	}
 
 }

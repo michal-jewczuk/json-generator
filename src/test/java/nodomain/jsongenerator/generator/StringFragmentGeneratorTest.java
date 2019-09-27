@@ -43,7 +43,6 @@ public class StringFragmentGeneratorTest {
 		
 		assertThat(fragment.toString()).contains(name);
 		assertThat(fragment.toString().length()).isBetween(minLength + name.length() + 6, maxLength + name.length() + 6);
-		assertThat(extractValue(fragment.toString()).length()).isEqualTo(minLength + 2);
 	}
 	
 	@Test
