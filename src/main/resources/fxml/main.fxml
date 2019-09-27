@@ -38,7 +38,7 @@
 		    <TextField fx:id="outputNameField" 
 		        GridPane.columnIndex="1" GridPane.rowIndex="2"/>
 		        
-		    <CheckBox fx:id="chooseFile" text="Save to default location"
+		    <CheckBox fx:id="chooseFile" text="Choose save location"
      			GridPane.columnIndex="1" GridPane.rowIndex="3" />
 		</GridPane>
     </center>

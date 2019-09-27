@@ -62,10 +62,8 @@ public class MainController {
     	if (errors.size() == 0) {
     		try {
     			setGenerationParameters();
-    			String fileName = JsonGenerator.generateOutputFile(CURRENT_STRUCTURE, 
-											    				count, 
-											    				outputName, 
-											    				chooseFile.isSelected());
+    			String fileName = 
+    					JsonGenerator.generateOutputFile(CURRENT_STRUCTURE, count, outputName);
             	displayMessage("Data written to file: " + fileName);
     		} catch (IllegalArgumentException e) {
     			displayMessage(e.getMessage());
@@ -94,13 +92,14 @@ public class MainController {
 			throw new IllegalArgumentException(COUNT_TOO_SMALL);
 		}
 		
-		if (!chooseFile.isSelected()) {
+		if (chooseFile.isSelected()) {
     		StructureController.configureFileChooser(fileChooser, "Save generated json");
     		File file = fileChooser.showSaveDialog(validationBox.getScene().getWindow());
     		outputName = file.getAbsolutePath();
 		} else {
 			outputName = outputNameField.getText();
 		}
+		outputNameField.setText(outputName);
 	}
 	
 }

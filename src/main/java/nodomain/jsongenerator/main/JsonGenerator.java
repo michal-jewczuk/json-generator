@@ -9,15 +9,16 @@ import nodomain.jsongenerator.io.ReadWriteUtil;
 
 public class JsonGenerator {
 	
-	public static String generateOutputFile(String structure, int count, String outputName, boolean unique) {
+	private static final String EXT_JSON = ".json";
+	
+	public static String generateOutputFile(String structure, int count, String outputName) {
 		JSONArray arr = parseStructureFile(structure);
 		StringBuilder output = generateJson(count, arr, false);
-	
-		if (unique) {
-			return ReadWriteUtil.writeToUniqueFile(output, outputName);
-		} else {
-			return ReadWriteUtil.writeToFile(output, outputName);
+		if (!outputName.endsWith(EXT_JSON)) {
+			outputName = outputName + EXT_JSON;
 		}
+	
+		return ReadWriteUtil.writeToFile(output, outputName);
 	}
 	
 	public static JSONArray parseStructureFile(String structure) {
