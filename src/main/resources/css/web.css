@@ -1,0 +1,39 @@
+html {
+	font-family: Helvetica, Arial;
+}
+
+nav {
+	background-color: #ffffff;
+	border: 1px solid #000000;
+	padding: 5px;
+	position: fixed;
+	top: 90px;
+	right: 30px;
+	border-radius: 0.3rem;
+}
+
+nav a {
+	display: block;
+	margin-top: 5px;
+	
+}
+
+article {
+	max-width: 600px;
+	margin: 0 auto;
+}
+
+header {
+	background-color: #336699;
+	color: #ffffff;
+	text-align: center;
+	padding: 6px 0;
+	border-radius: 0.5rem;
+}
+
+h2 {
+	text-align: left;
+	margin-left: 20px;
+	color: #336699;
+	marin-top: 15px;
+}

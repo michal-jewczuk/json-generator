@@ -18,5 +18,6 @@
     <children>
         <Button text="General" onAction="#showMain" />
         <Button text="Structure" onAction="#showStructure" />
+        <Button text="Info" onAction="#showInfo" />
     </children>
 </TilePane>

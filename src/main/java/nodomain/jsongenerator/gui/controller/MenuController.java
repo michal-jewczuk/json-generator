@@ -21,6 +21,11 @@ public class MenuController {
 		SceneCreator.showMiddle(showStructure());
 	}
 	
+	@FXML
+	private void showInfo(ActionEvent event) {
+		SceneCreator.showMiddle(showInfo());
+	}
+	
 	public Pane showMainPage() {
 		BorderPane pane = null;
 		try {
@@ -35,6 +40,16 @@ public class MenuController {
 		BorderPane pane = null;
 		try {
 			pane = FXMLLoader.load(getClass().getResource("/fxml/structure.fxml"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}	
+		return pane;
+	}
+	
+	private Pane showInfo() {
+		BorderPane pane = null;
+		try {
+			pane = FXMLLoader.load(getClass().getResource("/fxml/info.fxml"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}	
