@@ -36,69 +36,6 @@ import nodomain.jsongenerator.validators.StringValidator;
 
 public enum DataType {
 
-	JSON_STRING {
-		@Override
-		public StringBuilder createJsonFragment(String name, JSONObject dataOptions) {
-			return StringFragmentGenerator.INSTANCE.generateFragment(name, dataOptions);
-		}
-
-		@Override
-		public StringBuilder convertToJSON(GridPane pane) {
-			return StringItemProcessor.INSTANCE.fromGuiToJSON(JSON_STRING, pane);
-		}
-
-		@Override
-		public Node createGUIElement(String name, JSONObject dataOptions, boolean showButtons) {
-			return StringElementGenerator.INSTANCE.generateElement(name, dataOptions, showButtons);
-		}
-
-		@Override
-		public boolean validate(JSONObject structure) throws ValidationException {
-			return StringValidator.INSTANCE.validateItem(structure);
-		}
-	},
-	JSON_NUMBER {
-		@Override
-		public StringBuilder createJsonFragment(String name, JSONObject dataOptions) {
-			return NumberFragmentGenerator.INSTANCE.generateFragment(name, dataOptions);
-		}
-
-		@Override
-		public StringBuilder convertToJSON(GridPane pane) {
-			return NumberItemProcessor.INSTANCE.fromGuiToJSON(JSON_NUMBER, pane);
-		}
-
-		@Override
-		public Node createGUIElement(String name, JSONObject dataOptions, boolean showButtons) {
-			return NumberElementGenerator.INSTANCE.generateElement(name, dataOptions, showButtons);
-		}
-
-		@Override
-		public boolean validate(JSONObject structure) throws ValidationException {
-			return NumberValidator.INSTANCE.validateItem(structure);
-		}
-	},
-	JSON_PATTERN {
-		@Override
-		public StringBuilder createJsonFragment(String name, JSONObject dataOptions) {
-			return PatternFragmentGenerator.INSTANCE.generateFragment(name, dataOptions);
-		}
-
-		@Override
-		public StringBuilder convertToJSON(GridPane pane) {
-			return PatternItemProcessor.INSTANCE.fromGuiToJSON(JSON_PATTERN, pane);
-		}
-
-		@Override
-		public Node createGUIElement(String name, JSONObject dataOptions, boolean showButtons) {
-			return PatternElementGenerator.INSTANCE.generateElement(name, dataOptions, showButtons);
-		}
-
-		@Override
-		public boolean validate(JSONObject structure) throws ValidationException {
-			return PatternValidator.INSTANCE.validateItem(structure);
-		}		
-	},
 	JSON_BOOL {
 		@Override
 		public StringBuilder createJsonFragment(String name, JSONObject dataOptions) {
@@ -119,7 +56,30 @@ public enum DataType {
 		public boolean validate(JSONObject structure) throws ValidationException {
 			return BoolValidator.INSTANCE.validateItem(structure);
 		}
-	},
+	},	
+
+	JSON_DATE {
+		@Override
+		public StringBuilder createJsonFragment(String name, JSONObject dataOptions) {
+			return DateFragmentGenerator.INSTANCE.generateFragment(name, dataOptions);
+		}
+
+		@Override
+		public StringBuilder convertToJSON(GridPane pane) {
+			return DateItemProcessor.INSTANCE.fromGuiToJSON(JSON_DATE, pane);
+		}
+
+		@Override
+		public Node createGUIElement(String name, JSONObject dataOptions, boolean showButtons) {
+			return DateElementGenerator.INSTANCE.generateElement(name, dataOptions, showButtons);
+		}
+
+		@Override
+		public boolean validate(JSONObject structure) throws ValidationException {
+			return DateValidator.INSTANCE.validateItem(structure);
+		}
+	},	
+	
 	JSON_DOUBLE {
 		@Override
 		public StringBuilder createJsonFragment(String name, JSONObject dataOptions) {
@@ -141,27 +101,29 @@ public enum DataType {
 			return DoubleValidator.INSTANCE.validateItem(structure);
 		}
 	},
-	JSON_DATE {
+	
+	JSON_NUMBER {
 		@Override
 		public StringBuilder createJsonFragment(String name, JSONObject dataOptions) {
-			return DateFragmentGenerator.INSTANCE.generateFragment(name, dataOptions);
+			return NumberFragmentGenerator.INSTANCE.generateFragment(name, dataOptions);
 		}
 
 		@Override
 		public StringBuilder convertToJSON(GridPane pane) {
-			return DateItemProcessor.INSTANCE.fromGuiToJSON(JSON_DATE, pane);
+			return NumberItemProcessor.INSTANCE.fromGuiToJSON(JSON_NUMBER, pane);
 		}
 
 		@Override
 		public Node createGUIElement(String name, JSONObject dataOptions, boolean showButtons) {
-			return DateElementGenerator.INSTANCE.generateElement(name, dataOptions, showButtons);
+			return NumberElementGenerator.INSTANCE.generateElement(name, dataOptions, showButtons);
 		}
 
 		@Override
 		public boolean validate(JSONObject structure) throws ValidationException {
-			return DateValidator.INSTANCE.validateItem(structure);
+			return NumberValidator.INSTANCE.validateItem(structure);
 		}
 	},
+	
 	JSON_OBJECT {
 		@Override
 		public StringBuilder createJsonFragment(String name, JSONObject dataOptions) {
@@ -181,6 +143,50 @@ public enum DataType {
 		@Override
 		public boolean validate(JSONObject structure) throws ValidationException {
 			return ObjectValidator.INSTANCE.validateItem(structure);
+		}
+	},
+	
+	JSON_PATTERN {
+		@Override
+		public StringBuilder createJsonFragment(String name, JSONObject dataOptions) {
+			return PatternFragmentGenerator.INSTANCE.generateFragment(name, dataOptions);
+		}
+
+		@Override
+		public StringBuilder convertToJSON(GridPane pane) {
+			return PatternItemProcessor.INSTANCE.fromGuiToJSON(JSON_PATTERN, pane);
+		}
+
+		@Override
+		public Node createGUIElement(String name, JSONObject dataOptions, boolean showButtons) {
+			return PatternElementGenerator.INSTANCE.generateElement(name, dataOptions, showButtons);
+		}
+
+		@Override
+		public boolean validate(JSONObject structure) throws ValidationException {
+			return PatternValidator.INSTANCE.validateItem(structure);
+		}		
+	},	
+	
+	JSON_STRING {
+		@Override
+		public StringBuilder createJsonFragment(String name, JSONObject dataOptions) {
+			return StringFragmentGenerator.INSTANCE.generateFragment(name, dataOptions);
+		}
+
+		@Override
+		public StringBuilder convertToJSON(GridPane pane) {
+			return StringItemProcessor.INSTANCE.fromGuiToJSON(JSON_STRING, pane);
+		}
+
+		@Override
+		public Node createGUIElement(String name, JSONObject dataOptions, boolean showButtons) {
+			return StringElementGenerator.INSTANCE.generateElement(name, dataOptions, showButtons);
+		}
+
+		@Override
+		public boolean validate(JSONObject structure) throws ValidationException {
+			return StringValidator.INSTANCE.validateItem(structure);
 		}
 	};
 	
