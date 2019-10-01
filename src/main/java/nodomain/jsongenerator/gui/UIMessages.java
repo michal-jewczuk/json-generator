@@ -31,4 +31,5 @@ public class UIMessages {
 	public static final String MESSAGE_CLEARED = "The structure was cleared.";
 	public static final String MESSAGE_SAVED = "The structure was saved to a file: ";
 	public static final String MESSAGE_LOADED = "The structure was loaded.";
+	public static final String MESSAGE_VALIDATION_ERRORS = "There where validation errors:";
 }

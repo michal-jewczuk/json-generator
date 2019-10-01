@@ -16,6 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import nodomain.jsongenerator.config.AppConfig;
+import nodomain.jsongenerator.gui.UIMessages;
 import nodomain.jsongenerator.gui.controller.StructureController;
 
 public enum ComponentGenerator {
@@ -68,7 +69,7 @@ public enum ComponentGenerator {
 	
 	public List<Node> displayValidationErrors(Map<String, String> errors) {
 		List<Node> nodes = new ArrayList<>();
-		nodes.add(new Label("There where validation errors"));
+		nodes.add(new Label(UIMessages.MESSAGE_VALIDATION_ERRORS));
 		nodes.add(new Separator());
 		
 		VBox messages = new VBox(12);
