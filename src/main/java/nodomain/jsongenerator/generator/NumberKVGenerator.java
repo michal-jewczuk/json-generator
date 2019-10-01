@@ -2,7 +2,7 @@ package nodomain.jsongenerator.generator;
 
 import org.json.JSONObject;
 
-public enum NumberFragmentGenerator implements FragmentGenerator {
+public enum NumberKVGenerator implements KVGenerator {
 	
 	INSTANCE;
 	
@@ -10,17 +10,17 @@ public enum NumberFragmentGenerator implements FragmentGenerator {
 	private long upperBound;
 
 	@Override
-	public StringBuilder generateFragment(String name, JSONObject options) {
+	public StringBuilder generateKeyValue(String name, JSONObject options) {
 		lowerBound = options.getLong("lower_bound");
 		upperBound = options.getLong("upper_bound");
 		
-		StringBuilder fragment = generateBegining(name);
-		fragment.append(generateNumber());
+		StringBuilder fragment = generateKey(name);
+		fragment.append(generateValue());
 
 		return fragment;
 	}
 	
-	private long generateNumber() {
+	private long generateValue() {
 		if (lowerBound == upperBound) {
 			return lowerBound;
 		}

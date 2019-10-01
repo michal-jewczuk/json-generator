@@ -20,7 +20,7 @@ public class DoubleFragmentGeneratorTest {
 							+ ", \"upper_bound\": " + upperBound +  ", \"precision\": " + precision + "}";
 		JSONObject json_object = new JSONObject(json_string);
 		
-		StringBuilder result = DoubleFragmentGenerator.INSTANCE.generateFragment(name, json_object);
+		StringBuilder result = DoubleKVGenerator.INSTANCE.generateKeyValue(name, json_object);
 		String extracted = extractString(result.toString());
 		String[] parts = extracted.split("\\.");
 		
@@ -41,7 +41,7 @@ public class DoubleFragmentGeneratorTest {
 		List<Double> doubles = new ArrayList<>();
 		
 		for (int i = 0; i < 100000; i++) {
-			StringBuilder result = DoubleFragmentGenerator.INSTANCE.generateFragment(name, json_object);
+			StringBuilder result = DoubleKVGenerator.INSTANCE.generateKeyValue(name, json_object);
 			String extracted = extractString(result.toString());
 			doubles.add(Double.parseDouble(extracted));
 		}

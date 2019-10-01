@@ -5,13 +5,13 @@ import org.json.JSONObject;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 import nodomain.jsongenerator.exceptions.ValidationException;
-import nodomain.jsongenerator.generator.BoolFragmentGenerator;
-import nodomain.jsongenerator.generator.DateFragmentGenerator;
-import nodomain.jsongenerator.generator.DoubleFragmentGenerator;
-import nodomain.jsongenerator.generator.NumberFragmentGenerator;
-import nodomain.jsongenerator.generator.ObjectFragmentGenerator;
-import nodomain.jsongenerator.generator.PatternFragmentGenerator;
-import nodomain.jsongenerator.generator.StringFragmentGenerator;
+import nodomain.jsongenerator.generator.BoolKVGenerator;
+import nodomain.jsongenerator.generator.DateKVGenerator;
+import nodomain.jsongenerator.generator.DoubleKVGenerator;
+import nodomain.jsongenerator.generator.NumberKVGenerator;
+import nodomain.jsongenerator.generator.ObjectKVGenerator;
+import nodomain.jsongenerator.generator.PatternKVGenerator;
+import nodomain.jsongenerator.generator.StringKVGenerator;
 import nodomain.jsongenerator.gui.generators.BoolElementGenerator;
 import nodomain.jsongenerator.gui.generators.DateElementGenerator;
 import nodomain.jsongenerator.gui.generators.DoubleElementGenerator;
@@ -39,7 +39,7 @@ public enum DataType {
 	JSON_BOOL {
 		@Override
 		public StringBuilder createJsonFragment(String name, JSONObject dataOptions) {
-			return BoolFragmentGenerator.INSTANCE.generateFragment(name, dataOptions);
+			return BoolKVGenerator.INSTANCE.generateKeyValue(name, dataOptions);
 		}
 
 		@Override
@@ -61,7 +61,7 @@ public enum DataType {
 	JSON_DATE {
 		@Override
 		public StringBuilder createJsonFragment(String name, JSONObject dataOptions) {
-			return DateFragmentGenerator.INSTANCE.generateFragment(name, dataOptions);
+			return DateKVGenerator.INSTANCE.generateKeyValue(name, dataOptions);
 		}
 
 		@Override
@@ -83,7 +83,7 @@ public enum DataType {
 	JSON_DOUBLE {
 		@Override
 		public StringBuilder createJsonFragment(String name, JSONObject dataOptions) {
-			return DoubleFragmentGenerator.INSTANCE.generateFragment(name, dataOptions);
+			return DoubleKVGenerator.INSTANCE.generateKeyValue(name, dataOptions);
 		}
 
 		@Override
@@ -105,7 +105,7 @@ public enum DataType {
 	JSON_NUMBER {
 		@Override
 		public StringBuilder createJsonFragment(String name, JSONObject dataOptions) {
-			return NumberFragmentGenerator.INSTANCE.generateFragment(name, dataOptions);
+			return NumberKVGenerator.INSTANCE.generateKeyValue(name, dataOptions);
 		}
 
 		@Override
@@ -127,7 +127,7 @@ public enum DataType {
 	JSON_OBJECT {
 		@Override
 		public StringBuilder createJsonFragment(String name, JSONObject dataOptions) {
-			return ObjectFragmentGenerator.INSTANCE.generateFragment(name, dataOptions);
+			return ObjectKVGenerator.INSTANCE.generateKeyValue(name, dataOptions);
 		}
 
 		@Override
@@ -149,7 +149,7 @@ public enum DataType {
 	JSON_PATTERN {
 		@Override
 		public StringBuilder createJsonFragment(String name, JSONObject dataOptions) {
-			return PatternFragmentGenerator.INSTANCE.generateFragment(name, dataOptions);
+			return PatternKVGenerator.INSTANCE.generateKeyValue(name, dataOptions);
 		}
 
 		@Override
@@ -171,7 +171,7 @@ public enum DataType {
 	JSON_STRING {
 		@Override
 		public StringBuilder createJsonFragment(String name, JSONObject dataOptions) {
-			return StringFragmentGenerator.INSTANCE.generateFragment(name, dataOptions);
+			return StringKVGenerator.INSTANCE.generateKeyValue(name, dataOptions);
 		}
 
 		@Override

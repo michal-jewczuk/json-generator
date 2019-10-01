@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 
 import org.json.JSONObject;
 
-public enum DateFragmentGenerator implements FragmentGenerator {
+public enum DateKVGenerator implements KVGenerator {
 	
 	INSTANCE;
 	
@@ -14,22 +14,22 @@ public enum DateFragmentGenerator implements FragmentGenerator {
 	private String outputPattern;
 
 	@Override
-	public StringBuilder generateFragment(String name, JSONObject options) {
+	public StringBuilder generateKeyValue(String name, JSONObject options) {
 		String lowerBoundString = options.getString("lower_bound");
 		String upperBoundString = options.getString("upper_bound");
 		outputPattern = options.getString("output_pattern");
 		lowerBound = LocalDate.parse(lowerBoundString);
 		upperBound = LocalDate.parse(upperBoundString);
 		
-		StringBuilder fragment = generateBegining(name);
+		StringBuilder fragment = generateKey(name);
 		fragment.append("\"");
-		fragment.append(generateDateFragment());
+		fragment.append(generateValue());
 		fragment.append("\"");
 		
 		return fragment;
 	}
 
-	private String generateDateFragment() {
+	private String generateValue() {
 		LocalDate genDate;
 		
 		if (lowerBound.equals(upperBound)) {

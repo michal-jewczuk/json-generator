@@ -16,7 +16,7 @@ public class PatternFragmenGeneratorTest {
 		String json_string = "{\"pattern\": " + pattern + ", \"connector\": " + connector +  ", \"all_cap\": " + allCap + "}";
 		JSONObject json_object = new JSONObject(json_string);
 		
-		StringBuilder result = PatternFragmentGenerator.INSTANCE.generateFragment(name, json_object);
+		StringBuilder result = PatternKVGenerator.INSTANCE.generateKeyValue(name, json_object);
 		String extracted = extractString(result.toString());
 		
 		assertThat(extracted).isEqualTo(extracted.toUpperCase());
@@ -33,7 +33,7 @@ public class PatternFragmenGeneratorTest {
 		String json_string = "{\"pattern\": " + pattern + ", \"connector\": " + connector +  ", \"all_cap\": " + allCap + "}";
 		JSONObject json_object = new JSONObject(json_string);
 		
-		StringBuilder result = PatternFragmentGenerator.INSTANCE.generateFragment(name, json_object);
+		StringBuilder result = PatternKVGenerator.INSTANCE.generateKeyValue(name, json_object);
 		String extracted = extractString(result.toString());
 		String[] splitted = extracted.toString().split(connector);	
 		

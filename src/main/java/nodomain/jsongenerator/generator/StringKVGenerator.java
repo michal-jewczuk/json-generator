@@ -5,7 +5,7 @@ import org.json.JSONObject;
 import nodomain.jsongenerator.config.AppConfig;
 import nodomain.jsongenerator.util.StringUtil;
 
-public enum StringFragmentGenerator implements FragmentGenerator {
+public enum StringKVGenerator implements KVGenerator {
 
 	INSTANCE;
 	
@@ -15,21 +15,21 @@ public enum StringFragmentGenerator implements FragmentGenerator {
 	private boolean allCapital;
 
 	@Override
-	public StringBuilder generateFragment(String name, JSONObject options) {
+	public StringBuilder generateKeyValue(String name, JSONObject options) {
 		minLength = options.getInt("min_length");
 		maxLength = options.getInt("max_length");
 		firstCapital = options.getBoolean("first_cap");
 		allCapital = options.getBoolean("all_cap");
 			
-		StringBuilder fragment = generateBegining(name);
+		StringBuilder fragment = generateKey(name);
 		fragment.append("\"");
-		fragment.append(generateStringFragment());
+		fragment.append(generateValue());
 		fragment.append("\"");
 		
 		return fragment;
 	}
 
-	private StringBuilder generateStringFragment() {		
+	private StringBuilder generateValue() {		
 		StringBuilder fragment = new StringBuilder();
 		String generated = StringUtil.generateStringFragment(generateLength(), AppConfig.STRING_SYMBOLS);
 	

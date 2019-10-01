@@ -16,7 +16,7 @@ public class DateFragmentGeneratorTest {
 				+ ", \"upper_bound\": " + upperBound +  ", \"output_pattern\": " + outputPattern + "}";
 		JSONObject json_object = new JSONObject(json_string);
 		
-		StringBuilder generated = DateFragmentGenerator.INSTANCE.generateFragment(name, json_object);
+		StringBuilder generated = DateKVGenerator.INSTANCE.generateKeyValue(name, json_object);
 		String parsed = extractString(generated.toString());
 		
 		assertThat(generated.toString().length()).isEqualTo(name.length() + 6 + outputPattern.length());
@@ -33,7 +33,7 @@ public class DateFragmentGeneratorTest {
 				+ ", \"upper_bound\": " + upperBound +  ", \"output_pattern\": " + outputPattern + "}";
 		JSONObject json_object = new JSONObject(json_string);
 		
-		StringBuilder generated = DateFragmentGenerator.INSTANCE.generateFragment(name, json_object);
+		StringBuilder generated = DateKVGenerator.INSTANCE.generateKeyValue(name, json_object);
 		String parsed = extractString(generated.toString());
 		
 		assertThat(parsed).isEqualTo("2012");
@@ -49,7 +49,7 @@ public class DateFragmentGeneratorTest {
 				+ ", \"upper_bound\": " + upperBound +  ", \"output_pattern\": " + outputPattern + "}";
 		JSONObject json_object = new JSONObject(json_string);
 		
-		StringBuilder generated = DateFragmentGenerator.INSTANCE.generateFragment(name, json_object);
+		StringBuilder generated = DateKVGenerator.INSTANCE.generateKeyValue(name, json_object);
 		String parsed = extractString(generated.toString());
 		
 		assertThat(parsed).isEqualTo("07 2035");		

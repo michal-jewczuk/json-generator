@@ -5,7 +5,7 @@ import java.math.RoundingMode;
 
 import org.json.JSONObject;
 
-public enum DoubleFragmentGenerator implements FragmentGenerator {
+public enum DoubleKVGenerator implements KVGenerator {
 	
 	INSTANCE;
 	
@@ -14,18 +14,18 @@ public enum DoubleFragmentGenerator implements FragmentGenerator {
 	private int precision;
 
 	@Override
-	public StringBuilder generateFragment(String name, JSONObject options) {
+	public StringBuilder generateKeyValue(String name, JSONObject options) {
 		lowerBound = options.getDouble("lower_bound");
 		upperBound = options.getDouble("upper_bound");
 		precision = options.getInt("precision");
 		
-		StringBuilder fragment = generateBegining(name);
-		fragment.append(generateDoubleFragment());
+		StringBuilder fragment = generateKey(name);
+		fragment.append(generateValue());
 		
 		return fragment;
 	}
 
-	private BigDecimal generateDoubleFragment() {
+	private BigDecimal generateValue() {
 		double result = rnd.doubles(1L, lowerBound, upperBound).sum();
 		BigDecimal bd = BigDecimal.valueOf(result);
 		bd = bd.setScale(precision, RoundingMode.DOWN);

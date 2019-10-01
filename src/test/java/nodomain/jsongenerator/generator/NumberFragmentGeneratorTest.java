@@ -15,7 +15,7 @@ public class NumberFragmentGeneratorTest {
 		String json_string = "{\"lower_bound\": " + lowerBound + ", \"upper_bound\": " + upperBound + "}";
 		JSONObject json_object = new JSONObject(json_string);
 		
-		StringBuilder result = NumberFragmentGenerator.INSTANCE.generateFragment(name, json_object);
+		StringBuilder result = NumberKVGenerator.INSTANCE.generateKeyValue(name, json_object);
 		
 		assertThat(result.toString()).contains(name);
 		assertThat(extractLong(result.toString())).isEqualTo(lowerBound);
@@ -29,7 +29,7 @@ public class NumberFragmentGeneratorTest {
 		String json_string = "{\"lower_bound\": " + lowerBound + ", \"upper_bound\": " + upperBound + "}";
 		JSONObject json_object = new JSONObject(json_string);
 		
-		StringBuilder result = NumberFragmentGenerator.INSTANCE.generateFragment(name, json_object);
+		StringBuilder result = NumberKVGenerator.INSTANCE.generateKeyValue(name, json_object);
 		
 		assertThat(extractLong(result.toString())).isBetween(lowerBound, upperBound);
 	}

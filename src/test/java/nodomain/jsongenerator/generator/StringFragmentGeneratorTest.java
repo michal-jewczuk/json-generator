@@ -21,7 +21,7 @@ public class StringFragmentGeneratorTest {
 				+ ", \"first_cap\": " + firstCapital + ", \"all_cap\": " + allCapital + "}";
 		JSONObject json_object = new JSONObject(json_string);
 		
-		StringBuilder fragment = StringFragmentGenerator.INSTANCE.generateFragment(name, json_object);
+		StringBuilder fragment = StringKVGenerator.INSTANCE.generateKeyValue(name, json_object);
 		
 		assertThat(fragment.toString()).contains(name);
 		assertThat(fragment.toString().length()).isEqualTo(minLength + name.length() + 6);
@@ -39,7 +39,7 @@ public class StringFragmentGeneratorTest {
 				+ ", \"first_cap\": " + firstCapital + ", \"all_cap\": " + allCapital + "}";
 		JSONObject json_object = new JSONObject(json_string);
 		
-		StringBuilder fragment = StringFragmentGenerator.INSTANCE.generateFragment(name, json_object);
+		StringBuilder fragment = StringKVGenerator.INSTANCE.generateKeyValue(name, json_object);
 		
 		assertThat(fragment.toString()).contains(name);
 		assertThat(fragment.toString().length()).isBetween(minLength + name.length() + 6, maxLength + name.length() + 6);
@@ -56,7 +56,7 @@ public class StringFragmentGeneratorTest {
 				+ ", \"first_cap\": " + firstCapital + ", \"all_cap\": " + allCapital + "}";
 		JSONObject json_object = new JSONObject(json_string);
 		
-		StringBuilder fragment = StringFragmentGenerator.INSTANCE.generateFragment(name, json_object);
+		StringBuilder fragment = StringKVGenerator.INSTANCE.generateKeyValue(name, json_object);
 		String result = extractValue(fragment.toString());
 
 		assertThat(result).isEqualTo(result.toUpperCase());
@@ -73,7 +73,7 @@ public class StringFragmentGeneratorTest {
 				+ ", \"first_cap\": " + firstCapital + ", \"all_cap\": " + allCapital + "}";
 		JSONObject json_object = new JSONObject(json_string);
 		
-		StringBuilder fragment = StringFragmentGenerator.INSTANCE.generateFragment(name, json_object);
+		StringBuilder fragment = StringKVGenerator.INSTANCE.generateKeyValue(name, json_object);
 		String result = extractValue(fragment.toString());
 		List<String> letters = new ArrayList<>();
 		for (int i = 1, j = 2; i < minLength + 1; i++, j++) {
@@ -96,7 +96,7 @@ public class StringFragmentGeneratorTest {
 				+ ", \"first_cap\": " + firstCapital + ", \"all_cap\": " + allCapital + "}";
 		JSONObject json_object = new JSONObject(json_string);
 		
-		StringBuilder fragment = StringFragmentGenerator.INSTANCE.generateFragment(name, json_object);
+		StringBuilder fragment = StringKVGenerator.INSTANCE.generateKeyValue(name, json_object);
 		String result = extractValue(fragment.toString());
 		List<String> letters = new ArrayList<>();
 		for (int i = 1, j = 2; i < minLength + 1; i++, j++) {

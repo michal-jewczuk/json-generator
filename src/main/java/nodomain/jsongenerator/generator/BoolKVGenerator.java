@@ -2,7 +2,7 @@ package nodomain.jsongenerator.generator;
 
 import org.json.JSONObject;
 
-public enum BoolFragmentGenerator implements FragmentGenerator {
+public enum BoolKVGenerator implements KVGenerator {
 	
 	INSTANCE;
 	
@@ -10,17 +10,17 @@ public enum BoolFragmentGenerator implements FragmentGenerator {
 	private boolean onlyFalse;
 
 	@Override
-	public StringBuilder generateFragment(String name, JSONObject options) {
+	public StringBuilder generateKeyValue(String name, JSONObject options) {
 		onlyTrue = options.getBoolean("only_true");
 		onlyFalse = options.getBoolean("only_false");
 		
-		StringBuilder fragment = generateBegining(name);
-		fragment.append(generateBoolean());
+		StringBuilder fragment = generateKey(name);
+		fragment.append(generateValue());
 
 		return fragment;
 	}
 
-	private boolean generateBoolean() {
+	private boolean generateValue() {
 	
 		if (onlyTrue) {
 			return true;

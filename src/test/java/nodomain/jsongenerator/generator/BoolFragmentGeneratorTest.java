@@ -14,7 +14,7 @@ public class BoolFragmentGeneratorTest {
 		String json_string = "{\"only_true\": " + onlyTrue + ", \"only_false\": " + onlyFalse + "}";
 		JSONObject json_object = new JSONObject(json_string);
 		
-		StringBuilder result = BoolFragmentGenerator.INSTANCE.generateFragment(name, json_object);
+		StringBuilder result = BoolKVGenerator.INSTANCE.generateKeyValue(name, json_object);
 		boolean parsed = extractBool(result.toString());
 		
 		assertThat(parsed).isTrue();
@@ -28,7 +28,7 @@ public class BoolFragmentGeneratorTest {
 		String json_string = "{\"only_true\": " + onlyTrue + ", \"only_false\": " + onlyFalse + "}";
 		JSONObject json_object = new JSONObject(json_string);
 		
-		StringBuilder result = BoolFragmentGenerator.INSTANCE.generateFragment(name, json_object);
+		StringBuilder result = BoolKVGenerator.INSTANCE.generateKeyValue(name, json_object);
 		boolean parsed = extractBool(result.toString());
 		
 		assertThat(parsed).isFalse();

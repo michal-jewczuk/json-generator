@@ -5,7 +5,7 @@ import org.json.JSONObject;
 
 import nodomain.jsongenerator.main.JsonGenerator;
 
-public enum ObjectFragmentGenerator implements FragmentGenerator {
+public enum ObjectKVGenerator implements KVGenerator {
 	
 	INSTANCE;
 	
@@ -13,17 +13,17 @@ public enum ObjectFragmentGenerator implements FragmentGenerator {
 	private JSONArray structure;
 
 	@Override
-	public StringBuilder generateFragment(String name, JSONObject options) {
+	public StringBuilder generateKeyValue(String name, JSONObject options) {
 		count = options.getInt("count");
 		structure = options.getJSONArray("structure");
 		
-		StringBuilder fragment = generateBegining(name);
-		fragment.append(generateObjectFragment());
+		StringBuilder fragment = generateKey(name);
+		fragment.append(generateValue());
 		
 		return fragment;
 	}
 
-	private StringBuilder generateObjectFragment() {
+	private StringBuilder generateValue() {
 		return JsonGenerator.generateJson(count, structure, true);
 	}
 
