@@ -18,6 +18,9 @@ import javafx.scene.layout.GridPane;
 import nodomain.jsongenerator.gui.UIMessages;
 import nodomain.jsongenerator.gui.controller.AddController;
 import nodomain.jsongenerator.gui.controller.StructureController;
+import nodomain.jsongenerator.gui.generators.common.ComponentGenerator;
+import nodomain.jsongenerator.gui.generators.common.ElementGenerator;
+import nodomain.jsongenerator.gui.generators.common.PanelGenerator;
 
 public enum ObjectElementGenerator implements ElementGenerator {
 	

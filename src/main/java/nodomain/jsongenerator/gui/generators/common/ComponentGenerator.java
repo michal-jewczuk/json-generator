@@ -1,4 +1,4 @@
-package nodomain.jsongenerator.gui.generators;
+package nodomain.jsongenerator.gui.generators.common;
 
 import java.util.ArrayList;
 import java.util.List;

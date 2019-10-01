@@ -12,7 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import nodomain.jsongenerator.config.AppConfig;
 import nodomain.jsongenerator.gui.UIMessages;
-import nodomain.jsongenerator.gui.generators.ComponentGenerator;
+import nodomain.jsongenerator.gui.generators.common.ComponentGenerator;
 import nodomain.jsongenerator.io.ReadWriteUtil;
 import nodomain.jsongenerator.main.JsonGenerator;
 import nodomain.jsongenerator.validators.MainValidator;

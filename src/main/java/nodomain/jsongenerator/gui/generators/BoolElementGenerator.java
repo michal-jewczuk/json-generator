@@ -7,6 +7,8 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import nodomain.jsongenerator.gui.UIMessages;
+import nodomain.jsongenerator.gui.generators.common.ComponentGenerator;
+import nodomain.jsongenerator.gui.generators.common.ElementGenerator;
 
 public enum BoolElementGenerator implements ElementGenerator {
 	
