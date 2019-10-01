@@ -4,7 +4,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import nodomain.jsongenerator.gui.processors.common.ItemProcessor;
 
-public enum DoubleItemProcessor implements ItemProcessor {
+public enum DateProcessor implements ItemProcessor {
 	
 	INSTANCE;
 
@@ -12,12 +12,12 @@ public enum DoubleItemProcessor implements ItemProcessor {
 	public StringBuilder extractOptionsFromGUI(GridPane pane) {
 		String lowerBound = ((TextField) pane.getChildren().get(3)).getText();
 		String upperBound = ((TextField) pane.getChildren().get(5)).getText();
-		String precision = ((TextField) pane.getChildren().get(7)).getText();
+		String pattern = ((TextField) pane.getChildren().get(7)).getText();
 		
 		StringBuilder sb = new StringBuilder("{");
-		sb.append("\"lower_bound\": ").append(lowerBound).append(",");
-		sb.append("\"upper_bound\": ").append(upperBound).append(",");
-		sb.append("\"precision\": ").append(precision);
+		sb.append("\"lower_bound\": ").append("\"").append(lowerBound).append("\"").append(",");
+		sb.append("\"upper_bound\": ").append("\"").append(upperBound).append("\"").append(",");
+		sb.append("\"output_pattern\": ").append("\"").append(pattern).append("\"");
 		sb.append("}");
 		
 		return sb;

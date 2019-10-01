@@ -5,7 +5,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import nodomain.jsongenerator.gui.processors.common.ItemProcessor;
 
-public enum StringItemProcessor implements ItemProcessor {
+public enum StringProcessor implements ItemProcessor {
 	
 	INSTANCE;
 

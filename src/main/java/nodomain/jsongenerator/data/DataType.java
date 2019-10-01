@@ -19,13 +19,13 @@ import nodomain.jsongenerator.gui.generators.NumberGenerator;
 import nodomain.jsongenerator.gui.generators.ObjectGenerator;
 import nodomain.jsongenerator.gui.generators.PatternGenerator;
 import nodomain.jsongenerator.gui.generators.StringGenerator;
-import nodomain.jsongenerator.gui.processors.BoolItemProcessor;
-import nodomain.jsongenerator.gui.processors.DateItemProcessor;
-import nodomain.jsongenerator.gui.processors.DoubleItemProcessor;
-import nodomain.jsongenerator.gui.processors.NumberItemProcessor;
-import nodomain.jsongenerator.gui.processors.ObjectItemProcessor;
-import nodomain.jsongenerator.gui.processors.PatternItemProcessor;
-import nodomain.jsongenerator.gui.processors.StringItemProcessor;
+import nodomain.jsongenerator.gui.processors.BoolProcessor;
+import nodomain.jsongenerator.gui.processors.DateProcessor;
+import nodomain.jsongenerator.gui.processors.DoubleProcessor;
+import nodomain.jsongenerator.gui.processors.NumberProcessor;
+import nodomain.jsongenerator.gui.processors.ObjectProcessor;
+import nodomain.jsongenerator.gui.processors.PatternProcessor;
+import nodomain.jsongenerator.gui.processors.StringProcessor;
 import nodomain.jsongenerator.validators.BoolValidator;
 import nodomain.jsongenerator.validators.DateValidator;
 import nodomain.jsongenerator.validators.DoubleValidator;
@@ -44,7 +44,7 @@ public enum DataType {
 
 		@Override
 		public StringBuilder convertToJSON(GridPane pane) {
-			return BoolItemProcessor.INSTANCE.fromGuiToJSON(JSON_BOOL, pane);
+			return BoolProcessor.INSTANCE.fromGuiToJSON(JSON_BOOL, pane);
 		}
 
 		@Override
@@ -66,7 +66,7 @@ public enum DataType {
 
 		@Override
 		public StringBuilder convertToJSON(GridPane pane) {
-			return DateItemProcessor.INSTANCE.fromGuiToJSON(JSON_DATE, pane);
+			return DateProcessor.INSTANCE.fromGuiToJSON(JSON_DATE, pane);
 		}
 
 		@Override
@@ -88,7 +88,7 @@ public enum DataType {
 
 		@Override
 		public StringBuilder convertToJSON(GridPane pane) {
-			return DoubleItemProcessor.INSTANCE.fromGuiToJSON(JSON_DOUBLE, pane);
+			return DoubleProcessor.INSTANCE.fromGuiToJSON(JSON_DOUBLE, pane);
 		}
 
 		@Override
@@ -110,7 +110,7 @@ public enum DataType {
 
 		@Override
 		public StringBuilder convertToJSON(GridPane pane) {
-			return NumberItemProcessor.INSTANCE.fromGuiToJSON(JSON_NUMBER, pane);
+			return NumberProcessor.INSTANCE.fromGuiToJSON(JSON_NUMBER, pane);
 		}
 
 		@Override
@@ -132,7 +132,7 @@ public enum DataType {
 
 		@Override
 		public StringBuilder convertToJSON(GridPane pane) {
-			return ObjectItemProcessor.INSTANCE.fromGuiToJSON(JSON_OBJECT, pane);
+			return ObjectProcessor.INSTANCE.fromGuiToJSON(JSON_OBJECT, pane);
 		}
 
 		@Override
@@ -154,7 +154,7 @@ public enum DataType {
 
 		@Override
 		public StringBuilder convertToJSON(GridPane pane) {
-			return PatternItemProcessor.INSTANCE.fromGuiToJSON(JSON_PATTERN, pane);
+			return PatternProcessor.INSTANCE.fromGuiToJSON(JSON_PATTERN, pane);
 		}
 
 		@Override
@@ -176,7 +176,7 @@ public enum DataType {
 
 		@Override
 		public StringBuilder convertToJSON(GridPane pane) {
-			return StringItemProcessor.INSTANCE.fromGuiToJSON(JSON_STRING, pane);
+			return StringProcessor.INSTANCE.fromGuiToJSON(JSON_STRING, pane);
 		}
 
 		@Override

@@ -4,7 +4,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.layout.GridPane;
 import nodomain.jsongenerator.gui.processors.common.ItemProcessor;
 
-public enum BoolItemProcessor implements ItemProcessor {
+public enum BoolProcessor implements ItemProcessor {
 	
 	INSTANCE;
 

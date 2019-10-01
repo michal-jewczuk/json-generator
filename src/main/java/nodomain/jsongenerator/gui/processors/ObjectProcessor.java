@@ -11,7 +11,7 @@ import nodomain.jsongenerator.data.DataType;
 import nodomain.jsongenerator.gui.processors.common.ItemProcessor;
 import nodomain.jsongenerator.gui.processors.common.MainProcessor;
 
-public enum ObjectItemProcessor implements ItemProcessor {
+public enum ObjectProcessor implements ItemProcessor {
 	
 	INSTANCE;
 
