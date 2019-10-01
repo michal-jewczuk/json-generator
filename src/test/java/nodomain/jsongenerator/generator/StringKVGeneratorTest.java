@@ -8,7 +8,7 @@ import java.util.List;
 import org.json.JSONObject;
 import org.junit.Test;
 
-public class StringFragmentGeneratorTest {
+public class StringKVGeneratorTest {
 
 	@Test
 	public void shouldGenerateStringOfGivenLength() {

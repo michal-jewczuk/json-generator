@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.json.JSONObject;
 import org.junit.Test;
 
-public class BoolFragmentGeneratorTest {
+public class BoolKVGeneratorTest {
 
 	@Test
 	public void shouldGenerateOnlyTrue() {
