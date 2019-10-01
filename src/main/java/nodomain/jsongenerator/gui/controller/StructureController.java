@@ -15,6 +15,7 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import nodomain.jsongenerator.config.AppConfig;
+import nodomain.jsongenerator.gui.UIMessages;
 import nodomain.jsongenerator.gui.generators.ComponentGenerator;
 import nodomain.jsongenerator.gui.generators.PanelGenerator;
 import nodomain.jsongenerator.gui.processors.MainProcessor;
@@ -43,10 +44,10 @@ public class StructureController {
 		StringBuilder structure = processCurrentStructure(e);
 		Map<String, String> errors = MainValidator.INSTANCE.validateStructure(structure.toString());
     	if (errors.size() == 0) {
-    		configureFileChooser(fileChooser, "Save structure");
+    		configureFileChooser(fileChooser, UIMessages.SAVE_STRUCTURE_TITLE);
     		File file = fileChooser.showSaveDialog(structureFields.getScene().getWindow());
     		ReadWriteUtil.writeToFile(structure, file.getAbsolutePath());
-    		displayMessage("The structure was saved to a file: " + file.getName());
+    		displayMessage(UIMessages.MESSAGE_SAVED + file.getName());
     	} else {
     		displayValidationErrors(errors);
     	}
@@ -67,7 +68,7 @@ public class StructureController {
 		StringBuilder structure = processCurrentStructure(e);
 		Map<String, String> errors = MainValidator.INSTANCE.validateStructure(structure.toString());
     	if (errors.size() == 0) {
-    		displayMessage("The structure is valid.");
+    		displayMessage(UIMessages.MESSAGE_VALID);
     	} else {
     		displayValidationErrors(errors);
     	}
@@ -76,17 +77,17 @@ public class StructureController {
 	@FXML
 	private void clearStructure() {
 		structureFields.getPanes().clear();
-		displayMessage("The structure was cleared.");
+		displayMessage(UIMessages.MESSAGE_CLEARED);
 		updateStructure();
 	}
 	
 	@FXML
 	private void loadStructure(ActionEvent event) {
-		configureFileChooser(fileChooser, "Load structure");
+		configureFileChooser(fileChooser, UIMessages.LOAD_STRUCTURE_TITLE);
 		File file = fileChooser.showOpenDialog(structureFields.getScene().getWindow());
 		if (file != null) {
 			String loadedStructure = ReadWriteUtil.readStructure(file.getAbsolutePath());
-			displayMessage("The structure was loaded.");
+			displayMessage(UIMessages.MESSAGE_LOADED);
 			setStructure(loadedStructure);
 	    	updateStructure();	
         }
@@ -154,7 +155,7 @@ public class StructureController {
     public static void configureFileChooser(final FileChooser fileChooser, final String title) {      
     	fileChooser.setTitle(title);
     	fileChooser.setInitialDirectory(
-    		new File(System.getProperty("user.home"))
+    		new File(System.getProperty(AppConfig.STARTING_DIR))
         );                 
     	fileChooser.getExtensionFilters().clear();
         fileChooser.getExtensionFilters().addAll(

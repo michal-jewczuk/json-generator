@@ -8,6 +8,7 @@ public class AppConfig {
 	public static final String STRING_SYMBOLS = "abcdefghijklmnopqrstuvwyz";
 	public static final String DEFAULT_CONNECTOR = " ";
 	public static final String EMPTY_STRUCTURE = "{\"types\": []}";
+	public static final String STARTING_DIR = "user.home";
 	
 	public static final String APP_NAME = "JSON Generator";
 	
@@ -20,4 +21,6 @@ public class AppConfig {
 	public static final double SCENE_WIDTH = 700.0;
 	public static final double SCENE_HEIGHT = 800.0;
 	public static final double TF_MAX_WIDTH = 500.0;
+	public static final double POPUP_WIDTH = 400.0;
+	public static final double POPUP_HEIGHT = 400.0;
 }

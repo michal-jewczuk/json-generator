@@ -6,6 +6,11 @@ public class UIMessages {
 	public static final String MENU_MAIN = "General";
 	public static final String MENU_STRUCTURE = "Structure";
 	
+	public static final String POPUP_TITLE = "Add new element";
+	public static final String SAVE_TITLE = "Save generated json";
+	public static final String SAVE_STRUCTURE_TITLE = "Save structure";
+	public static final String LOAD_STRUCTURE_TITLE = "Save structure";
+	
 	public static final String LABEL_NAME = "name";
 	public static final String LABEL_LOWER_BOUND = "lower bound";
 	public static final String LABEL_UPPER_BOUND = "upper bound";
@@ -21,4 +26,9 @@ public class UIMessages {
 	public static final String LABEL_ELEMENTS = "elements";
 	public static final String LABEL_ONLY_TRUE = "only TRUE";
 	public static final String LABEL_ONLY_FALSE = "only FALSE";
+	
+	public static final String MESSAGE_VALID = "The structure is valid.";
+	public static final String MESSAGE_CLEARED = "The structure was cleared.";
+	public static final String MESSAGE_SAVED = "The structure was saved to a file: ";
+	public static final String MESSAGE_LOADED = "The structure was loaded.";
 }

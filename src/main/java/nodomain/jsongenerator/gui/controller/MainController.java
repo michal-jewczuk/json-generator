@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import nodomain.jsongenerator.config.AppConfig;
+import nodomain.jsongenerator.gui.UIMessages;
 import nodomain.jsongenerator.gui.generators.ComponentGenerator;
 import nodomain.jsongenerator.io.ReadWriteUtil;
 import nodomain.jsongenerator.main.JsonGenerator;
@@ -93,7 +94,7 @@ public class MainController {
 		}
 		
 		if (chooseFile.isSelected()) {
-    		StructureController.configureFileChooser(fileChooser, "Save generated json");
+    		StructureController.configureFileChooser(fileChooser, UIMessages.SAVE_TITLE);
     		File file = fileChooser.showSaveDialog(validationBox.getScene().getWindow());
     		outputName = file.getAbsolutePath();
 		} else {

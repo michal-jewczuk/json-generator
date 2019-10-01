@@ -15,7 +15,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.TilePane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import nodomain.jsongenerator.config.AppConfig;
 import nodomain.jsongenerator.data.DataType;
+import nodomain.jsongenerator.gui.UIMessages;
 
 public class AddController {
 	
@@ -34,8 +36,8 @@ public class AddController {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/add.fxml"));
 			loader.setController(this);
-			stage.setScene(new Scene(loader.load(), 400, 400));
-			stage.setTitle("Add new element");
+			stage.setScene(new Scene(loader.load(), AppConfig.POPUP_WIDTH, AppConfig.POPUP_HEIGHT));
+			stage.setTitle(UIMessages.POPUP_TITLE);
 			stage.initModality(Modality.APPLICATION_MODAL);
 		} catch (IOException e) {
 			e.printStackTrace();
