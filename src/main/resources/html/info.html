@@ -20,7 +20,7 @@
 			<p>Copyright (c) 2019 Michal Jewczuk</p>
 		
 		<h2 id="licence">License</h2>
-			<p>This program is distributed under MIT Licence</p>
+			<p>This program is distributed under MIT License</p>
 			<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
 			<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
 			<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>		
@@ -30,7 +30,89 @@
 			from <a href="https://www.flaticon.com/"  title="Flaticon">www.flaticon.com</a></p>
 		
 		<h2 id="help">Help</h2>
+		<p>Here are the configuration parameters for all available elements.</p>
+		<p>Every element has to have a name (can be blank but what is the point then) which will represent the key value in json.</p>
 		
+		<h3>JSON_BOOL</h3>
+			<p>Adds option to generate boolean values.</p>
+			<dl>
+				<dt>only TRUE</dt>
+				<dd>mark that if you want to only generate true values</dd>
+				<dt>only FALSE</dt>
+				<dd>mark that if you want to only generate false values</dd>
+			</dl>
+			<p><strong>WARNING:</strong> marking both <em>only TRUE</em> and <em>only FALSE</em> is an error.</p>
+			
+		<h3>JSON_DATE</h3>
+			<p>Adds option to generate date values.</p>
+			<dl>
+				<dt>lower bound</dt>
+				<dd>all the generated dates will be not before the given value</dd>
+				<dt>upper bound</dt>
+				<dd>all the generated dates will be not after the given value</dd>
+				<dt>output pattern</dt>
+				<dd>specifies the format in which the date will be written. Has to follow rules of java.time.format.DateTimeFormatter</dd>
+			</dl>
+			<p>If you want to generate dates on a specified day set <em>lower bound</em> equal to <em>upper bound</em>.</p>
+			<p><strong>WARNING:</strong> <em>lower bound</em> must not be after <em>upper bound</em>.</p>
+			
+		<h3>JSON_DOUBLE</h3>
+			<p>Adds option to generate numerical values with decimal part.</p>
+			<dl>
+				<dt>lower bound</dt>
+				<dd>all the generated numbers will be not smaller than the given value</dd>
+				<dt>upper bound</dt>
+				<dd>all the generated dates will be not greater than the given value</dd>
+				<dt>precision</dt>
+				<dd>specifies the count of numbers after the decimal point</dd>
+			</dl>
+			<p><strong>WARNING:</strong> <em>lower bound</em> must not be greater than <em>upper bound</em> and precision has to be at least 1.</p>
+						
+		<h3>JSON_NUMBER</h3>
+			<p>Adds option to generate numerical values with 0 places after decimal point.</p>
+			<dl>
+				<dt>lower bound</dt>
+				<dd>all the generated numbers will be not smaller than the given value</dd>
+				<dt>upper bound</dt>
+				<dd>all the generated dates will be not greater than the given value</dd>
+			</dl>
+			<p><strong>WARNING:</strong> <em>lower bound</em> must not be greater than <em>upper bound</em>.</p>
+						
+		<h3>JSON_OBJECT</h3>
+			<p>A container that allows to create a nested json that consists of all available values.</p>
+			<dl>
+				<dt>count</dt>
+				<dd>specifies format of the nested json. For 1 it will be a single object, for more than 1 it will be an array of objects.</dd>
+			</dl>
+			<p>You can nest another json in already nested json. Use the JSON_OBJECT when adding new elements.</p>
+						
+		<h3>JSON_PATTERN</h3>
+			<p>Adds option to generate string values that are formatted in given pattern.</p>
+			<dl>
+				<dt>pattern</dt>
+				<dd>specifies the pattern of the string; the pattern is of given format: number-number-number, i.e. 3-4-12</dd>
+				<dt>connector</dt>
+				<dd>specifies the element that will connect the given parts; can be one symbol or many, or even empty</dd>
+				<dt>all capital</dt>
+				<dd>marking that option will capitalize the given output</dd>
+			</dl>
+			<p><strong>WARNING:</strong> <em>pattern</em> must start with a number but can be as short as one number.</p>
+			
+		<h3>JSON_STRING</h3>
+			<p>Adds option to generate string values.</p>
+			<dl>
+				<dt>min length</dt>
+				<dd>specifies the minimum length of generated string</dd>
+				<dt>max length</dt>
+				<dd>specifies the maximum length of generated string</dd>
+				<dt>first capital</dt>
+				<dd>margin that option will capitalize only the first letter</dd>
+				<dt>all capital</dt>
+				<dd>marking that option will capitalize the given output</dd>
+			</dl>
+			<p><strong>WARNING:</strong> <em>min length</em> cannot be greater than <em>max length</em>.</p>
+			<p><strong>WARNING:</strong> marking both <em>first capital</em> and <em>all capital</em> is an error.</p>
+					
 	</article>
 </body>
 </html>

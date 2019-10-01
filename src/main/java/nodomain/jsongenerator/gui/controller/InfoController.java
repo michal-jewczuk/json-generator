@@ -15,7 +15,6 @@ public class InfoController {
 		WebEngine webEngine = browser.getEngine();
 		URL url = this.getClass().getResource("/html/info.html");
 		webEngine.load(url.toString());
-		System.out.println(webEngine.getTitle());
 	}
 
 }
