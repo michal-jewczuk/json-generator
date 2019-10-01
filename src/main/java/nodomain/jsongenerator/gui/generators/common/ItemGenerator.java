@@ -22,9 +22,9 @@ import javafx.scene.layout.TilePane;
 import nodomain.jsongenerator.gui.UIMessages;
 import nodomain.jsongenerator.gui.controller.StructureController;
 
-public interface ElementGenerator {
+public interface ItemGenerator {
 
-	Node generateElement(String name, JSONObject rawOptions, boolean showButtons);
+	Node generateItem(String name, JSONObject rawOptions, boolean showButtons);
 	
 	final double SPACING = 15.0;
 	final Image imageArrowUp = new Image(Object.class.getResourceAsStream("/icons/arrow-up.png"));

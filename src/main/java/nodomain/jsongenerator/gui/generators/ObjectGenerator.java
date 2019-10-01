@@ -19,15 +19,15 @@ import nodomain.jsongenerator.gui.UIMessages;
 import nodomain.jsongenerator.gui.controller.AddController;
 import nodomain.jsongenerator.gui.controller.StructureController;
 import nodomain.jsongenerator.gui.generators.common.ComponentGenerator;
-import nodomain.jsongenerator.gui.generators.common.ElementGenerator;
+import nodomain.jsongenerator.gui.generators.common.ItemGenerator;
 import nodomain.jsongenerator.gui.generators.common.PanelGenerator;
 
-public enum ObjectElementGenerator implements ElementGenerator {
+public enum ObjectGenerator implements ItemGenerator {
 	
 	INSTANCE;
 
 	@Override
-	public Node generateElement(String name, JSONObject options, boolean showButtons) {
+	public Node generateItem(String name, JSONObject options, boolean showButtons) {
 		BorderPane pane = createObjectLayout(showButtons);
 		String count = options == null ? "1" : options.get("count").toString();
 		

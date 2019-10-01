@@ -12,13 +12,13 @@ import nodomain.jsongenerator.generator.NumberKVGenerator;
 import nodomain.jsongenerator.generator.ObjectKVGenerator;
 import nodomain.jsongenerator.generator.PatternKVGenerator;
 import nodomain.jsongenerator.generator.StringKVGenerator;
-import nodomain.jsongenerator.gui.generators.BoolElementGenerator;
-import nodomain.jsongenerator.gui.generators.DateElementGenerator;
-import nodomain.jsongenerator.gui.generators.DoubleElementGenerator;
-import nodomain.jsongenerator.gui.generators.NumberElementGenerator;
-import nodomain.jsongenerator.gui.generators.ObjectElementGenerator;
-import nodomain.jsongenerator.gui.generators.PatternElementGenerator;
-import nodomain.jsongenerator.gui.generators.StringElementGenerator;
+import nodomain.jsongenerator.gui.generators.BoolGenerator;
+import nodomain.jsongenerator.gui.generators.DateGenerator;
+import nodomain.jsongenerator.gui.generators.DoubleGenerator;
+import nodomain.jsongenerator.gui.generators.NumberGenerator;
+import nodomain.jsongenerator.gui.generators.ObjectGenerator;
+import nodomain.jsongenerator.gui.generators.PatternGenerator;
+import nodomain.jsongenerator.gui.generators.StringGenerator;
 import nodomain.jsongenerator.gui.processors.BoolItemProcessor;
 import nodomain.jsongenerator.gui.processors.DateItemProcessor;
 import nodomain.jsongenerator.gui.processors.DoubleItemProcessor;
@@ -49,7 +49,7 @@ public enum DataType {
 
 		@Override
 		public Node createGUIElement(String name, JSONObject dataOptions, boolean showButtons) {
-			return BoolElementGenerator.INSTANCE.generateElement(name, dataOptions, showButtons);
+			return BoolGenerator.INSTANCE.generateItem(name, dataOptions, showButtons);
 		}
 
 		@Override
@@ -71,7 +71,7 @@ public enum DataType {
 
 		@Override
 		public Node createGUIElement(String name, JSONObject dataOptions, boolean showButtons) {
-			return DateElementGenerator.INSTANCE.generateElement(name, dataOptions, showButtons);
+			return DateGenerator.INSTANCE.generateItem(name, dataOptions, showButtons);
 		}
 
 		@Override
@@ -93,7 +93,7 @@ public enum DataType {
 
 		@Override
 		public Node createGUIElement(String name, JSONObject dataOptions, boolean showButtons) {
-			return DoubleElementGenerator.INSTANCE.generateElement(name, dataOptions, showButtons);
+			return DoubleGenerator.INSTANCE.generateItem(name, dataOptions, showButtons);
 		}
 
 		@Override
@@ -115,7 +115,7 @@ public enum DataType {
 
 		@Override
 		public Node createGUIElement(String name, JSONObject dataOptions, boolean showButtons) {
-			return NumberElementGenerator.INSTANCE.generateElement(name, dataOptions, showButtons);
+			return NumberGenerator.INSTANCE.generateItem(name, dataOptions, showButtons);
 		}
 
 		@Override
@@ -137,7 +137,7 @@ public enum DataType {
 
 		@Override
 		public Node createGUIElement(String name, JSONObject dataOptions, boolean showButtons) {
-			return ObjectElementGenerator.INSTANCE.generateElement(name, dataOptions, showButtons);
+			return ObjectGenerator.INSTANCE.generateItem(name, dataOptions, showButtons);
 		}
 
 		@Override
@@ -159,7 +159,7 @@ public enum DataType {
 
 		@Override
 		public Node createGUIElement(String name, JSONObject dataOptions, boolean showButtons) {
-			return PatternElementGenerator.INSTANCE.generateElement(name, dataOptions, showButtons);
+			return PatternGenerator.INSTANCE.generateItem(name, dataOptions, showButtons);
 		}
 
 		@Override
@@ -181,7 +181,7 @@ public enum DataType {
 
 		@Override
 		public Node createGUIElement(String name, JSONObject dataOptions, boolean showButtons) {
-			return StringElementGenerator.INSTANCE.generateElement(name, dataOptions, showButtons);
+			return StringGenerator.INSTANCE.generateItem(name, dataOptions, showButtons);
 		}
 
 		@Override

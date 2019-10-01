@@ -9,14 +9,14 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import nodomain.jsongenerator.gui.UIMessages;
 import nodomain.jsongenerator.gui.generators.common.ComponentGenerator;
-import nodomain.jsongenerator.gui.generators.common.ElementGenerator;
+import nodomain.jsongenerator.gui.generators.common.ItemGenerator;
 
-public enum DateElementGenerator implements ElementGenerator {
+public enum DateGenerator implements ItemGenerator {
 	
 	INSTANCE;
 
 	@Override
-	public Node generateElement(String name, JSONObject options, boolean showButtons) {
+	public Node generateItem(String name, JSONObject options, boolean showButtons) {
 		BorderPane pane = createObjectLayout(showButtons);	
 		String lowerBound = options == null ? "" : options.get("lower_bound").toString();
 		String upperBound = options == null ? "" : options.get("upper_bound").toString();

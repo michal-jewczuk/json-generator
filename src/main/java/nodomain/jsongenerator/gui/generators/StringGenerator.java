@@ -10,14 +10,14 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import nodomain.jsongenerator.gui.UIMessages;
 import nodomain.jsongenerator.gui.generators.common.ComponentGenerator;
-import nodomain.jsongenerator.gui.generators.common.ElementGenerator;
+import nodomain.jsongenerator.gui.generators.common.ItemGenerator;
 
-public enum StringElementGenerator implements ElementGenerator {
+public enum StringGenerator implements ItemGenerator {
 	
 	INSTANCE;
 
 	@Override
-	public Node generateElement(String name, JSONObject options, boolean showButtons) {
+	public Node generateItem(String name, JSONObject options, boolean showButtons) {
 		BorderPane pane = createObjectLayout(showButtons);
 		String minLength = options == null ? "" : options.get("min_length").toString();
 		String maxLength = options == null ? "" : options.get("max_length").toString();

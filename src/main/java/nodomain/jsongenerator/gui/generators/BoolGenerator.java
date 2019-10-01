@@ -8,14 +8,14 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import nodomain.jsongenerator.gui.UIMessages;
 import nodomain.jsongenerator.gui.generators.common.ComponentGenerator;
-import nodomain.jsongenerator.gui.generators.common.ElementGenerator;
+import nodomain.jsongenerator.gui.generators.common.ItemGenerator;
 
-public enum BoolElementGenerator implements ElementGenerator {
+public enum BoolGenerator implements ItemGenerator {
 	
 	INSTANCE;
 
 	@Override
-	public Node generateElement(String name, JSONObject options, boolean showButtons) {
+	public Node generateItem(String name, JSONObject options, boolean showButtons) {
 		BorderPane pane = createObjectLayout(showButtons);		
 		boolean onlyTrue = options == null ? false : options.getBoolean("only_true");
 		boolean onlyFalse = options == null ? false : options.getBoolean("only_false");
