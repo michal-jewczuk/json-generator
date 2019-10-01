@@ -1,4 +1,4 @@
-package nodomain.jsongenerator.gui.processors;
+package nodomain.jsongenerator.gui.processors.common;
 
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;

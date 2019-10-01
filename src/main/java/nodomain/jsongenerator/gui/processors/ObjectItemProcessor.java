@@ -8,6 +8,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.GridPane;
 import nodomain.jsongenerator.data.DataType;
+import nodomain.jsongenerator.gui.processors.common.ItemProcessor;
+import nodomain.jsongenerator.gui.processors.common.MainProcessor;
 
 public enum ObjectItemProcessor implements ItemProcessor {
 	

@@ -2,6 +2,7 @@ package nodomain.jsongenerator.gui.processors;
 
 import javafx.scene.control.CheckBox;
 import javafx.scene.layout.GridPane;
+import nodomain.jsongenerator.gui.processors.common.ItemProcessor;
 
 public enum BoolItemProcessor implements ItemProcessor {
 	

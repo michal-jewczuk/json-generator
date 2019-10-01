@@ -3,6 +3,7 @@ package nodomain.jsongenerator.gui.processors;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import nodomain.jsongenerator.gui.processors.common.ItemProcessor;
 
 public enum StringItemProcessor implements ItemProcessor {
 	
