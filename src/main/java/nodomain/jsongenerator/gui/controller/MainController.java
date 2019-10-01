@@ -15,7 +15,7 @@ import nodomain.jsongenerator.gui.UIMessages;
 import nodomain.jsongenerator.gui.generators.common.ComponentGenerator;
 import nodomain.jsongenerator.io.ReadWriteUtil;
 import nodomain.jsongenerator.main.JsonGenerator;
-import nodomain.jsongenerator.validators.MainValidator;
+import nodomain.jsongenerator.validators.common.MainValidator;
 
 public class MainController {
 	

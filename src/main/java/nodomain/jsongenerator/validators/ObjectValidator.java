@@ -7,6 +7,7 @@ import org.json.JSONObject;
 import nodomain.jsongenerator.data.DataType;
 import nodomain.jsongenerator.exceptions.Errors;
 import nodomain.jsongenerator.exceptions.ValidationException;
+import nodomain.jsongenerator.validators.common.ItemValidator;
 
 public enum ObjectValidator implements ItemValidator {
 	
