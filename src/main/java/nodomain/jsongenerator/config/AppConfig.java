@@ -5,7 +5,7 @@ public class AppConfig {
 	public static final String CONFIGURATION_FILE = "structure.json";
 	public static final String DEFAULT_OUTPUT_NAME = "data.json";
 	public static final String DEFAULT_ARRAY_NAME = "data";
-	public static final String STRING_SYMBOLS = "abcdefghijklmnopqrstuvwyz";
+	public static final String STRING_SYMBOLS = "abcdefghijklmnopqrstuvwxyz";
 	public static final String DEFAULT_CONNECTOR = " ";
 	public static final String EMPTY_STRUCTURE = "{\"types\": []}";
 	public static final String STARTING_DIR = "user.home";
