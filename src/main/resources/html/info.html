@@ -47,9 +47,9 @@
 			<p>Adds option to generate date values.</p>
 			<dl>
 				<dt>lower bound</dt>
-				<dd>all the generated dates will be not before the given value</dd>
+				<dd>all the generated dates will not be before the given value</dd>
 				<dt>upper bound</dt>
-				<dd>all the generated dates will be not after the given value</dd>
+				<dd>all the generated dates will not be after the given value</dd>
 				<dt>output pattern</dt>
 				<dd>specifies the format in which the date will be written. Has to follow rules of java.time.format.DateTimeFormatter</dd>
 			</dl>
@@ -60,21 +60,21 @@
 			<p>Adds option to generate numerical values with decimal part.</p>
 			<dl>
 				<dt>lower bound</dt>
-				<dd>all the generated numbers will be not smaller than the given value</dd>
+				<dd>all the generated numbers will not be smaller than the given value</dd>
 				<dt>upper bound</dt>
-				<dd>all the generated dates will be not greater than the given value</dd>
+				<dd>all the generated dates will not be greater than the given value</dd>
 				<dt>precision</dt>
 				<dd>specifies the count of numbers after the decimal point</dd>
 			</dl>
-			<p><strong>WARNING:</strong> <em>lower bound</em> must not be greater than <em>upper bound</em> and precision has to be at least 1.</p>
+			<p><strong>WARNING:</strong> <em>lower bound</em> must be lower than <em>upper bound</em> and precision has to be at least 1.</p>
 						
 		<h3>JSON_NUMBER</h3>
 			<p>Adds option to generate numerical values with 0 places after decimal point.</p>
 			<dl>
 				<dt>lower bound</dt>
-				<dd>all the generated numbers will be not smaller than the given value</dd>
+				<dd>all the generated numbers will not be smaller than the given value</dd>
 				<dt>upper bound</dt>
-				<dd>all the generated dates will be not greater than the given value</dd>
+				<dd>all the generated dates will not be greater than the given value</dd>
 			</dl>
 			<p><strong>WARNING:</strong> <em>lower bound</em> must not be greater than <em>upper bound</em>.</p>
 						

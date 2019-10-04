@@ -60,7 +60,7 @@ Adds option to generate numerical values with decimal part.
 	<dd>specifies the count of numbers after the decimal point</dd>
 </dl>
 
-**WARNING:** *lower bound* must not be greater than *upper bound* and *precision* has to be at least 1.
+**WARNING:** *lower bound* must be lower than *upper bound* and *precision* has to be at least 1.
 
 ### JSON_NUMBER
 Adds option to generate numerical values with 0 places after decimal point.

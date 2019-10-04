@@ -74,15 +74,17 @@ public class AddController {
 	private void addElement(ActionEvent event) {
 		BorderPane parent = (BorderPane) ((Button) event.getSource()).getParent().getParent();
 		TilePane top = (TilePane) parent.getTop();
-		GridPane pane = (GridPane) ((BorderPane) parent.getCenter()).getCenter();
 		
 		// cast to ComboBox is safe
 		@SuppressWarnings("unchecked")
-		ComboBox<String> choice = (ComboBox<String>) top.getChildren().get(1);
+		ComboBox<String> choice = (ComboBox<String>) top.getChildren().get(1);		
+		
 		if (choice.getValue() == null) {
 			closeStage();
 			return;
 		}
+		
+		GridPane pane = (GridPane) ((BorderPane) parent.getCenter()).getCenter();
 		
 		DataType type = DataType.valueOf(choice.getValue());
 		json = type.convertToJSON(pane);

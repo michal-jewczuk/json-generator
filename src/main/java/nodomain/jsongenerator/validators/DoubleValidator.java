@@ -25,7 +25,7 @@ public enum DoubleValidator implements ItemValidator {
 			throw new ValidationException(Errors.PARSING_ERROR + getOptionName(e.getMessage()));
 		}
 		
-		if (upperBound < lowerBound) {
+		if (upperBound <= lowerBound) {
 			throw new ValidationException(Errors.LOWER_BOUND_HIGHER);
 		}
 		
