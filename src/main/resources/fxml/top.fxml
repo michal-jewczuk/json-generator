@@ -8,16 +8,16 @@
 <?import javafx.geometry.Insets?>
 
 <TilePane prefHeight="-1.0" prefWidth="-1.0" stylesheets="@../css/styles.css" id="topPane"
-	orientation="HORIZONTAL" hgap="20.0"
+	orientation="HORIZONTAL" hgap="30.0" alignment="CENTER"
 	xmlns:fx="http://javafx.com/fxml/1" fx:controller="nodomain.jsongenerator.gui.controller.MenuController">
 
 	<padding>
-		<Insets bottom="15.0" left="12.0" right="15.0" top="12.0" />
+		<Insets bottom="25.0" left="15.0" right="15.0" top="25.0" />
     </padding>
 	
     <children>
-        <Button text="General" onAction="#showMain" />
-        <Button text="Structure" onAction="#showStructure" />
-        <Button text="Info" onAction="#showInfo" />
+        <Button prefWidth="120" text="General" onAction="#showMain" />
+        <Button prefWidth="120" text="Structure" onAction="#showStructure" />
+        <Button prefWidth="120" text="Info" onAction="#showInfo" />
     </children>
 </TilePane>
