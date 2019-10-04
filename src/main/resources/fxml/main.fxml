@@ -12,14 +12,14 @@
 	xmlns:fx="http://javafx.com/fxml/1" fx:controller="nodomain.jsongenerator.gui.controller.MainController">
 	
 	<padding>
-		<Insets bottom="15.0" left="12.0" right="15.0" top="12.0" />
+		<Insets bottom="15.0" left="12.0" right="12.0" top="15.0" />
     </padding>
     
     <center>
     	<GridPane prefHeight="-1.0" prefWidth="-1.0" alignment="CENTER" hgap="10.0" vgap="12.0">
 
 			<padding>
-				<Insets bottom="15.0" left="12.0" right="15.0" top="12.0" />
+				<Insets bottom="15.0" left="12.0" right="12.0" top="15.0" />
 		    </padding>
 			
 			<Label text="Set generation parameters" id="header-text"
@@ -46,7 +46,7 @@
 	<bottom>
 		<BorderPane prefHeight="-1.0" prefWidth="-1.0" id="bottomPane">
 			<padding>
-				<Insets bottom="15.0" left="12.0" right="15.0" top="12.0" />
+				<Insets bottom="15.0" left="12.0" right="12.0" top="15.0" />
 		    </padding>
 		    
 		    <top>

@@ -13,7 +13,7 @@
 	xmlns:fx="http://javafx.com/fxml/1" fx:controller="nodomain.jsongenerator.gui.controller.InfoController">
 	
 	<padding>
-		<Insets bottom="15.0" left="12.0" right="15.0" top="12.0" />
+		<Insets bottom="15.0" left="12.0" right="12.0" top="15.0" />
     </padding>
     
     <center>
