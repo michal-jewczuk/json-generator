@@ -20,6 +20,7 @@ public class UIMessages {
 	public static final String LABEL_CONNECTOR = "connector";
 	public static final String LABEL_ALL_CAP = "all capital";
 	public static final String LABEL_FIRST_CAP = "first capital";
+	public static final String LABEL_NONE_CAP = "none capital";
 	public static final String LABEL_MIN_LENGTH = "min length";
 	public static final String LABEL_MAX_LENGTH = "max length";
 	public static final String LABEL_COUNT = "count";
