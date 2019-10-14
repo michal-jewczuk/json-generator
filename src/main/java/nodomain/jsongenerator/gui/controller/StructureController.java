@@ -11,10 +11,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Accordion;
+import javafx.scene.control.Button;
 import javafx.scene.control.TitledPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import nodomain.jsongenerator.config.AppConfig;
+import nodomain.jsongenerator.data.DataType;
 import nodomain.jsongenerator.gui.UIMessages;
 import nodomain.jsongenerator.gui.generators.common.ComponentGenerator;
 import nodomain.jsongenerator.gui.generators.common.PanelGenerator;
@@ -108,7 +114,7 @@ public class StructureController {
 		}
 		updateStructure();
 	}
-	
+
 	public static void movePanelDown(TitledPane pane) {
 		List<TitledPane> panes = ((Accordion) pane.getParent()).getPanes();
 		int index = panes.indexOf(pane);
@@ -119,9 +125,37 @@ public class StructureController {
 		updateStructure();
 	}
 	
+	private static void disableButtons(List<TitledPane> panes) {
+		int count = panes.size();
+		for (int i = 0; i < count; i++) {
+			TitledPane pane = panes.get(i);
+			Button up = extractButton(pane, 0);
+			Button down = extractButton(pane, 1);
+			up.setDisable(i == 0);
+			down.setDisable(i == (count - 1));
+			DataType type = DataType.valueOf(MainProcessor.INSTANCE.getType(pane.getText()));
+			if (type.equals(DataType.JSON_OBJECT)) {
+				disableButtons(extractChildrenFromJsonObjectPane(pane));
+			}
+		}		
+	}
+
+	private static Button extractButton(TitledPane pane, int i) {
+		HBox hb = (HBox) ((BorderPane) pane.getContent()).getRight();
+		return (Button) ( (TilePane) hb.getChildren().get(1)).getChildren().get(i);
+	}
+	
+	private static List<TitledPane> extractChildrenFromJsonObjectPane(TitledPane pane) {
+		Accordion acc = (Accordion) ((GridPane) ((BorderPane) pane.getContent())
+										.getCenter())
+									.getChildren().get(6);
+		return acc.getPanes();
+	}
+
 	public static void updateStructure() {
 		MainController.CURRENT_STRUCTURE = 
 				MainProcessor.INSTANCE.proccessStructure(staticStructure).toString(); 
+		disableButtons(staticStructure.getPanes());
 	}
 	
 	private JSONObject showFormAddElement() {
@@ -182,6 +216,7 @@ public class StructureController {
     	structureFields.getPanes()
 			.addAll(PanelGenerator.INSTANCE.createStructurePanes(
 				JsonGenerator.parseStructureFile(structure)));
+    	disableButtons(structureFields.getPanes());
     	staticStructure = structureFields;
     }
 
