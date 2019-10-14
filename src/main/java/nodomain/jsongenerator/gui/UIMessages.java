@@ -26,6 +26,7 @@ public class UIMessages {
 	public static final String LABEL_ELEMENTS = "elements";
 	public static final String LABEL_ONLY_TRUE = "only TRUE";
 	public static final String LABEL_ONLY_FALSE = "only FALSE";
+	public static final String LABEL_TRUE_OR_FALSE = "TRUE or FALSE";
 	
 	public static final String MESSAGE_VALID = "The structure is valid.";
 	public static final String MESSAGE_CLEARED = "The structure was cleared.";
