@@ -52,8 +52,11 @@ public class StructureController {
     	if (errors.size() == 0) {
     		configureFileChooser(fileChooser, UIMessages.SAVE_STRUCTURE_TITLE);
     		File file = fileChooser.showSaveDialog(structureFields.getScene().getWindow());
-    		ReadWriteUtil.writeToFile(structure, file.getAbsolutePath());
-    		displayMessage(UIMessages.MESSAGE_SAVED + file.getName());
+    		
+    		if (file != null) {
+    			ReadWriteUtil.writeToFile(structure, file.getAbsolutePath());
+        		displayMessage(UIMessages.MESSAGE_SAVED + file.getName());
+    		}    		
     	} else {
     		displayValidationErrors(errors);
     	}
@@ -205,7 +208,7 @@ public class StructureController {
     	} catch (IllegalArgumentException iae) {
     		structure = AppConfig.EMPTY_STRUCTURE;
     		displayMessage(AppConfig.INVALID_ELEMENTS);
-    	} catch (JSONException je) {
+    	} catch (JSONException je) {	
     		structure = AppConfig.EMPTY_STRUCTURE;
     		displayMessage(AppConfig.NOT_A_JSON);   		
     	} catch (Exception oe) {
