@@ -26,7 +26,7 @@ public enum ObjectValidator implements ItemValidator {
 		}
 		
 		if (count < 1) {
-			throw new ValidationException(Errors.LOWER_BOUND_HIGHER);
+			throw new ValidationException(Errors.INVALID_COUNT);
 		}
 		
 		validateChildren(children);

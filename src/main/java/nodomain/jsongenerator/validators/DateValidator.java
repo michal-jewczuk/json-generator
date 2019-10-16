@@ -38,7 +38,14 @@ public enum DateValidator implements ItemValidator {
 		} catch (UnsupportedTemporalTypeException e) {
 			throw new ValidationException(Errors.INVALID_DATE_PATTERN);
 		} catch (DateTimeException e) {
-			throw new ValidationException(Errors.NOT_A_DATE + getOptionName(e.getMessage()));
+			String name = null;
+			try {
+				name = getOptionName(e.getMessage());
+			} catch (Exception ee) {
+				name = e.getMessage();
+			}
+
+			throw new ValidationException(Errors.NOT_A_DATE + name);
 		}
 
 		if (lowerBoundLD.isAfter(upperBoundLD)) {
