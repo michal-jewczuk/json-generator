@@ -22,7 +22,7 @@ public class ReadWriteUtil {
 				structure.append(line).append("\n");
 			} 
 		} catch (IOException e) {
-			e.printStackTrace();
+			return null;
 		}
 		
 		return structure.toString();

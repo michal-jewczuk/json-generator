@@ -6,6 +6,7 @@ import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import nodomain.jsongenerator.config.AppConfig;
 import nodomain.jsongenerator.data.DataType;
 
 public enum MainValidator {
@@ -13,7 +14,11 @@ public enum MainValidator {
 	INSTANCE;
 	
 	public Map<String, String> validateStructure(String structure) {
-		Map<String, String> errors = new HashMap<>();	
+		Map<String, String> errors = new HashMap<>();
+		
+		if (structure.equals(AppConfig.EMPTY_STRUCTURE)) {
+			return errors;
+		}
 		
 		JSONObject obj = new JSONObject(structure);
 		JSONArray arr = obj.getJSONArray("types");

@@ -47,9 +47,10 @@ public class MainController {
     	countField.setText(count.toString());
     	outputNameField.setText(outputName);
     	if (CURRENT_STRUCTURE == null) {
-    		try {
-    			CURRENT_STRUCTURE = ReadWriteUtil.readStructure(AppConfig.CONFIGURATION_FILE);
-    		} catch (Exception e) {
+    		CURRENT_STRUCTURE = 
+    				ReadWriteUtil.readStructure(AppConfig.CONFIGURATION_FILE);
+    		
+    		if (CURRENT_STRUCTURE == null) {
     			CURRENT_STRUCTURE = AppConfig.EMPTY_STRUCTURE;
     			displayMessage(AppConfig.ERROR_LOADING_DEFAULT);
     		}
