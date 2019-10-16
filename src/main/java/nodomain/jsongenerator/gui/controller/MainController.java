@@ -52,10 +52,8 @@ public class MainController {
     		
     		if (CURRENT_STRUCTURE == null) {
     			CURRENT_STRUCTURE = AppConfig.EMPTY_STRUCTURE;
-    			displayMessage(AppConfig.ERROR_LOADING_DEFAULT);
     		}
     	}
-    	validationBox.setVisible(false);
     }
 
     @FXML
